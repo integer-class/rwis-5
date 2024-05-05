@@ -19,10 +19,10 @@ a{
     padding-top: 157px;
 }
 
-.section-1{
+body{
     background-image: url(../img/big-rectangle.png);
-    height: 902px;
-    background-size: cover;
+    background-size:100%;
+    background-repeat: no-repeat;
 }
 
 p.title {
@@ -52,4 +52,61 @@ p.desc{
     height: 410px;
     object-fit: cover;
     border-radius: 20px;
+}
+
+.logo-title {
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: rgba(128, 128, 128, 1);
+}
+
+.information{
+    margin-top: 200px;
+}
+
+.greet-information{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    letter-spacing: 5px;
+    color: rgba(67, 97, 238, 1);
+}
+
+.title-information{
+    font-weight: 600;
+    font-size: 39.8px;
+    line-height: 47px;
+}
+
+.desc-information{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(128, 128, 128, 1);
+}
+
+.information-card{
+    width: 400px;
+    height: 131px;
+    border-radius: 30px;
+    padding: 10px;
+}
+.information-card .card-title{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(67, 97, 238, 1);
+}
+
+.information-card .card-text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(128, 128, 128, 1);
+}
+
+.image-warga{
+    margin-top: 100px;
 }
