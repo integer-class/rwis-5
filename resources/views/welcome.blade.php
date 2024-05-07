@@ -190,6 +190,221 @@
             </div>
         </div>
     </div>
+    {{-- all programs --}}
+    <div class="container">
+        <p class="greet-program">
+            CHECKOUT OUR NEW
+        </p>
+        <div class="row">
+            <div class="col-md-10">    
+                <p class="title-program">
+                    Latest Program and Activities
+                </p>
+                <p class="title-program-desc">
+                    Here are our several programs and activities that you should <br>
+                    keep your eyes on
+                </p>
+            </div>
+            <div class="col-md-1 ms-auto">
+                <button type="button" class="btn btn-outline-primary">All</button>
+            </div>
+        </div>
+        <div class="row mt-5 program">
+            <div class="col-md-4 card-program">
+                <div class="card kerja-bakti">
+                    <div class="card-body">
+                        <div class="card rounded-pill pt-2 ps-4 position-absolute bottom-0 start-0 mb-3 ms-3 program-pill">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <img src="{{ asset('img/fire-icon.png') }}" alt="" class="mb-1">
+                                </div>
+                                <div class="col-md-9 ms-2">
+                                    <p>Program</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="title-program mt-3">
+                    Kerja Bakti
+                </p>
+                <p class="date-program">
+                    23 Maret 2024
+                </p>
+                <p class="desc-program">
+                    08.00 - 12.00 WIB <br>
+                    Lapangan Merdeka
+                </p>
+            </div>
+            <div class="col-md-4 card-program">
+                <div class="card posyandu">
+                    <div class="card-body">
+                        <div class="card rounded-pill pt-2 ps-4 position-absolute bottom-0 start-0 mb-3 ms-3 program-pill">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <img src="{{ asset('img/fire-icon.png') }}" alt="" class="mb-1">
+                                </div>
+                                <div class="col-md-9 ms-2">
+                                    <p>Program</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="title-program mt-3">
+                    Posyandu Visit
+                </p>
+                <p class="date-program">
+                    26 Maret 2024
+                </p>
+                <p class="desc-program">
+                    09.00 - 11.00 WIB <br>
+                    Balai RW 07
+                </p>
+            </div>
+            <div class="col-md-4 card-program">
+                <div class="card umkm">
+                    <div class="card-body">
+                        <div class="card rounded-pill pt-2 ps-4 position-absolute bottom-0 start-0 mb-3 ms-3 umkm-pill">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <img src="{{ asset('img/money-icon.png') }}" alt="" class="mb-1">
+                                </div>
+                                <div class="col-md-9 ms-2">
+                                    <p>UMKM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="title-program mt-3">
+                    New UMKM
+                </p>
+                <p class="date-program">
+                    Dimsum Bu Siti
+                </p>
+                <p class="desc-program">
+                    Jl. Pisang Kipas No.11, RT 01/RW 07
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="service">
+        <div class="container text-center">
+            <p class="title">
+                Our Services
+            </p>
+            <p class="greet">
+                We Provide Ease for You
+            </p>
+            <div class="row card-group">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body p-5">
+                            <div class="logo rounded-circle p-4 mt-4 mb-4">
+                                <img src="{{ asset('img/search.png') }}" alt="">
+                            </div>
+                            <p class="title-card">View Citizens Data</p>
+                            <p class="desc-card">You can view detailed <br> 
+                                information of citizens</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body p-5">
+                            <div class="logo rounded-circle p-4 mt-4 mb-4">
+                                <img src="{{ asset('img/home.png') }}" alt="">
+                            </div>
+                            <p class="title-card">RT/RW Contact Info</p>
+                            <p class="desc-card">If there’s an urgent <br>
+                                neccessities with RT/RW <br>
+                                you can view their contacts <br>
+                                here</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body p-5">
+                            <div class="logo rounded-circle p-4 mt-4 mb-4">
+                                <img src="{{ asset('img/doc2.png') }}" alt="">
+                            </div>
+                            <p class="title-card">Sign Digitalization</p>
+                            <p class="desc-card">Any kind of letters now can <br>
+                                be digital signed, make it <br>
+                                easier and effective</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="neighborhood">
+        <div class="container">
+            <p class="title-1">AREAS ACROSS THE RW</p>
+            <p class="title-2">Neighborhood Data</p>
+
+            <div class="row mt-5 justify-content-around">
+                <div class="col-md-3">
+                    <div class="card rw">
+                        <div class="card-body">
+                            <div class="position-absolute bottom-0 start-0 ms-4">
+                                <p class="num">1</p>
+                                <p class="title">RW</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card rt">
+                        <div class="card-body">
+                            <div class="position-absolute bottom-0 start-0 ms-4">
+                                <p class="num">14</p>
+                                <p class="title">RT</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card houses">
+                        <div class="card-body">
+                            <div class="position-absolute bottom-0 start-0 ms-4">
+                                <p class="num">80</p>
+                                <p class="title">Houses</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5 justify-content-around">
+                <div class="col-md-4">
+                    <div class="card adult">
+                        <div class="card-body">
+                            <div class="position-absolute bottom-0 start-0 ms-4">
+                                <p class="num">183</p>
+                                <p class="title">Adult</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card kids">
+                        <div class="card-body">
+                            <div class="position-absolute bottom-0 start-0 ms-4">
+                                <p class="num">90</p>
+                                <p class="title">Kids < 15 years old </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 
 @endsection
 

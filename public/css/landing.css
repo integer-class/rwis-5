@@ -110,3 +110,218 @@ p.desc{
 .image-warga{
     margin-top: 100px;
 }
+
+.greet-program{
+    margin-top: 150px;
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    letter-spacing: 5px;
+    color: rgba(67, 97, 238, 1);
+}
+
+.title-program{
+    font-weight: 600;
+    font-size: 39.8px;
+    line-height: 47px;
+}
+
+.title-program-desc{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(128, 128, 128, 1);
+}
+
+.card-program .card{
+    width: 340px;
+    height: 340px;
+    border-radius: 30px;
+}
+
+.kerja-bakti{
+    background-image: url(../img/kerja-bakti.png);
+}
+
+.card-program .program-pill{
+    width: 149px;
+    height: 42.51px;
+    background-color: rgba(255, 225, 225, 1);
+}
+
+.program-pill p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(255, 17, 17, 1);
+}
+
+.posyandu{
+    background-image: url(../img/posyandu.png);
+}
+
+.umkm{
+    background-image: url(../img/siomay.png);
+}
+
+.card-program .umkm-pill{
+    width: 149px;
+    height: 42.51px;
+    background-color: rgba(241, 255, 241, 1);
+}
+
+.umkm-pill p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(0, 206, 58, 1);
+}
+
+.program .title-program{
+    font-weight: 600;
+    font-size: 27.6px;
+    line-height: 41.4px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.program .date-program{
+    margin-top: -15px;
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.program .desc-program{
+    margin-top: -15px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(128, 128, 128, 1);
+}
+
+.service{
+    margin-top: 200px;
+    background-color: rgba(212, 212, 212, 1);
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+
+.service .title {
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(67, 97, 238, 1);
+    letter-spacing: 2px;
+}
+
+.service .greet{
+    font-weight: 600;
+    font-size: 39.8px;
+    line-height: 47px;
+    color: rgba(11, 9, 10, 1);
+}
+
+.service .card{
+    width: 340px;
+    height: 363px;
+    border-radius: 30px;
+}
+
+.service .logo{
+    width: 90px;
+    height: 90px;
+    background-color: rgba(67, 97, 238, 1);
+    display: inline-block;
+}
+
+.service .title-card{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.service .desc-card{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(128, 128, 128, 1);
+    margin-top: -10px;
+}
+
+.service .card-group{
+    margin-top: 100px;
+}
+
+.neighborhood .title-1{
+    margin-top: 150px;
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(67, 97, 238, 1);
+    letter-spacing: 2px;
+}
+
+.neighborhood .title-2{
+    font-weight: 600;
+    font-size: 39.8px;
+    line-height: 47px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.neighborhood .rw{
+    background-image: url(../img/rw.png);
+    background-size: cover;
+    width: 300px;
+    height: 320px;
+    border-radius: 30px;
+}
+
+.neighborhood .num{
+    font-weight: 600;
+    font-size: 57.3px;
+    line-height: 65px;
+    opacity: 80%;
+    color: rgba(255, 255, 255, 1);
+}
+
+.neighborhood .title{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(255, 255, 255, 1);
+    margin-top: -10px;
+}
+
+.neighborhood .rt{
+    background-image: url(../img/rt.png);
+    background-size: cover;
+    width: 300px;
+    height: 320px;
+    border-radius: 30px;
+}
+
+.neighborhood .houses{
+    background-image: url(../img/houses.jpg);
+    background-size: cover;
+    width: 420px;
+    height: 320px;
+    border-radius: 30px;
+}
+
+.neighborhood .adult{
+    background-image: url(../img/adult.jpg);
+    background-size: cover;
+    width: 412px;
+    height: 320px;
+    border-radius: 30px;
+}
+
+.neighborhood .kids{
+    background-image: url(../img/kids.jpg);
+    background-size: cover;
+    width: 658px;
+    height: 320px;
+    border-radius: 30px;
+}
