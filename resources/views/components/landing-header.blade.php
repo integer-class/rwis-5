@@ -24,7 +24,7 @@
                     <a class="nav-link" href="#">Info</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
+            <form class="d-flex" role="search" action="{{ route('login') }}">
                 <button class="btn me-5 ms-3 btn-login" type="submit">Login</button>
             </form>
         </div>
