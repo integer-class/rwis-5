@@ -8,7 +8,7 @@
 @endpush
 
 @section('main')
-    <div class="container container-1">
+    <div class="container container-1" id="home">
         <div class="row">
             {{-- title --}}
             <div class="col-md-6">
@@ -114,7 +114,7 @@
         </div>
     </div>
 
-    <div class="container information">
+    <div class="container information" id="about">
         <div class="row">
             <div class="col-md-6">
                 <p class="greet-information">
@@ -191,106 +191,109 @@
         </div>
     </div>
     {{-- all programs --}}
-    <div class="container">
-        <p class="greet-program">
-            CHECKOUT OUR NEW
-        </p>
-        <div class="row">
-            <div class="col-md-10">    
-                <p class="title-program">
-                    Latest Program and Activities
-                </p>
-                <p class="title-program-desc">
-                    Here are our several programs and activities that you should <br>
-                    keep your eyes on
-                </p>
+    <div class="program" id="program">
+        <div class="container">
+            <p class="greet-program">
+                CHECKOUT OUR NEW
+            </p>
+            <div class="row">
+                <div class="col-md-10">    
+                    <p class="title-program">
+                        Latest Program and Activities
+                    </p>
+                    <p class="title-program-desc">
+                        Here are our several programs and activities that you should <br>
+                        keep your eyes on
+                    </p>
+                </div>
+                <div class="col-md-1 ms-auto">
+                    <button type="button" class="btn btn-outline-primary">All</button>
+                </div>
             </div>
-            <div class="col-md-1 ms-auto">
-                <button type="button" class="btn btn-outline-primary">All</button>
-            </div>
-        </div>
-        <div class="row mt-5 program">
-            <div class="col-md-4 card-program">
-                <div class="card kerja-bakti">
-                    <div class="card-body">
-                        <div class="card rounded-pill pt-2 ps-4 position-absolute bottom-0 start-0 mb-3 ms-3 program-pill">
-                            <div class="row">
-                                <div class="col-md-1">
-                                    <img src="{{ asset('img/fire-icon.png') }}" alt="" class="mb-1">
-                                </div>
-                                <div class="col-md-9 ms-2">
-                                    <p>Program</p>
+            <div class="row mt-5">
+                <div class="col-md-4 card-program">
+                    <div class="card kerja-bakti">
+                        <div class="card-body">
+                            <div class="card rounded-pill pt-2 ps-4 position-absolute bottom-0 start-0 mb-3 ms-3 program-pill">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <img src="{{ asset('img/fire-icon.png') }}" alt="" class="mb-1">
+                                    </div>
+                                    <div class="col-md-9 ms-2">
+                                        <p>Program</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <p class="title-program mt-3">
+                        Kerja Bakti
+                    </p>
+                    <p class="date-program">
+                        23 Maret 2024
+                    </p>
+                    <p class="desc-program">
+                        08.00 - 12.00 WIB <br>
+                        Lapangan Merdeka
+                    </p>
                 </div>
-                <p class="title-program mt-3">
-                    Kerja Bakti
-                </p>
-                <p class="date-program">
-                    23 Maret 2024
-                </p>
-                <p class="desc-program">
-                    08.00 - 12.00 WIB <br>
-                    Lapangan Merdeka
-                </p>
-            </div>
-            <div class="col-md-4 card-program">
-                <div class="card posyandu">
-                    <div class="card-body">
-                        <div class="card rounded-pill pt-2 ps-4 position-absolute bottom-0 start-0 mb-3 ms-3 program-pill">
-                            <div class="row">
-                                <div class="col-md-1">
-                                    <img src="{{ asset('img/fire-icon.png') }}" alt="" class="mb-1">
-                                </div>
-                                <div class="col-md-9 ms-2">
-                                    <p>Program</p>
+                <div class="col-md-4 card-program">
+                    <div class="card posyandu">
+                        <div class="card-body">
+                            <div class="card rounded-pill pt-2 ps-4 position-absolute bottom-0 start-0 mb-3 ms-3 program-pill">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <img src="{{ asset('img/fire-icon.png') }}" alt="" class="mb-1">
+                                    </div>
+                                    <div class="col-md-9 ms-2">
+                                        <p>Program</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <p class="title-program mt-3">
+                        Posyandu Visit
+                    </p>
+                    <p class="date-program">
+                        26 Maret 2024
+                    </p>
+                    <p class="desc-program">
+                        09.00 - 11.00 WIB <br>
+                        Balai RW 07
+                    </p>
                 </div>
-                <p class="title-program mt-3">
-                    Posyandu Visit
-                </p>
-                <p class="date-program">
-                    26 Maret 2024
-                </p>
-                <p class="desc-program">
-                    09.00 - 11.00 WIB <br>
-                    Balai RW 07
-                </p>
-            </div>
-            <div class="col-md-4 card-program">
-                <div class="card umkm">
-                    <div class="card-body">
-                        <div class="card rounded-pill pt-2 ps-4 position-absolute bottom-0 start-0 mb-3 ms-3 umkm-pill">
-                            <div class="row">
-                                <div class="col-md-1">
-                                    <img src="{{ asset('img/money-icon.png') }}" alt="" class="mb-1">
-                                </div>
-                                <div class="col-md-9 ms-2">
-                                    <p>UMKM</p>
+                <div class="col-md-4 card-program">
+                    <div class="card umkm">
+                        <div class="card-body">
+                            <div class="card rounded-pill pt-2 ps-4 position-absolute bottom-0 start-0 mb-3 ms-3 umkm-pill">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <img src="{{ asset('img/money-icon.png') }}" alt="" class="mb-1">
+                                    </div>
+                                    <div class="col-md-9 ms-2">
+                                        <p>UMKM</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <p class="title-program mt-3">
+                        New UMKM
+                    </p>
+                    <p class="date-program">
+                        Dimsum Bu Siti
+                    </p>
+                    <p class="desc-program">
+                        Jl. Pisang Kipas No.11, RT 01/RW 07
+                    </p>
                 </div>
-                <p class="title-program mt-3">
-                    New UMKM
-                </p>
-                <p class="date-program">
-                    Dimsum Bu Siti
-                </p>
-                <p class="desc-program">
-                    Jl. Pisang Kipas No.11, RT 01/RW 07
-                </p>
             </div>
         </div>
     </div>
+    
 
-    <div class="service">
+    <div class="service" id="service">
         <div class="container text-center">
             <p class="title">
                 Our Services
@@ -406,30 +409,171 @@
         </div>
     </div>
 
-    <div class="creators text-center">
+    <div class="creators">
         <div class="container-fluid">
             <p class="intro">INTRODUCTION TO</p>
             <p class="title">The Creators and Developers</p>
             <div class="row image-creators justify-content-evenly ms-5">
                 <div class="col-md-2">
-                    <div class="card"></div>
+                    <div class="card">
+                        <img src="{{ asset('img/ferin.png') }}" alt="">
+                    </div>
+                    <p class="name">Athriya G.</p>
+                    <p class="position">Front-end Developer</p>
                 </div>
                 <div class="col-md-2">
-                    <div class="card"></div>
+                    <div class="card">
+                        <img src="{{ asset('img/kresna.jpg') }}" alt="">
+                    </div>
+                    <p class="name">Sri</p>
+                    <p class="position">Project Manager</p>
                 </div>
                 <div class="col-md-2">
-                    <div class="card"></div>
+                    <div class="card">
+                        <img src="{{ asset('img/me.jpeg') }}" alt="">
+                    </div>
+                    <p class="name">Davis</p>
+                    <p class="position">Anu</p>
                 </div>
                 <div class="col-md-2">
-                    <div class="card"></div>
+                    <div class="card">
+                        <img src="{{ asset('img/lenka.png') }}" alt="">
+                    </div>
+                    <p class="name">Lenka</p>
+                    <p class="position">Front-end Developer</p>
                 </div>
                 <div class="col-md-2">
-                    <div class="card"></div>
+                    <div class="card">
+                        <img src="{{ asset('img/sus.jpg') }}" alt="">
+                    </div>
+                    <p class="name">Sus</p>
+                    <p class="position">Front-end Developer</p>
                 </div>
                 
             </div>
         </div>
     </div>
+
+    <div class="info" id="info">
+        <br><br><br>
+    </div>
+
+    <div class="news">
+        <div class="container">
+            <p class="title1">WHAT’S NOW</p>
+            <p class="title2">Latest Reports & News</p>
+            <div class="row justify-content-around">
+                <div class="col-md-3">
+                    <div class="card-bapak">
+                        <div class="card card-date">
+                            <p class="date">25</p>
+                            <p class="day">Tue</p>
+                        </div>
+                    </div>
+                    <p class="title-news">BLT Rp 900.000 Fix Cair Hari Ini</p>
+                    <p class="desc">25 Maret 2024 di 4 Wilayah di Jawa Timur</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="card-jalan">
+                        <div class="card card-date">
+                            <p class="date">25</p>
+                            <p class="day">Tue</p>
+                        </div>
+                    </div>
+                    <p class="title-news">BLT Rp 900.000 Fix Cair Hari Ini</p>
+                    <p class="desc">25 Maret 2024 di 4 Wilayah di Jawa Timur</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="card-sampah">
+                        <div class="card card-date">
+                            <p class="date">25</p>
+                            <p class="day">Tue</p>
+                        </div>
+                    </div>
+                    <p class="title-news">BLT Rp 900.000 Fix Cair Hari Ini</p>
+                    <p class="desc">25 Maret 2024 di 4 Wilayah di Jawa Timur</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="testimonial">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="title1">
+                        TESTIMONIALS
+                    </p>
+                    <p class="title2">
+                        Apa Kata Mereka <br>
+                         tentang SIMWARGA?
+                    </p>
+                    <p class="title3">
+                        Yuk testimoni warga RW 07 dalam penggunaan <br>
+                        SIMWARGA dalam membantu keseharian mereka.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">'
+                            <img src="{{ asset('img/petik.png') }}" alt="">
+                            <p class="desc">Penggunaan sistem informasi RW memudahkan akses informasi, meningkatkan komunikasi, memperkuat partisipasi masyarakat, dan meningkatkan efisiensi penyelesaian masalah lingkungan, menciptakan lingkungan yang lebih aman dan terhubung secara lebih baik di tingkat komunitas.</p>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="pp">
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <p class="name align-middle mt-2">oranghitamberbulu635</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <img src="{{ asset('img/star.png') }}" alt="" class="mt-3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="location p-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="card map">
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <img src="{{ asset('img/logo.png') }}" alt="" class="mt-5">
+                    <p class="desc mt-4">Pisang Kipas Street No. 7 <br>
+                        RW 07 <br>
+                        Malang City, Indonesia</p>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <img src="{{ asset('img/phone.png') }}" alt="">
+                        </div>
+                        <div class="col-md-11">
+                            <p class="num">+62 821 4294 0921 (Abdul)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 mt-5 offset-md-2">
+                    <p class="quick-link">Quick Links</p>
+                    <a href="" class="menu">Home</a><br>
+                    <a href="" class="menu">About</a><br>
+                    <a href="" class="menu">Services</a><br>
+                    <a href="" class="menu">News</a><br>
+                    <a href="" class="menu">Programs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
 
 @endsection
 

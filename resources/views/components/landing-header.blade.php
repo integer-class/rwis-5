@@ -9,19 +9,19 @@
             </a>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item me-3 ms-3">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" aria-current="page" href="#home">Home</a>
                 </li>
                 <li class="nav-item me-3 ms-3">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="#about">About</a>
                 </li>
                 <li class="nav-item me-3 ms-3">
-                    <a class="nav-link" href="#">Programs</a>
+                    <a class="nav-link" href="#program">Programs</a>
                 </li>
                 <li class="nav-item me-3 ms-3">
-                    <a class="nav-link" href="#">Services</a>
+                    <a class="nav-link" href="#service">Services</a>
                 </li>
                 <li class="nav-item me-3 ms-3">
-                    <a class="nav-link" href="#">Info</a>
+                    <a class="nav-link" href="#info">Info</a>
                 </li>
             </ul>
             <form class="d-flex" role="search" action="{{ route('login') }}">

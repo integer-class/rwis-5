@@ -1,6 +1,33 @@
+.navbar{
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.nav-link{
+    color: black;
+}
+
+.nav-link:hover{
+    background-color: rgba(67, 97, 238, 0.3);
+    border-radius: 30px;
+    color: black;
+    width: 100px;
+    text-align: center;
+}
+
+.active-nav{
+    background-color: rgba(58, 12, 163, 1);
+    border-radius: 30px;
+    color: white;
+    width: 100px;
+    text-align: center;
+}
+
 a{
     text-decoration: none;
-    color: inherit;
 }
 
 .nav-logo {
@@ -63,7 +90,8 @@ p.desc{
 }
 
 .information{
-    margin-top: 200px;
+    margin-top: 100px;
+    padding: 100px 0 100px 0;
 }
 
 .greet-information{
@@ -111,8 +139,12 @@ p.desc{
     margin-top: 100px;
 }
 
+.program{
+    margin-top: 50px;
+    padding: 100px 0 100px 0;
+}
+
 .greet-program{
-    margin-top: 150px;
     font-weight: 500;
     font-size: 19.4px;
     line-height: 29.1px;
@@ -337,6 +369,7 @@ p.desc{
     line-height: 29.1px;
     letter-spacing: 2px;
     color: rgba(67, 97, 238, 1);
+    text-align: center;
 }
 
 .creators .title{
@@ -344,17 +377,227 @@ p.desc{
     font-size: 39.8px;
     line-height: 47px;
     color: rgba(43, 43, 43, 1);
+    text-align: center;
 }
 
 .creators .card{
     width: 200px;
     height: 280px;
-    background-image: url(../img/ferin.png);
     background-size: cover;
+    border-radius: 120px 40px 40px 40px;
+}
+
+.creators img{
+    width: 200px;
+    height: 280px;
+    border-radius: 120px 40px 40px 40px;
 }
 
 .creators .image-creators{
     margin-top: 100px;
+}
+
+.creators .name{
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 27.6px;
+    line-height: 41.4px;
+    color: rgba(11, 9, 10, 1);
+}
+
+.creators .position{
+    margin-top: -10px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(67, 97, 238, 1);
+}
+
+.info{
+    margin-top: 200px;
+}
+
+.news{
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: rgba(58, 12, 163, 1);
+}
+
+.news .title1{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+    letter-spacing: 2px;
+}
+
+.news .title2{
+    font-weight: 600;
+    font-size: 39.8px;
+    line-height: 47px;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+}
+
+.news .card-bapak{
+    margin-top: 65px;
+    background-image: url(../img/bapak.png);
+    width: 340px;
+    height: 240px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+}
+
+.news .card-jalan{
+    margin-top: 65px;
+    background-image: url(../img/jalan.jpg);
+    width: 340px;
+    height: 240px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+}
+
+.news .card-sampah{
+    margin-top: 65px;
+    background-image: url(../img/sampah.jpg);
+    width: 340px;
+    height: 240px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+}
+
+.news .card-date{
+    margin-left: 50px;
+    width: 49px;
+    height: 50px;
+    text-align: center;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.news .date{
+    font-weight: 500;
+    font-size: 19.4px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.news .day{
+    margin-top: -25px;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(128, 128, 128, 1);
+}
+
+.news .title-news{
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 27.6px;
+    color: white;
+}
+
+.news .desc {
+    margin-top: -10px;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(212, 212, 212, 1);
+}
+
+.testimonial{
+    margin-top: 200px;
+}
+
+.testimonial .title1{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    letter-spacing: 2px;
+    color: rgba(67, 97, 238, 1);
+}
+
+.testimonial .title2{
+    font-weight: 600;
+    font-size: 39.8px;
+    line-height: 47px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.testimonial .title3{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.testimonial .card{
+    padding:20px 40px 20px 40px;
+    width: 500px;
+    border-radius: 30px;
+}
+
+.testimonial .desc{
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 19.4px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.testimonial .pp{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: url(../img/bapakmu.jpg);
+    background-size: cover;
+}
+
+.testimonial .name{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.location{
+    margin-top: 200px;
+    background-color: rgba(237,240,254,255);
+}
+
+.location .map{
+    width: 480px;
+    height: 316px;
+    border: 20px;
+    background-image: url(../img/map.png);
+    border-radius: 20px;
+}
+
+.location .desc{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.location .num{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.location .quick-link{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(11, 9, 10, 1);
+}
+
+.location .menu{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(43, 43, 43, 1);
 }
 
 
