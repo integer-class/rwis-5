@@ -406,6 +406,31 @@
         </div>
     </div>
 
+    <div class="creators text-center">
+        <div class="container-fluid">
+            <p class="intro">INTRODUCTION TO</p>
+            <p class="title">The Creators and Developers</p>
+            <div class="row image-creators justify-content-evenly ms-5">
+                <div class="col-md-2">
+                    <div class="card"></div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card"></div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card"></div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card"></div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card"></div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @push('scripts')

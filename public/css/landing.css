@@ -325,3 +325,36 @@ p.desc{
     height: 320px;
     border-radius: 30px;
 }
+
+
+.creators{
+    margin-top: 200px;
+}
+
+.creators .intro{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    letter-spacing: 2px;
+    color: rgba(67, 97, 238, 1);
+}
+
+.creators .title{
+    font-weight: 600;
+    font-size: 39.8px;
+    line-height: 47px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.creators .card{
+    width: 200px;
+    height: 280px;
+    background-image: url(../img/ferin.png);
+    background-size: cover;
+}
+
+.creators .image-creators{
+    margin-top: 100px;
+}
+
+
