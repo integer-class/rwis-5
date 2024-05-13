@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -20,9 +21,11 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', function () {
-        return view('pages.dashboard');
+        return view('pages.dashboard.index');
     })->name('home');
+
     Route::resource('user', UserController::class);
+    Route::resource('dashboard', DashboardController::class);
 });
 
 Route::get('/', function () {

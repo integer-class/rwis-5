@@ -600,4 +600,15 @@ p.desc{
     color: rgba(43, 43, 43, 1);
 }
 
+.footer{
+    background-color: black;
+    padding-top: 10px;
+}
+
+.footer p{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(170, 170, 170, 1);
+}
 

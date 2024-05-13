@@ -8,7 +8,7 @@
 @endpush
 
 @section('main')
-    <div class="container container-1" id="home">
+    <div class="container container-1 section" id="home">
         <div class="row">
             {{-- title --}}
             <div class="col-md-6">
@@ -114,7 +114,7 @@
         </div>
     </div>
 
-    <div class="container information" id="about">
+    <div class="container information section" id="about">
         <div class="row">
             <div class="col-md-6">
                 <p class="greet-information">
@@ -191,7 +191,7 @@
         </div>
     </div>
     {{-- all programs --}}
-    <div class="program" id="program">
+    <div class="program section" id="program">
         <div class="container">
             <p class="greet-program">
                 CHECKOUT OUR NEW
@@ -293,7 +293,7 @@
     </div>
     
 
-    <div class="service" id="service">
+    <div class="service section" id="service">
         <div class="container text-center">
             <p class="title">
                 Our Services
@@ -454,7 +454,7 @@
         </div>
     </div>
 
-    <div class="info" id="info">
+    <div class="info section" id="info">
         <br><br><br>
     </div>
 
@@ -516,7 +516,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-body">'
+                        <div class="card-body">
                             <img src="{{ asset('img/petik.png') }}" alt="">
                             <p class="desc">Penggunaan sistem informasi RW memudahkan akses informasi, meningkatkan komunikasi, memperkuat partisipasi masyarakat, dan meningkatkan efisiensi penyelesaian masalah lingkungan, menciptakan lingkungan yang lebih aman dan terhubung secara lebih baik di tingkat komunitas.</p>
                             <hr>
@@ -526,7 +526,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-7">
-                                    <p class="name align-middle mt-2">oranghitamberbulu635</p>
+                                    <p class="name align-middle mt-2">SlametGaming635</p>
                                 </div>
                                 <div class="col-md-3">
                                     <img src="{{ asset('img/star.png') }}" alt="" class="mt-3">
