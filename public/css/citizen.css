@@ -1,0 +1,91 @@
+.information-page .corusel-card {
+    background-color: rgba(72, 128, 255, 1);
+    border-radius: 30px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.information-page .carousel-indicators li {
+    background-color: lightgray;
+    /* Change this to your desired color */
+}
+
+.information-page .carousel-indicators .active {
+    background-color: white;
+    /* Change this to your desired color */
+}
+
+.information-page .date {
+    font-weight: 600;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.information-page .title {
+    font-weight: 900;
+    font-size: 37px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.information-page .desc {
+    font-weight: 600;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.information-page .article .title{
+    font-weight: 700;
+    font-size: 18px;
+    color: rgba(32, 34, 36, 1);
+}
+
+.information-page .article .date{
+    font-weight: 700;
+    font-size: 16px;
+    color: rgba(72, 128, 255, 1);
+}
+
+.information-page .article .scedule{
+    margin-top: -10px;
+    font-weight: 700;
+    font-size: 16px;
+    color: rgba(204, 204, 204, 1);
+}
+
+.bansos .title{
+    font-weight: 700;
+    font-size: 16px;
+    color: rgba(32, 34, 36, 1);
+}
+
+.bansos .clasify{
+    font-weight: 400;
+    font-size: 14px;
+    text-decoration: underline;
+    color: gray;
+}
+
+.bansos .title-table{
+    font-weight: 700;
+    font-size: 24px;
+    color: rgba(32, 34, 36, 1);
+}
+
+.letter .title{
+    font-weight: 700;
+    font-size: 20px;
+    color: rgba(32, 34, 36, 1);
+}
+
+.facility .title{
+    font-weight: 700;
+    font-size: 16px;
+    color: rgba(32, 34, 36, 1);
+}
+
+.facility .detail{
+    font-weight: 400;
+    font-size: 14px;
+    color: grey;
+    text-decoration: underline;
+}

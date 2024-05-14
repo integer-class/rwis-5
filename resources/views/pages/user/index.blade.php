@@ -17,8 +17,8 @@
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Users</a></div>
-                    <div class="breadcrumb-item">All Users</div>
+                    <div class="breadcrumb-item"><a href="#">Data Warga</a></div>
+                    <div class="breadcrumb-item">Semua Data</div>
                 </div>
             </div>
             <div class="section-body">
@@ -27,7 +27,7 @@
                         @include('layouts.alert')
                     </div>
                 </div> --}}
-                <h2 class="section-title">Users</h2>
+                <h2 class="section-title">Data Warga</h2>
                 <p class="section-lead">
                     You can manage all Users, such as editing, deleting and more.
                 </p>
@@ -36,18 +36,7 @@
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                                <h4>All Posts</h4>
-                            </div>
                             <div class="card-body">
-                                <div class="float-left">
-                                    <select class="form-control selectric">
-                                        <option>Action For Selected</option>
-                                        <option>Move to Draft</option>
-                                        <option>Move to Pending</option>
-                                        <option>Delete Pemanently</option>
-                                    </select>
-                                </div>
                                 <div class="float-right">
                                     <form method="GET" action="{{ route('user.index') }}">
                                         <div class="input-group">
@@ -65,37 +54,41 @@
                                     <table class="table-striped table">
                                         <tr>
 
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Roles</th>
+                                            <th>Nama</th>
+                                            <th>NIK</th>
+                                            <th>Pekerjaan</th>
+                                            <th>RT</th>
+                                            <th>Alamat</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
-                                        @foreach ($users as $user)
+                                        @foreach ($citizens as $citizen)
                                             <tr>
 
-                                                <td>{{ $user->name }}
+                                                <td>{{ $citizen->nama }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->email }}
+                                                    {{ $citizen->nik }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->phone }}
+                                                    {{ $citizen->pekerjaan }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->roles }}
+                                                    {{ $citizen->rt }}
                                                 </td>
-                                                <td>{{ $user->created_at }}</td>
+                                                <td>
+                                                    {{ $citizen->alamat }}
+                                                </td>
+                                                <td>{{ $citizen->created_at }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href='{{ route('user.edit', $user->id) }}'
+                                                        <a href='{{-- {{ route('user.edit', $citizens->nik) }} --}}'
                                                             class="btn btn-sm btn-info btn-icon">
                                                             <i class="fas fa-edit"></i>
                                                             Edit
                                                         </a>
 
-                                                        <form action="{{ route('user.destroy', $user->id) }}" method="POST"
+                                                        <form action="{{-- {{ route('user.destroy', $citizens->nik) }} --}}" method="POST"
                                                             class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE" />
                                                             <input type="hidden" name="_token"
@@ -113,7 +106,7 @@
                                     </table>
                                 </div>
                                 <div class="float-right">
-                                    {{ $users->withQueryString()->links() }}
+                                    {{ $citizens->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>
