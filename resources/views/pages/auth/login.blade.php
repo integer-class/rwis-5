@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Login CBT')
+@section('title', 'Login Warga')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -15,10 +15,10 @@
         </div>
 
         <div class="card-body">
-            <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
+            <form method="POST" action="{{ url('login_process') }}" class="needs-validation" novalidate="">
                 @csrf
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">NIK</label>
                     <input id="email" type="email"
                         class="form-control @error('email')
                         is-invalid

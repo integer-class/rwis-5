@@ -14,7 +14,7 @@ class CitizenUserModel extends Model
 
     protected $fillable = [
         'citizen_user_id',
-        'level_id',
+        'level',
         'nik',
         'password'
     ];

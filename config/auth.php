@@ -36,9 +36,17 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'citizen' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'citizen_user_id',
+        ],
+        'rw' => [
+            'driver' => 'session',
+            'provider' => 'rw_user_id',
+        ],
+        'rt' => [
+            'driver' => 'session',
+            'provider' => 'rt_user_id',
         ],
     ],
 
@@ -60,10 +68,11 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'citizen_user_id' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\CitizenUserModel::class,
         ],
+        
 
         // 'users' => [
         //     'driver' => 'database',

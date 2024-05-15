@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('phone')->after('email')->nullable();
-            $table->string('roles')->after('phone')->nullable();
+        Schema::create('asset_data', function (Blueprint $table) {
+            $table->id('asset_id');
+            $table->unsignedBigInteger('wealth_id');
+            $table->string('asset_name');
+            $table->timestamps();
+
+            // $table->foreign('wealth_id')->references('wealth_id')->on('wealth_data');
         });
     }
 
@@ -22,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['phone', 'roles']);
-        });
+        Schema::dropIfExists('asset_data');
     }
 };

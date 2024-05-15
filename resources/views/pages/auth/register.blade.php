@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Register CBT')
+@section('title', 'Register Warga')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -14,10 +14,10 @@
         </div>
 
         <div class="card-body">
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register_process') }}">
                 @csrf
                 <div class="form-group">
-                    <label for="frist_name">Name</label>
+                    <label for="nik">NIK</label>
                     <input id="frist_name" type="text"
                         class="form-control @error('name')
                         is-invalid
@@ -29,23 +29,6 @@
                         </div>
                     @enderror
                 </div>
-
-
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="email"
-                        class="form-control @error('email')
-                        is-invalid
-                    @enderror"
-                        name="email">
-                    @error('email')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-
 
                 <div class="form-group">
                     <label for="password" class="d-block">Password</label>
