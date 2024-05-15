@@ -51,7 +51,7 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::group(['middleware' => ['login_check:citizen']], function () {
+    Route::group(['middleware' => ['login_check:warga']], function () {
         Route::resource('citizen', CitizenController::class);
     });
 

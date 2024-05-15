@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('asset_data', function (Blueprint $table) {
             $table->id('asset_id');
-            $table->unsignedBigInteger('wealth_id');
-            $table->string('asset_name');
+            $table->string('asset_name')->nullable();
             $table->timestamps();
 
             // $table->foreign('wealth_id')->references('wealth_id')->on('wealth_data');

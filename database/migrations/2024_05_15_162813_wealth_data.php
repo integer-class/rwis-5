@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('wealth_data', function (Blueprint $table) {
             $table->id('wealth_id');
-            $table->unsignedBigInteger('citizen_data_id');
-            $table->string('asset_id');
-            $table->string('job');
-            $table->string('income');
+            $table->string('asset_id')->nullable();
+            $table->string('job')->nullable();
+            $table->string('income')->nullable();
             $table->timestamps();
 
             // $table->foreign('citizen_data_id')->references('citizen_data_id')->on('citizen_data');

@@ -13,18 +13,17 @@ return new class extends Migration
     {
         Schema::create('citizen_data', function (Blueprint $table) {
             $table->id('citizen_data_id');
-            $table->unsignedBigInteger('citizen_user_id');
-            $table->unsignedBigInteger('family_id');
-            $table->unsignedBigInteger('health_id');
-            $table->unsignedBigInteger('wealth_id');
-            $table->string('name');
-            $table->string('gender');
-            $table->enum('marital_status', ['belum kawin', 'kawin', 'cerai hidup', 'cerai mati']);
-            $table->string('birth_place');
-            $table->date('birth_date');
-            $table->string('religion');
-            $table->string('address_ktp');
-            $table->string('address_domisili');
+            $table->unsignedBigInteger('family_id')->nullable();
+            $table->unsignedBigInteger('health_id')->nullable();
+            $table->unsignedBigInteger('wealth_id')->nullable();
+            $table->string('name')->nullable();
+            $table->enum('gender', ['L', 'P'])->nullable();
+            $table->enum('marital_status', ['belum kawin', 'kawin', 'cerai hidup', 'cerai mati'])->nullable();
+            $table->string('birth_place')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->string('religion')->nullable();
+            $table->string('address_ktp')->nullable();
+            $table->string('address_domisili')->nullable();
             $table->timestamps();
 
             // $table->foreign('citizen_user_id')->references('citizen_user_id')->on('citizen_user_data');

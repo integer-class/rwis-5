@@ -13,18 +13,16 @@ return new class extends Migration
     {
         Schema::create('family_data', function (Blueprint $table) {
             $table->id('family_id');
-            $table->unsignedBigInteger('citizen_data_id');
-            $table->string('family_card_number');
-            $table->string('family_head_name');
-            $table->string('family_head_nik');
-            $table->string('address');
-            $table->string('rt');
-            $table->string('rw');
-            $table->string('village');
-            $table->string('sub_district');
-            $table->string('city');
-            $table->string('province');
-            $table->string('postal_code');
+            $table->string('family_card_number')->nullable();
+            $table->string('family_head_name')->nullable();
+            $table->string('address')->nullable();
+            $table->string('rt')->nullable();
+            $table->string('rw')->nullable();
+            $table->string('village')->nullable();
+            $table->string('sub_district')->nullable();
+            $table->string('city')->nullable();
+            $table->string('province')->nullable();
+            $table->string('postal_code')->nullable();
             $table->timestamps();
 
             // $table->foreign('citizen_data_id')->references('citizen_data_id')->on('citizen_data');
