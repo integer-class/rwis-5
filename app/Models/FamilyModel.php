@@ -9,22 +9,24 @@ class FamilyModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'family';
+    protected $table = 'family_data';
     protected $primaryKey = 'family_id';
 
     protected $fillable = [
         'family_id',
-        'RW_number',
-        'RT_number',
+        'family',
+        'address',
+        'rt',
+        'rw',
+        'village',
+        'sub_district',
+        'city',
+        'province',
+        'postal_code'
     ];
 
     public function citizen_data()
     {
         return $this->hasMany(CitizenDataModel::class, 'family_id', 'family_id');
-    }
-
-    public function wealth()
-    {
-        return $this->belongsTo(WealthModel::class, 'wealth_id', 'wealth_id');
     }
 }

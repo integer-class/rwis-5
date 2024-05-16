@@ -10,22 +10,21 @@ class CitizenDataModel extends Model
     use HasFactory;
 
     protected $table = 'citizen_data';
-    protected $primaryKey = 'nik';
+    protected $primaryKey = 'citizen_data_id';
 
     protected $fillable = [
-        'citizen_id',
-        'citizen_user_id',
+        'citizen_data_id',
         'family_id',
         'health_id',
         'wealth_id',
-        'nama',
-        'tanggal_lahir',
-        'golongan_darah',
-        'status_domisili',
-        'status_pernikahan',
-        'jenis_kelamin',
-        'agama',
-        'pekerjaan',
+        'name',
+        'gender',
+        'maritial_status',
+        'birth_place',
+        'birth_date',
+        'religion',
+        'address_ktp',
+        'address_domisili'
     ];
 
     public function family()
@@ -36,11 +35,6 @@ class CitizenDataModel extends Model
     public function health()
     {
         return $this->belongsTo(HealthModel::class, 'health_id', 'health_id');
-    }
-
-    public function citizen_user()
-    {
-        return $this->belongsTo(CitizenUserModel::class, 'citizen_user_id', 'citizen_user_id');
     }
 
     public function wealth()

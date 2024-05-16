@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('wealth_id')->nullable();
             $table->string('name')->nullable();
             $table->enum('gender', ['L', 'P'])->nullable();
-            $table->enum('marital_status', ['belum kawin', 'kawin', 'cerai hidup', 'cerai mati'])->nullable();
+            $table->enum('maritial_status', ['Belum kawin', 'Kawin', 'Cerai hidup', 'Cerai mati'])->nullable();
             $table->string('birth_place')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('religion')->nullable();

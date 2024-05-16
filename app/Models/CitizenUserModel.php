@@ -9,13 +9,14 @@ class CitizenUserModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'citizen_user';
+    protected $table = 'citizen_user_data';
     protected $primaryKey = 'citizen_user_id';
 
     protected $fillable = [
         'citizen_user_id',
-        'level',
+        'citizen_data_id',
         'nik',
+        'level',
         'password'
     ];
 

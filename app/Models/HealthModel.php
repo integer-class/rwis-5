@@ -9,13 +9,16 @@ class HealthModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'health';
+    protected $table = 'health_data';
     protected $primaryKey = 'health_id';
 
     protected $fillable = [
         'health_id',
-        'history_of_disease',
-        'current_disease',
+        'blood_type',
+        'height',
+        'weight',
+        'disability',
+        'disease'
     ];
 
     public function citizen_data()
