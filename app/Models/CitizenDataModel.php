@@ -24,7 +24,9 @@ class CitizenDataModel extends Model
         'birth_date',
         'religion',
         'address_ktp',
-        'address_domisili'
+        'address_domisili',
+        'is_archived',
+        'is_verified'
     ];
 
     public function family()

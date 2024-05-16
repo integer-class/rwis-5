@@ -29,12 +29,12 @@ Route::get('user', [UserController::class, 'index']);
 Route::get('dashboard', [DashboardController::class, 'index']);
 Route::get('information', [InformationController::class, 'index']);
 Route::group(['prefix'=>'citizen'], function(){
-    Route::get('/', [CitizenController::class, 'index']);
-    Route::get('create', [CitizenController::class, 'create']);
-    Route::post('store', [CitizenController::class, 'store']);
-    Route::get('edit/{id}', [CitizenController::class, 'edit']);
-    Route::post('update/{id}', [CitizenController::class, 'update']);
-    Route::get('delete/{id}', [CitizenController::class, 'destroy']);
+    Route::get('/', [CitizenController::class, 'index'])->name('citizen.index');
+    Route::get('create', [CitizenController::class, 'create'])->name('citizen.create');
+    Route::post('store', [CitizenController::class, 'store'])->name('citizen.store');
+    Route::get('edit/{id}', [CitizenController::class, 'edit'])->name('citizen.edit');
+    Route::post('update/{id}', [CitizenController::class, 'update'])->name('citizen.update');
+    Route::delete('archive/{id}', [CitizenController::class, 'archive'])->name('citizen.archive');
 });
 Route::get('bansos', [BansosController::class, 'index']);
 Route::get('letter', [LetterController::class, 'index']);
