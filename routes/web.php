@@ -28,6 +28,14 @@ use App\Http\Controllers\UserController;
 Route::get('user', [UserController::class, 'index']);
 Route::get('dashboard', [DashboardController::class, 'index']);
 Route::get('information', [InformationController::class, 'index']);
+Route::group(['prefix'=>'citizen'], function(){
+    Route::get('/', [CitizenController::class, 'index']);
+    Route::get('create', [CitizenController::class, 'create']);
+    Route::post('store', [CitizenController::class, 'store']);
+    Route::get('edit/{id}', [CitizenController::class, 'edit']);
+    Route::post('update/{id}', [CitizenController::class, 'update']);
+    Route::get('delete/{id}', [CitizenController::class, 'destroy']);
+});
 Route::get('bansos', [BansosController::class, 'index']);
 Route::get('letter', [LetterController::class, 'index']);
 Route::get('report', [ReportController::class, 'index']);
@@ -45,21 +53,23 @@ Route::get('register', function () {
     return view('pages.auth.register');
 })->name('register');
 
-Route::post('login_process', [AuthController::class, 'login_process'])->name('login_process');
-Route::post('register_process', [AuthController::class, 'register_process'])->name('register_process');
+// Route::get('login', [AuthController::class, 'index'])->name('login');
+// Route::get('register', [AuthController::class, 'register'])->name('register');
+// Route::post('login_process', [AuthController::class, 'login_process'])->name('login_process');
+// Route::post('register_process', [AuthController::class, 'register_process'])->name('register_process');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => ['auth']], function () {
+// Route::group(['middleware' => ['auth']], function () {
 
-    Route::group(['middleware' => ['login_check:warga']], function () {
-        Route::resource('citizen', CitizenController::class);
-    });
+//     Route::group(['middleware' => ['login_check:warga']], function () {
+//         Route::resource('citizen', CitizenController::class);
+//     });
 
-    Route::group(['middleware' => ['login_check:rw']], function () {
-        Route::resource('rw', RwController::class);
-    });
+//     Route::group(['middleware' => ['login_check:rw']], function () {
+//         Route::resource('rw', RwController::class);
+//     });
 
-    Route::group(['middleware' => ['login_check:rt']], function () {
-        Route::resource('rt', RtController::class);
-    });
-});
+//     Route::group(['middleware' => ['login_check:rt']], function () {
+//         Route::resource('rt', RtController::class);
+//     });
+// });

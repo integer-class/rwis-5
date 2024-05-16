@@ -6,37 +6,37 @@
         <ul class="sidebar-menu">
             <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ route('dashboard.index') }}"><i class="fa-solid fa-gauge"></i> <span>Dashboard</span></a>
+                    href="{{ url('dashboard') }}"><i class="fa-solid fa-gauge"></i> <span>Dashboard</span></a>
             </li>
 
             <li class="{{ Request::is('information') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ route('information.index') }}"><i class="far fa-user"></i> <span>Pusat Informasi</span></a>
+                    href="{{ url('information') }}"><i class="far fa-user"></i> <span>Pusat Informasi</span></a>
             </li>
 
-            <li class="{{ Request::is('user') ? 'active' : '' }}">
+            <li class="{{ Request::is('citizen') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ route('user.index') }}"><i class="fa-solid fa-user-group"></i> <span>Data Warga</span></a>
+                    href="{{ url('citizen') }}"><i class="fa-solid fa-user-group"></i> <span>Data Warga</span></a>
             </li>
 
             <li class="{{ Request::is('bansos') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ route('bansos.index') }}"><i class="fa-solid fa-money-bill"></i> <span>Bantuan Sosial</span></a>
+                    href="{{ url('bansos') }}"><i class="fa-solid fa-money-bill"></i> <span>Bantuan Sosial</span></a>
             </li>
 
             <li class="{{ Request::is('letter') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ route('letter.index') }}"><i class="fa-solid fa-envelope"></i> <span>Penyuratan</span></a>
+                    href="{{ url('letter') }}"><i class="fa-solid fa-envelope"></i> <span>Penyuratan</span></a>
             </li>
 
             <li class="{{ Request::is('report') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ route('report.index') }}"><i class="fa-solid fa-comment"></i> <span>Pelaporan Masalah</span></a>
+                    href="{{ url('report') }}"><i class="fa-solid fa-comment"></i> <span>Pelaporan Masalah</span></a>
             </li>
 
             <li class="{{ Request::is('facility') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ route('facility.index') }}"><i class="fa-solid fa-city"></i> <span>Fasilitas</span></a>
+                    href="{{ url('facility') }}"><i class="fa-solid fa-city"></i> <span>Fasilitas</span></a>
             </li>
            
         </ul> 
