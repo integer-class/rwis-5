@@ -15,14 +15,12 @@ class AuthController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->level == 'citizen') {
-            return redirect()->route('citizen');
+        if ($user->level == 'warga') {
+            return redirect()->intended('citizen');
         } elseif ($user->level == 'rw') {
-            return redirect()->route('rw');
+            return redirect()->intended('rw');
         } elseif ($user->level == 'rt') {
-            return redirect()->route('rt');
-        } else {
-            return redirect()->route('login');
+            return redirect()->intended('rt');
         }
 
         return view('pages.auth.login');
@@ -30,30 +28,32 @@ class AuthController extends Controller
 
     public function login_process(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+
+        $request->validate([
             'nik' => 'required',
             'password' => 'required'
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->route('login')->withErrors($validator)->withInput();
-        }
+        $credentials = $request->only('nik', 'password');
 
-        $nik = $request->nik;
-        $password = $request->password;
+        if (Auth::attempt($credentials)) {
 
-        $user = CitizenUserModel::where('nik', $nik)->first();
+            $user = Auth::user();
+ 
 
-        if ($user) {
-            if (Hash::check($password, $user->password)) {
-                Auth::login($user);
-
-                return redirect()->route('dashboard');
-            } else {
-                return redirect()->route('login')->with('error', 'Password salah');
+            if ($user->level == 'warga') {
+                return redirect()->intended('citizen');
+            } elseif ($user->level == 'rw') {
+                return redirect()->intended('rw');
+            } elseif ($user->level == 'rt') {
+                return redirect()->intended('rt');
             }
-        } else {
-            return redirect()->route('login')->with('error', 'NIK tidak ditemukan');
+
+            return redirect('login')
+                ->withInput()
+                ->withErrors([
+                    'login' => 'Pastikan data yang anda masukkan benar'
+                ]);
         }
     }
 
@@ -79,7 +79,7 @@ class AuthController extends Controller
         $user = new CitizenUserModel();
         $user->nik = $nik;
         $user->password = $password;
-        $user->level = 'citizen';
+        $user->level = 'warga';
         $user->save();
 
         return redirect()->route('login')->with('success', 'Registrasi berhasil');

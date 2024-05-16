@@ -18,17 +18,16 @@
             <form method="POST" action="{{ url('login_process') }}" class="needs-validation" novalidate="">
                 @csrf
                 <div class="form-group">
-                    <label for="email">NIK</label>
-                    <input id="email" type="email"
-                        class="form-control @error('email')
+                    <label for="nik">NIK</label>
+                    <input id="nik" type="nik"
+                        class="form-control @error('nik')
                         is-invalid
                     @enderror"
-                        name="email" tabindex="1" autofocus>
-                    @error('email')
+                        name="nik" tabindex="1" required autofocus>
+                    @error('nik')
                         <div class="invalid-feedback">
                             {{ $message }}
-                        </div>
-                    @enderror
+                        @enderror
 
                 </div>
 

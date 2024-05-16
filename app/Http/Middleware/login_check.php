@@ -16,18 +16,17 @@ class login_check
      */
     public function handle(Request $request, Closure $next, $level): Response
     {
-        if (Auth::check()) {
-            return $next($request);
-        } else {
+        // cek apakah user sudah login atau belum, jika belum maka akan diarahkan ke halaman login
+        if(!Auth::guard($level)->check()){
             return redirect()->route('login');
         }
 
         $user = Auth::user();
 
-        if ($user->level == $level) {
-            return $next($request);
-        } else {
-            return redirect()->route('login');
+        if ($user->level != $level) {
+            return redirect()->route('login')->with('error', 'Maaf anda tidak memiliki akses');
         }
+
+        return $next($request);
     }
 }
