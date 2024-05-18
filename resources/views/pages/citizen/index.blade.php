@@ -50,7 +50,7 @@
                             <div class="float-right">
                                 <form method="GET" action="{{ route('citizen.index') }}">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search" name="keyword">
+                                        <input type="text" class="form-control" placeholder="Cari nama warga" name="keyword">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                         </div>
