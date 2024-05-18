@@ -23,6 +23,7 @@ class WealthModelFactory extends Factory
             'wealth_id' => $this->faker->unique()->randomNumber(5),
             'asset_id' => $this->faker->randomElement($asset_id),
             'job' => $this->faker->jobTitle(),
+            'education' => $this->faker->randomElement(['SD', 'SMP', 'SMA', 'Sarjana', 'Magister', 'Doktor']),
             'income' => $this->faker->randomNumber(7)
         ];
     }

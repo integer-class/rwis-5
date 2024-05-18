@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('health_data', function (Blueprint $table) {
             $table->id('health_id');
+            $table->integer('age')->nullable();
             $table->enum('blood_type', ['A', 'B', 'O', 'AB'])->nullable();
             $table->string('weight')->nullable();
             $table->string('height')->nullable();

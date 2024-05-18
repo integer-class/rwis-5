@@ -18,6 +18,7 @@ class healthModelFactory extends Factory
     {
         return [
             'health_id' => $this->faker->unique()->randomNumber(5),
+            'age' => $this->faker->randomNumber(2),
             'blood_type' => $this->faker->randomElement(['A', 'B', 'AB', 'O']),
             'weight' => $this->faker->randomNumber(2),
             'height' => $this->faker->randomNumber(3),

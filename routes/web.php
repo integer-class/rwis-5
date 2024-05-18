@@ -26,7 +26,7 @@ use App\Http\Controllers\UserController;
 
 
 Route::get('user', [UserController::class, 'index']);
-Route::get('dashboard', [DashboardController::class, 'index']);
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('information', [InformationController::class, 'index']);
 Route::group(['prefix'=>'citizen'], function(){
     Route::get('/', [CitizenController::class, 'index'])->name('citizen.index');
@@ -45,31 +45,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login', function () {
-    return view('pages.auth.login');
-})->name('login');
-
-Route::get('register', function () {
-    return view('pages.auth.register');
-})->name('register');
-
-// Route::get('login', [AuthController::class, 'index'])->name('login');
-// Route::get('register', [AuthController::class, 'register'])->name('register');
-// Route::post('login_process', [AuthController::class, 'login_process'])->name('login_process');
-// Route::post('register_process', [AuthController::class, 'register_process'])->name('register_process');
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('login_process', [AuthController::class, 'login_process'])->name('login_process');
+Route::post('register_process', [AuthController::class, 'register_process'])->name('register_process');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Route::group(['middleware' => ['auth']], function () {
 
 //     Route::group(['middleware' => ['login_check:warga']], function () {
-//         Route::resource('citizen', CitizenController::class);
 //     });
 
 //     Route::group(['middleware' => ['login_check:rw']], function () {
-//         Route::resource('rw', RwController::class);
 //     });
 
 //     Route::group(['middleware' => ['login_check:rt']], function () {
-//         Route::resource('rt', RtController::class);
 //     });
 // });

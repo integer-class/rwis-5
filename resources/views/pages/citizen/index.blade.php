@@ -90,9 +90,10 @@
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <a href='{{-- {{ route('citizen.edit', $citizens->nik) }} --}}' class="btn btn-sm btn-info btn-icon">
-                                                    <i class="fas fa-edit"></i>
-                                                    Edit
+                                                <!-- edit -->
+                                                <a href="{{ route('citizen.edit', $citizen->citizen_data_id) }}"
+                                                    class="btn btn-sm btn-info btn-icon">
+                                                    <i class="fas fa-edit"></i> Edit
                                                 </a>
 
                                                 <form action="{{ route('citizen.archive', $citizen->citizen_data_id) }}" method="POST">

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('wealth_id');
             $table->string('asset_id')->nullable();
             $table->string('job')->nullable();
+            $table->string('education')->nullable();
             $table->string('income')->nullable();
             $table->timestamps();
 

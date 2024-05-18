@@ -16,6 +16,7 @@ class WealthModel extends Model
         'wealth_id',
         'asset_id',
         'job',
+        'education',
         'income',
     ];
 

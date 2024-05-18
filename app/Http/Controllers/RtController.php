@@ -8,6 +8,6 @@ class RtController extends Controller
 {
     public function index()
     {
-        return view('test_login.rt');
+        return view('pages.citizen.index');
     }
 }

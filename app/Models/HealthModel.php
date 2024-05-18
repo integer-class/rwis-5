@@ -14,6 +14,7 @@ class HealthModel extends Model
 
     protected $fillable = [
         'health_id',
+        'age',
         'blood_type',
         'height',
         'weight',

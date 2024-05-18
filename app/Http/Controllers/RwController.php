@@ -8,6 +8,6 @@ class RwController extends Controller
 {
     public function index()
     {
-        return view('test_login.rw');
+        return view('pages.citizen.index');
     }
 }
