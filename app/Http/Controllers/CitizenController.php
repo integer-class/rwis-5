@@ -10,31 +10,32 @@ use App\Models\FamilyModel;
 
 class CitizenController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        if (request()->has('keyword')) {
-            $citizens = CitizenDataModel::select('citizen_data.*', 'family_data.rt as rt', 'wealth_data.job as job')
-                ->join('family_data', 'citizen_data.family_id', '=', 'family_data.family_id')
-                ->join('wealth_data', 'citizen_data.wealth_id', '=', 'wealth_data.wealth_id')
-                ->where('citizen_data.is_archived', false)
-                ->where('citizen_data.name', 'like', '%' . request('keyword') . '%')
-                ->paginate(5);
+        $keyword = $request->keyword;
+        if ($keyword) {
+            $citizens = CitizenDataModel::select('citizen_data.*')
+            ->where('citizen_data.name', 'like', '%' . $keyword . '%')
+            ->where('citizen_data.is_archived', false)
+            ->paginate(8);
+
+            if ($citizens->count() == 0) {
+                session()->flash('message', 'Pencarian tidak ditemukan: ' . $keyword);
+                session()->flash('alert-class', 'alert-danger');
+            } else {
+                session()->flash('message', 'Pencarian ditemukan: ' . $keyword);
+                session()->flash('alert-class', 'alert-success');
+            }
+            return view('pages.citizen.index', compact('citizens'));
         } else {
-            $citizens = CitizenDataModel::select('citizen_data.*', 'family_data.rt as rt', 'wealth_data.job as job')
-                ->join('family_data', 'citizen_data.family_id', '=', 'family_data.family_id')
-                ->join('wealth_data', 'citizen_data.wealth_id', '=', 'wealth_data.wealth_id')
+            $citizens = CitizenDataModel::select('citizen_data.*')
                 ->where('citizen_data.is_archived', false)
-                ->paginate(5);
+                ->paginate(8);
+
+            return view('pages.citizen.index', compact('citizens'));
         }
-
-        // $citizens = CitizenDataModel::select('citizen_data.*', 'family_data.rt as rt', 'wealth_data.job as job')
-        //     ->join('family_data', 'citizen_data.family_id', '=', 'family_data.family_id')
-        //     ->join('wealth_data', 'citizen_data.wealth_id', '=', 'wealth_data.wealth_id')
-        //     ->where('citizen_data.is_archived', false)
-        //     ->paginate(10);
-
-        return view('pages.citizen.index', compact('citizens'));
     }
+
 
     public function create()
     {
@@ -43,6 +44,7 @@ class CitizenController extends Controller
 
     public function store(Request $request)
     {
+
         $citizen = new CitizenDataModel();
         $citizen->citizen_data_id = $request->nik;
         $citizen->name = $request->name;
@@ -63,7 +65,19 @@ class CitizenController extends Controller
         $wealth->education = $request->education;
         $wealth->save();
 
+
         return redirect()->route('citizen.index')->with('success', 'Data berhasil disimpan');
+    }
+
+    public function detail($id)
+    {
+        $citizen = CitizenDataModel::select('citizen_data.*', 'family_data.rt as rt', 'wealth_data.job as job')
+            ->join('family_data', 'citizen_data.family_id', '=', 'family_data.family_id')
+            ->join('wealth_data', 'citizen_data.wealth_id', '=', 'wealth_data.wealth_id')
+            ->where('citizen_data_id', $id)
+            ->first();
+
+        return view('pages.citizen.detail', compact('citizen'));
     }
 
     public function archive($id)

@@ -31,6 +31,7 @@ Route::get('information', [InformationController::class, 'index']);
 Route::group(['prefix'=>'citizen'], function(){
     Route::get('/', [CitizenController::class, 'index'])->name('citizen.index');
     Route::get('create', [CitizenController::class, 'create'])->name('citizen.create');
+    Route::get('detail/{id}', [CitizenController::class, 'detail'])->name('citizen.detail');
     Route::post('store', [CitizenController::class, 'store'])->name('citizen.store');
     Route::get('edit/{id}', [CitizenController::class, 'edit'])->name('citizen.edit');
     Route::post('update/{id}', [CitizenController::class, 'update'])->name('citizen.update');

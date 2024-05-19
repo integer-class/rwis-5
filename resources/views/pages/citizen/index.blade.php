@@ -27,19 +27,14 @@
                         @include('layouts.alert')
                     </div>
                 </div> --}}
-            <h2 class="section-title">Data Warga</h2>
+            <h2 class="section-title">Informasi Data Warga</h2>
             <p class="section-lead">
                 You can manage all Users, such as editing, deleting and more.
             </p>
 
-            @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-            @endif
-            @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
+            @if (session('message'))
+            <div class="alert {{ session('alert-class') }}">
+                {{ session('message') }}
             </div>
             @endif
 
@@ -65,10 +60,11 @@
                                     <tr>
 
                                         <th>NIK</th>
-                                        <th>Name</th>
-                                        <th>Pekerjaan</th>
-                                        <th>RT</th>
-                                        <th>Alamat</th>
+                                        <th>Nama Warga</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>Nomor Telepon</th>
+                                        <th>Alamat Domisili</th>
+                                        <th>Alamat KTP</th>
                                         <th>Action</th>
                                     </tr>
                                     @foreach ($citizens as $citizen)
@@ -80,30 +76,41 @@
                                             {{ $citizen->name }}
                                         </td>
                                         <td>
-                                            {{ $citizen->job }}
+                                            {{ $citizen->gender }}
                                         </td>
                                         <td>
-                                            {{ $citizen->rt }}
+                                            {{ $citizen->phone_number }}
                                         </td>
                                         <td>
                                             {{ $citizen->address_domisili }}
                                         </td>
                                         <td>
+                                            {{ $citizen->address_ktp }}
+                                        </td>
+                                        <td>
                                             <div class="d-flex justify-content-center">
-                                                <!-- edit -->
-                                                <a href="{{ route('citizen.edit', $citizen->citizen_data_id) }}"
-                                                    class="btn btn-sm btn-info btn-icon">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </a>
-
-                                                <form action="{{ route('citizen.archive', $citizen->citizen_data_id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-sm btn-danger btn-icon confirm-delete">
-                                                        <i class="fas fa-times"></i> Archive
+                                                <!-- dropdown button : view, edit, archive -->
+                                                <div class="dropdown d-inline">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Action
                                                     </button>
-                                                </form>
-                                            </div>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="{{ route('citizen.detail', $citizen->citizen_data_id) }}">
+                                                            <i class="fas fa-eye"></i> Lihat
+                                                        </a>
+                                                        <a class="dropdown-item" href="{{ route('citizen.edit', $citizen->citizen_data_id) }}">
+                                                            <i class="fas fa-edit"></i> Edit
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <form action="{{ route('citizen.archive', $citizen->citizen_data_id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                                <i class="fas fa-trash"></i> Hapus
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -130,4 +137,3 @@
 <!-- Page Specific JS File -->
 <script src="{{ asset('js/page/features-posts.js') }}"></script>
 @endpush
-

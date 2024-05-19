@@ -33,7 +33,8 @@ class CitizenDataModelFactory extends Factory
             'birth_date' => $this->faker->date(),
             'religion' =>$this->faker->randomElement(['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghucu']),
             'address_ktp' => $this->faker->address(),
-            'address_domisili' => $this->faker->address()
+            'address_domisili' => $this->faker->address(),
+            'phone_number' => $this->faker->phoneNumber()
         ];
     }
 }

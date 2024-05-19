@@ -49,7 +49,6 @@
                                         <option value="P">Perempuan</option>
                                     <small class="text-muted">Jenis kelamin warga</small>
                                 </div>
-
                                 <div class="form-group">
                                     <label>Tempat Lahir</label>
                                     <input type="text" class="form-control" name="birth_place">
@@ -74,8 +73,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Status Pernikahan</label>
-                                    <select class="form-control" name="marital_status">
-                                        <option value="Belum Kawin">Belum Menikah</option>
+                                    <select class="form-control" name="maritial_status">
+                                        <option value="Belum kawin">Belum Menikah</option>
                                         <option value="Kawin">Menikah</option>
                                         <option value="Cerai hidup">Cerai Hidup</option>
                                         <option value="Cerai mati">Cerai Mati</option>

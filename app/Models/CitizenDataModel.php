@@ -25,6 +25,7 @@ class CitizenDataModel extends Model
         'religion',
         'address_ktp',
         'address_domisili',
+        'phone_number',
         'is_archived',
         'is_verified'
     ];

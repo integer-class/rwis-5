@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('religion')->nullable();
             $table->string('address_ktp')->nullable();
             $table->string('address_domisili')->nullable();
+            $table->string('phone_number')->nullable();
             $table->boolean('is_archived')->default(false);
             $table->boolean('is_verified')->default(false);
             $table->timestamps();
