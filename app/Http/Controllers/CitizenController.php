@@ -15,9 +15,9 @@ class CitizenController extends Controller
         $keyword = $request->keyword;
         if ($keyword) {
             $citizens = CitizenDataModel::select('citizen_data.*')
-            ->where('citizen_data.name', 'like', '%' . $keyword . '%')
-            ->where('citizen_data.is_archived', false)
-            ->paginate(8);
+                ->where('citizen_data.name', 'like', '%' . $keyword . '%')
+                ->where('citizen_data.is_archived', false)
+                ->paginate(8);
 
             if ($citizens->count() == 0) {
                 session()->flash('message', 'Pencarian tidak ditemukan: ' . $keyword);
@@ -71,13 +71,23 @@ class CitizenController extends Controller
 
     public function detail($id)
     {
-        $citizen = CitizenDataModel::select('citizen_data.*', 'family_data.rt as rt', 'wealth_data.job as job')
-            ->join('family_data', 'citizen_data.family_id', '=', 'family_data.family_id')
-            ->join('wealth_data', 'citizen_data.wealth_id', '=', 'wealth_data.wealth_id')
+        $citizen = CitizenDataModel::select('citizen_data.*')
+            ->where('citizen_data_id', $id)
+            ->first();
+        $family = FamilyModel::select('family_data.*')
+            ->join('citizen_data', 'family_data.family_id', '=', 'citizen_data.family_id')
+            ->where('citizen_data_id', $id)
+            ->first();
+        $health = HealthModel::select('health_data.*')
+            ->join('citizen_data', 'health_data.health_id', '=', 'citizen_data.health_id')
+            ->where('citizen_data_id', $id)
+            ->first();
+        $wealth = WealthModel::select('wealth_data.*')
+            ->join('citizen_data', 'wealth_data.wealth_id', '=', 'citizen_data.wealth_id')
             ->where('citizen_data_id', $id)
             ->first();
 
-        return view('pages.citizen.detail', compact('citizen'));
+        return view('pages.citizen.detail', compact('citizen', 'family', 'health', 'wealth'));
     }
 
     public function archive($id)

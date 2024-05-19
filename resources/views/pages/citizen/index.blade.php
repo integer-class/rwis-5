@@ -15,11 +15,6 @@
             <div class="section-header-button">
                 <a href="{{ route('citizen.create') }}" class="btn btn-primary">Tambah Baru</a>
             </div>
-            <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ url('dashboard') }}">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="{{ url('citizen') }}">Users</a></div>
-                <div class="breadcrumb-item">Semua Data</div>
-            </div>
         </div>
         <div class="section-body">
             {{-- <div class="row">
