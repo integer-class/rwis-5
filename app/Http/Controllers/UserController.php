@@ -11,14 +11,17 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $users = DB::table('users')
+        $citizens = DB::table('citizen_data')
         ->when($request->keyword, function ($query) use ($request) {
-            $query->where('name', 'like', "%{$request->keyword}%")
-                ->orWhere('email', 'like', "%{$request->keyword}%")
-                ->orWhere('phone', 'like', "%{$request->keyword}%");
+            $query->where('nama', 'like', "%{$request->keyword}%")
+                ->orWhere('status_domisili', 'like', "%{$request->keyword}%")
+                ->orWhere('status_pernikahan', 'like', "%{$request->keyword}%")
+                ->orWhere('jenis_kelamin', 'like', "%{$request->keyword}%")
+                ->orWhere('agama', 'like', "%{$request->keyword}%")
+                ->orWhere('pekerjaan', 'like', "%{$request->keyword}%");
         })
         ->paginate(5);
-        return view('pages.user.index', compact('users'));
+        return view('pages.user.index', compact('citizens'));
     }
 
     public function create()

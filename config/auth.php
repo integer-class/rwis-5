@@ -40,6 +40,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'warga' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'rt' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'rw' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
     ],
 
     /*
@@ -62,9 +74,8 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\CitizenUserModel::class,
         ],
-
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

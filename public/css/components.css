@@ -51,13 +51,13 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
   background-color: #fff;
-  border-radius: 3px;
+  border-radius: 5px;
   border: none;
   position: relative;
   margin-bottom: 30px;
 }
 .article .article-header {
-  height: 170px;
+  height: 317px;
   position: relative;
   overflow: hidden;
 }

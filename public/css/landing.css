@@ -1,0 +1,614 @@
+.navbar{
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.nav-link{
+    color: black;
+}
+
+.nav-link:hover{
+    background-color: rgba(67, 97, 238, 0.3);
+    border-radius: 30px;
+    color: black;
+    width: 100px;
+    text-align: center;
+}
+
+.active-nav{
+    background-color: rgba(58, 12, 163, 1);
+    border-radius: 30px;
+    color: white;
+    width: 100px;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+.nav-logo {
+    margin-left: 102px;
+}
+
+.btn-login{
+    width: 109px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: rgba(58, 12, 163, 1);
+    color: white;
+}
+
+.container-1{
+    padding-top: 157px;
+}
+
+body{
+    background-image: url(../img/big-rectangle.png);
+    background-size:100%;
+    background-repeat: no-repeat;
+}
+
+p.title {
+    color: rgba(67, 97, 238, 1);
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 28.5px;
+}
+
+p.title-2 {
+    color: rgba(11, 9, 10, 1);
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 64px;
+}
+
+p.desc{
+    color: rgba(128, 128, 128, 1);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+}
+
+
+.corusel-img{
+    width: 600.96px;
+    height: 410px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.logo-title {
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: rgba(128, 128, 128, 1);
+}
+
+.information{
+    margin-top: 100px;
+    padding: 100px 0 100px 0;
+}
+
+.greet-information{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    letter-spacing: 5px;
+    color: rgba(67, 97, 238, 1);
+}
+
+.title-information{
+    font-weight: 600;
+    font-size: 39.8px;
+    line-height: 47px;
+}
+
+.desc-information{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(128, 128, 128, 1);
+}
+
+.information-card{
+    width: 400px;
+    height: 131px;
+    border-radius: 30px;
+    padding: 10px;
+}
+.information-card .card-title{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(67, 97, 238, 1);
+}
+
+.information-card .card-text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(128, 128, 128, 1);
+}
+
+.image-warga{
+    margin-top: 100px;
+}
+
+.program{
+    margin-top: 50px;
+    padding: 100px 0 100px 0;
+}
+
+.greet-program{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    letter-spacing: 5px;
+    color: rgba(67, 97, 238, 1);
+}
+
+.title-program{
+    font-weight: 600;
+    font-size: 39.8px;
+    line-height: 47px;
+}
+
+.title-program-desc{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(128, 128, 128, 1);
+}
+
+.card-program .card{
+    width: 340px;
+    height: 340px;
+    border-radius: 30px;
+}
+
+.kerja-bakti{
+    background-image: url(../img/kerja-bakti.png);
+}
+
+.card-program .program-pill{
+    width: 149px;
+    height: 42.51px;
+    background-color: rgba(255, 225, 225, 1);
+}
+
+.program-pill p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(255, 17, 17, 1);
+}
+
+.posyandu{
+    background-image: url(../img/posyandu.png);
+}
+
+.umkm{
+    background-image: url(../img/siomay.png);
+}
+
+.card-program .umkm-pill{
+    width: 149px;
+    height: 42.51px;
+    background-color: rgba(241, 255, 241, 1);
+}
+
+.umkm-pill p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(0, 206, 58, 1);
+}
+
+.program .title-program{
+    font-weight: 600;
+    font-size: 27.6px;
+    line-height: 41.4px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.program .date-program{
+    margin-top: -15px;
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.program .desc-program{
+    margin-top: -15px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(128, 128, 128, 1);
+}
+
+.service{
+    margin-top: 200px;
+    background-color: rgba(212, 212, 212, 1);
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+
+.service .title {
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(67, 97, 238, 1);
+    letter-spacing: 2px;
+}
+
+.service .greet{
+    font-weight: 600;
+    font-size: 39.8px;
+    line-height: 47px;
+    color: rgba(11, 9, 10, 1);
+}
+
+.service .card{
+    width: 340px;
+    height: 363px;
+    border-radius: 30px;
+}
+
+.service .logo{
+    width: 90px;
+    height: 90px;
+    background-color: rgba(67, 97, 238, 1);
+    display: inline-block;
+}
+
+.service .title-card{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.service .desc-card{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(128, 128, 128, 1);
+    margin-top: -10px;
+}
+
+.service .card-group{
+    margin-top: 100px;
+}
+
+.neighborhood .title-1{
+    margin-top: 150px;
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(67, 97, 238, 1);
+    letter-spacing: 2px;
+}
+
+.neighborhood .title-2{
+    font-weight: 600;
+    font-size: 39.8px;
+    line-height: 47px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.neighborhood .rw{
+    background-image: url(../img/rw.png);
+    background-size: cover;
+    width: 300px;
+    height: 320px;
+    border-radius: 30px;
+}
+
+.neighborhood .num{
+    font-weight: 600;
+    font-size: 57.3px;
+    line-height: 65px;
+    opacity: 80%;
+    color: rgba(255, 255, 255, 1);
+}
+
+.neighborhood .title{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(255, 255, 255, 1);
+    margin-top: -10px;
+}
+
+.neighborhood .rt{
+    background-image: url(../img/rt.png);
+    background-size: cover;
+    width: 300px;
+    height: 320px;
+    border-radius: 30px;
+}
+
+.neighborhood .houses{
+    background-image: url(../img/houses.jpg);
+    background-size: cover;
+    width: 420px;
+    height: 320px;
+    border-radius: 30px;
+}
+
+.neighborhood .adult{
+    background-image: url(../img/adult.jpg);
+    background-size: cover;
+    width: 412px;
+    height: 320px;
+    border-radius: 30px;
+}
+
+.neighborhood .kids{
+    background-image: url(../img/kids.jpg);
+    background-size: cover;
+    width: 658px;
+    height: 320px;
+    border-radius: 30px;
+}
+
+
+.creators{
+    margin-top: 200px;
+}
+
+.creators .intro{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    letter-spacing: 2px;
+    color: rgba(67, 97, 238, 1);
+    text-align: center;
+}
+
+.creators .title{
+    font-weight: 600;
+    font-size: 39.8px;
+    line-height: 47px;
+    color: rgba(43, 43, 43, 1);
+    text-align: center;
+}
+
+.creators .card{
+    width: 200px;
+    height: 280px;
+    background-size: cover;
+    border-radius: 120px 40px 40px 40px;
+}
+
+.creators img{
+    width: 200px;
+    height: 280px;
+    border-radius: 120px 40px 40px 40px;
+}
+
+.creators .image-creators{
+    margin-top: 100px;
+}
+
+.creators .name{
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 27.6px;
+    line-height: 41.4px;
+    color: rgba(11, 9, 10, 1);
+}
+
+.creators .position{
+    margin-top: -10px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(67, 97, 238, 1);
+}
+
+.info{
+    margin-top: 200px;
+}
+
+.news{
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: rgba(58, 12, 163, 1);
+}
+
+.news .title1{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+    letter-spacing: 2px;
+}
+
+.news .title2{
+    font-weight: 600;
+    font-size: 39.8px;
+    line-height: 47px;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+}
+
+.news .card-bapak{
+    margin-top: 65px;
+    background-image: url(../img/bapak.png);
+    width: 340px;
+    height: 240px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+}
+
+.news .card-jalan{
+    margin-top: 65px;
+    background-image: url(../img/jalan.jpg);
+    width: 340px;
+    height: 240px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+}
+
+.news .card-sampah{
+    margin-top: 65px;
+    background-image: url(../img/sampah.jpg);
+    width: 340px;
+    height: 240px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+}
+
+.news .card-date{
+    margin-left: 50px;
+    width: 49px;
+    height: 50px;
+    text-align: center;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.news .date{
+    font-weight: 500;
+    font-size: 19.4px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.news .day{
+    margin-top: -25px;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(128, 128, 128, 1);
+}
+
+.news .title-news{
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 27.6px;
+    color: white;
+}
+
+.news .desc {
+    margin-top: -10px;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(212, 212, 212, 1);
+}
+
+.testimonial{
+    margin-top: 200px;
+}
+
+.testimonial .title1{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    letter-spacing: 2px;
+    color: rgba(67, 97, 238, 1);
+}
+
+.testimonial .title2{
+    font-weight: 600;
+    font-size: 39.8px;
+    line-height: 47px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.testimonial .title3{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.testimonial .card{
+    padding:20px 40px 20px 40px;
+    width: 500px;
+    border-radius: 30px;
+}
+
+.testimonial .desc{
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 19.4px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.testimonial .pp{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: url(../img/bapakmu.jpg);
+    background-size: cover;
+}
+
+.testimonial .name{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.location{
+    margin-top: 200px;
+    background-color: rgba(237,240,254,255);
+}
+
+.location .map{
+    width: 480px;
+    height: 316px;
+    border: 20px;
+    background-image: url(../img/map.png);
+    border-radius: 20px;
+}
+
+.location .desc{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.location .num{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.location .quick-link{
+    font-weight: 500;
+    font-size: 19.4px;
+    line-height: 29.1px;
+    color: rgba(11, 9, 10, 1);
+}
+
+.location .menu{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(43, 43, 43, 1);
+}
+
+.footer{
+    background-color: black;
+    padding-top: 10px;
+}
+
+.footer p{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(170, 170, 170, 1);
+}
+

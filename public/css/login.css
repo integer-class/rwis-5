@@ -1,0 +1,5 @@
+body{
+    background-image: url(../img/backrground.png), url(../img/village.png);
+
+    background-size: cover;
+}
