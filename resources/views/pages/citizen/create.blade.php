@@ -34,34 +34,40 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>NIK</label>
-                                    <input type="text" class="form-control" name="nik">
+                                    <input type="text" class="form-control" name="nik" required>
                                     <small class="text-muted">Nomor Induk Kependudukan warga</small>
                                 </div>
                                 <div class="form-group">
                                     <label>Nama</label>
-                                    <input type="text" class="form-control" name="name">
+                                    <input type="text" class="form-control" name="name" required>
                                     <small class="text-muted">Nama lengkap warga sesuai KTP</small>
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Kelamin</label>
-                                    <select class="form-control" name="gender">
+                                    <select class="form-control" name="gender" required>
                                         <option value="L">Laki-laki</option>
                                         <option value="P">Perempuan</option>
-                                    <small class="text-muted">Jenis kelamin warga</small>
+                                        <small class="text-muted">Jenis kelamin warga</small>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>No. HP</label>
+                                    <input type="text" class="form-control" name="phone_number" required>
+                                    <small class="text-muted">Nomor warga yang dapat dihubungi</small>
                                 </div>
                                 <div class="form-group">
                                     <label>Tempat Lahir</label>
-                                    <input type="text" class="form-control" name="birth_place">
+                                    <input type="text" class="form-control" name="birth_place" required>
                                     <small class="text-muted">Tempat lahir warga</small>
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Lahir</label>
-                                    <input type="text" class="form-control datepicker" name="birth_date">
+                                    <input type="text" class="form-control datepicker" name="birth_date" required>
                                     <small class="text-muted" style="display: block;">Tanggal lahir warga</small>
                                 </div>
                                 <div class="form-group">
                                     <label>Agama</label>
-                                    <select class="form-control" name="religion">
+                                    <select class="form-control" name="religion" required>
                                         <option value="Islam">Islam</option>
                                         <option value="Kristen">Kristen</option>
                                         <option value="Katolik">Katolik</option>
@@ -73,7 +79,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Status Pernikahan</label>
-                                    <select class="form-control" name="maritial_status">
+                                    <select class="form-control" name="maritial_status" required>
                                         <option value="Belum kawin">Belum Menikah</option>
                                         <option value="Kawin">Menikah</option>
                                         <option value="Cerai hidup">Cerai Hidup</option>
@@ -83,14 +89,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Alamat KTP</label>
-                                    <textarea class="form-control" name="address_ktp">
+                                    <textarea class="form-control" name="address_ktp" required>
 
                                     </textarea>
                                     <small class="text-muted">Alamat sesuai KTP warga</small>
                                 </div>
                                 <div class="form-group">
                                     <label>Alamat Domisili</label>
-                                    <textarea class="form-control" name="address_current">
+                                    <textarea class="form-control" name="address_current" required>
 
                                     </textarea>
                                     <small class="text-muted">Alamat saat ini warga</small>
@@ -206,12 +212,12 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Pekerjaan</label>
-                                    <input type="text" class="form-control" name="job">
+                                    <input type="text" class="form-control" name="job" required>
                                     <small class="text-muted">Pekerjaan warga saat ini</small>
                                 </div>
                                 <div class="form-group">
                                     <label>Pendidikan Terakhir</label>
-                                    <select class="form-control" name="education">
+                                    <select class="form-control" name="education" required>
                                         <option value="sd">SD</option>
                                         <option value="smp">SMP</option>
                                         <option value="sma">SMA</option>
@@ -224,7 +230,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Penghasilan</label>
-                                    <select class="form-control" name="income">
+                                    <select class="form-control" name="income" required>
                                         <option value="1">Kurang dari Rp. 1.000.000</option>
                                         <option value="2">Rp. 1.000.000 - Rp. 2.000.000</option>
                                         <option value="3">Rp. 2.000.000 - Rp. 3.000.000</option>
@@ -245,7 +251,7 @@
                                 <button type="submit" class="btn btn-primary">Simpan Data Warga</button>
                                 <a href="{{ route('citizen.index') }}" class="btn btn-danger">Batal</a>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -257,9 +263,15 @@
 
 @push('scripts')
 <!-- JS Libraies -->
-<script src=" {{ asset('library/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-
+<script src="{{ asset('library/cleave.js/dist/cleave.min.js') }}"></script>
+<script src="{{ asset('library/cleave.js/dist/addons/cleave-phone.us.js') }}"></script>
+<script src="{{ asset('library/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+<script src="{{ asset('library/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}"></script>
+<script src="{{ asset('library/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+<script src="{{ asset('library/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
+<script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
+<script src="{{ asset('library/selectric/public/jquery.selectric.min.js') }}"></script>
 
 <!-- Page Specific JS File -->
-
+<script src="{{ asset('js/page/forms-advanced-forms.js') }}"></script>
 @endpush

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CitizenDataModel;
+use App\Models\CitizenUserModel;
 use App\Models\WealthModel;
 use App\Models\HealthModel;
 use App\Models\FamilyModel;
@@ -44,11 +45,26 @@ class CitizenController extends Controller
 
     public function store(Request $request)
     {
+        $wealth = new WealthModel();
+        $wealth->job = $request->job;
+        $wealth->income = $request->income;
+        $wealth->education = $request->education;
+        $wealth->save();
+
+        $health = new HealthModel();
+        $health->save();
+
+        $family = new FamilyModel();
+        $family->save();
 
         $citizen = new CitizenDataModel();
         $citizen->citizen_data_id = $request->nik;
+        $citizen->wealth_id = $wealth->wealth_id;
+        $citizen->health_id = $health->health_id;
+        $citizen->family_id = $family->family_id;
         $citizen->name = $request->name;
         $citizen->gender = $request->gender;
+        $citizen->phone_number = $request->phone_number;
         $citizen->birth_date = $request->birth_date;
         $citizen->birth_place = $request->birth_place;
         $citizen->religion = $request->religion;
@@ -59,12 +75,11 @@ class CitizenController extends Controller
         $citizen->is_archived = false;
         $citizen->save();
 
-        $wealth = new WealthModel();
-        $wealth->job = $request->job;
-        $wealth->income = $request->income;
-        $wealth->education = $request->education;
-        $wealth->save();
-
+        $user = new CitizenUserModel();
+        $user->nik = $request->nik;
+        $user->citizen_data_id = $request->nik;
+        $user->password = $request->password;
+        $user->level = 'warga';
 
         return redirect()->route('citizen.index')->with('success', 'Data berhasil disimpan');
     }

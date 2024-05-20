@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('family_data', function (Blueprint $table) {
             $table->id('family_id');
-            $table->string('family_head_name')->nullable();
-            $table->string('address')->nullable();
-            $table->string('rt')->nullable();
-            $table->string('rw')->nullable();
-            $table->string('village')->nullable();
-            $table->string('sub_district')->nullable();
-            $table->string('city')->nullable();
-            $table->string('province')->nullable();
-            $table->string('postal_code')->nullable();
+            $table->string('family_head_name')->nullable()->default('Belum Diisi');
+            $table->string('address')->nullable()->default('Belum Diisi');
+            $table->string('rt')->nullable()->default('Belum Diisi');
+            $table->string('rw')->nullable()->default('Belum Diisi');
+            $table->string('village')->nullable()->default('Belum Diisi');
+            $table->string('sub_district')->nullable()->default('Belum Diisi');
+            $table->string('city')->nullable()->default('Belum Diisi');
+            $table->string('province')->nullable()->default('Belum Diisi');
+            $table->string('postal_code')->nullable()->default('Belum Diisi');
             $table->timestamps();
 
             // $table->foreign('citizen_data_id')->references('citizen_data_id')->on('citizen_data');

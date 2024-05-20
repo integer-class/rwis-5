@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('wealth_data', function (Blueprint $table) {
             $table->id('wealth_id');
             $table->string('asset_id')->nullable();
-            $table->string('job')->nullable();
-            $table->string('education')->nullable();
-            $table->string('income')->nullable();
+            $table->string('job')->nullable()->default('Tidak Bekerja');
+            $table->string('education')->nullable()->default('Tidak Sekolah');
+            $table->string('income')->nullable()->default(0);
             $table->timestamps();
 
             // $table->foreign('citizen_data_id')->references('citizen_data_id')->on('citizen_data');
