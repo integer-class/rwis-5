@@ -25,9 +25,9 @@ use App\Http\Controllers\UserController;
 */
 
 
-Route::get('user', [UserController::class, 'index']);
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('information', [InformationController::class, 'index']);
+Route::get('user', [UserController::class, 'index'])->name('user')->middleware('auth');
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('information', [InformationController::class, 'index'])->name('information')->middleware('auth');
 Route::group(['prefix'=>'citizen'], function(){
     Route::get('/', [CitizenController::class, 'index'])->name('citizen.index');
     Route::get('create', [CitizenController::class, 'create'])->name('citizen.create');
@@ -36,11 +36,11 @@ Route::group(['prefix'=>'citizen'], function(){
     Route::get('edit/{id}', [CitizenController::class, 'edit'])->name('citizen.edit');
     Route::post('update/{id}', [CitizenController::class, 'update'])->name('citizen.update');
     Route::delete('archive/{id}', [CitizenController::class, 'archive'])->name('citizen.archive');
-});
-Route::get('bansos', [BansosController::class, 'index']);
-Route::get('letter', [LetterController::class, 'index']);
-Route::get('report', [ReportController::class, 'index']);
-Route::get('facility', [FacilityController::class, 'index']);
+}) ->name('citizen')->middleware('auth');
+Route::get('bansos', [BansosController::class, 'index'])->name('bansos')->middleware('auth');
+Route::get('letter', [LetterController::class, 'index'])->name('letter')->middleware('auth');
+Route::get('report', [ReportController::class, 'index'])->name('report')->middleware('auth');
+Route::get('facility', [FacilityController::class, 'index'])->name('facility')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');
@@ -51,15 +51,3 @@ Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('login_process', [AuthController::class, 'login_process'])->name('login_process');
 Route::post('register_process', [AuthController::class, 'register_process'])->name('register_process');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-
-// Route::group(['middleware' => ['auth']], function () {
-
-//     Route::group(['middleware' => ['login_check:warga']], function () {
-//     });
-
-//     Route::group(['middleware' => ['login_check:rw']], function () {
-//     });
-
-//     Route::group(['middleware' => ['login_check:rt']], function () {
-//     });
-// });
