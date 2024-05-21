@@ -116,12 +116,27 @@ class CitizenController extends Controller
 
     public function edit($id)
     {
-        $citizen = CitizenDataModel::select('citizen_data.*', 'family_data.rt as rt', 'wealth_data.job as job')
-            ->join('family_data', 'citizen_data.family_id', '=', 'family_data.family_id')
-            ->join('wealth_data', 'citizen_data.wealth_id', '=', 'wealth_data.wealth_id')
+        $citizen = CitizenDataModel::select('citizen_data.*')
+            ->where('citizen_data_id', $id)
+            ->first();
+        $family = FamilyModel::select('family_data.*')
+            ->join('citizen_data', 'family_data.family_id', '=', 'citizen_data.family_id')
+            ->where('citizen_data_id', $id)
+            ->first();
+        $health = HealthModel::select('health_data.*')
+            ->join('citizen_data', 'health_data.health_id', '=', 'citizen_data.health_id')
+            ->where('citizen_data_id', $id)
+            ->first();
+        $wealth = WealthModel::select('wealth_data.*')
+            ->join('citizen_data', 'wealth_data.wealth_id', '=', 'citizen_data.wealth_id')
             ->where('citizen_data_id', $id)
             ->first();
 
-        return view('pages.citizen.edit', compact('citizen'));
+        return view('pages.citizen.edit', compact('citizen', 'family', 'health', 'wealth'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        redirect()->route('citizen.detail', $id)->with('success', 'Data dengan NIK ' . $id . ' dengan nama ' . $request->name . ' berhasil diubah');
     }
 }

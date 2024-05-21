@@ -24,7 +24,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-
 Route::get('user', [UserController::class, 'index'])->name('user')->middleware('auth');
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::get('information', [InformationController::class, 'index'])->name('information')->middleware('auth');

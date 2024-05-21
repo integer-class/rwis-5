@@ -15,15 +15,10 @@
             <div class="section-header-back">
                 <a href="{{ route('citizen.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Detail Warga</h1>
+            <h1>Edit Warga</h1>
             <div class="section-header-button">
-                <a href="{{ route('citizen.edit', $citizen->citizen_data_id) }}" class="btn btn-primary">Edit</a>
-
-                <form action="{{ route('citizen.archive', $citizen->citizen_data_id) }}" method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                </form>
+                <a href="{{ route('citizen.update', $citizen->citizen_data_id) }}" class="btn btn-primary">Simpan</a>
+                <a href="{{ route('citizen.detail', $citizen->citizen_data_id) }}" class="btn btn-danger">Batal</a>
             </div>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('citizen.index')}}">Data Warga</a></div>
@@ -60,18 +55,35 @@
                             <h4>Identitas Personal</h4>
                         </div>
                         <div class="card-body">
-                            <p class="text-muted">NIK</p>
-                            <p><strong>{{ $citizen->citizen_data_id }}</strong></p>
-                            <p class="text-muted">Nama Lengkap</p>
-                            <p><strong>{{ $citizen->name }}</strong></p>
-                            <p class="text-muted">Jenis Kelamin</p>
-                            <p><strong>{{ $citizen->gender }}</strong></p>
-                            <p class="text-muted">Tempat Tanggal Lahir</p>
-                            <p><strong>{{ $citizen->birth_place }}, {{ $citizen->birth_date }}</strong></p>
-                            <p class="text-muted">Agama</p>
-                            <p><strong>{{ $citizen->religion }}</strong></p>
-                            <p class="text-muted">Status Pernikahan</p>
-                            <p><strong>{{ $citizen->maritial_status }}</strong></p>
+                            <label for="nik" class="form-label">NIK</label>
+                            <input type="text" class="form-control" value="{{ $citizen->citizen_data_id }}" name="nik" required>
+                            <label for="name" class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-control" value="{{ $citizen->name }}" name="name" required>
+                            <label for="jenis-kelamin" class="form-label">Jenis Kelamin</label>
+                            <select class="form-control" value="{{ $citizen->gender }}" name="gender" required>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                            <label for="tempat-lahir" class="form-label">Tempat Lahir</label>
+                            <input type="text" class="form-control" value="{{ $citizen->birth_place }}" name="birth_place" required>
+                            <label for="tanggal-lahir" class="form-label">Tanggal Lahir</label>
+                            <input type="date" class="form-control" value="{{ $citizen->birth_date }}" name="birth_date" required>
+                            <label for="agama" class="form-label">Agama</label>
+                            <select class="form-control" name="religion" value="{{ $citizen->religion }}" required>
+                                <option value="Islam">Islam</option>
+                                <option value="Kristen">Kristen</option>
+                                <option value="Katolik">Katolik</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Budha">Budha</option>
+                                <option value="Konghucu">Konghucu</option>
+                            </select>
+                            <label for="status-perkawinan" class="form-label">Status Perkawinan</label>
+                            <select class="form-control" name="maritial_status" value="{{ $citizen->maritial_status }}" required>
+                                <option value="Belum kawin">Belum Menikah</option>
+                                <option value="Kawin">Menikah</option>
+                                <option value="Cerai hidup">Cerai Hidup</option>
+                                <option value="Cerai mati">Cerai Mati</option>
+                            </select>
                         </div>
                     </div>
                 </div>

@@ -101,7 +101,7 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                                                <i class="fas fa-trash"></i> Hapus
+                                                                <i class="fas fa-trash"></i> Archive
                                                             </button>
                                                         </form>
                                                     </div>
