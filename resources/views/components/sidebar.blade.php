@@ -9,9 +9,9 @@
                     href="{{ route('dashboard') }}"><i class="fa-solid fa-gauge"></i> <span>Dashboard</span></a>
             </li>
 
-            <li class="{{ Request::is('information') ? 'active' : '' }}">
+            <li class="{{ Request::is('information') || Request::is('information/create') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ route('information') }}"><i class="far fa-user"></i> <span>Pusat Informasi</span></a>
+                    href="{{ route('information.index') }}"><i class="far fa-user"></i> <span>Pusat Informasi</span></a>
             </li>
 
             <li class="{{ Request::is('citizen') || Request::is('citizen/create')  || Request::is('citizen/edit/*')  || Request::is('citizen/detail/*') ? 'active' : '' }}">

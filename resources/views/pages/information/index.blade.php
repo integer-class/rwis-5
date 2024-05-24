@@ -16,6 +16,10 @@
                 @elseif(Auth::user()->level == 'rw')
                     <h1>Pusat Informasi RW</h1>
                 @endif
+
+                <div class="section-header-button">
+                    <a href="{{ route('information.create') }}" class="btn btn-primary" id="tambahButton">Tambah Baru</a>
+                </div>
             </div>
 
             <div class="section-body">

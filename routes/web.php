@@ -27,6 +27,16 @@ use App\Http\Controllers\UserController;
 Route::get('user', [UserController::class, 'index'])->name('user')->middleware('auth');
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::get('information', [InformationController::class, 'index'])->name('information')->middleware('auth');
+
+Route::group(['prefix'=>'information'], function(){
+    Route::get('/', [InformationController::class, 'index'])->name('information.index');
+    Route::get('create', [InformationController::class, 'create'])->name('information.create');
+    Route::get('detail/{id}', [InformationController::class, 'detail'])->name('information.detail');
+    Route::post('store', [InformationController::class, 'store'])->name('information.store');
+    Route::get('edit/{id}', [InformationController::class, 'edit'])->name('information.edit');
+    Route::post('update/{id}', [InformationController::class, 'update'])->name('information.update');
+}) ->name('information')->middleware('auth');
+
 Route::group(['prefix'=>'citizen'], function(){
     Route::get('/', [CitizenController::class, 'index'])->name('citizen.index');
     Route::get('create', [CitizenController::class, 'create'])->name('citizen.create');
