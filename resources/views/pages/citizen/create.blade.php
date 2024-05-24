@@ -262,7 +262,6 @@
                                 <button type="submit" class="btn btn-primary">Simpan Data Warga</button>
                                 <a href="{{ route('citizen.index') }}" class="btn btn-danger">Batal</a>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -276,10 +275,6 @@
 <!-- JS Libraies -->
 <script src="{{ asset('library/cleave.js/dist/cleave.min.js') }}"></script>
 <script src="{{ asset('library/cleave.js/dist/addons/cleave-phone.us.js') }}"></script>
-<script src="{{ asset('library/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-<script src="{{ asset('library/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}"></script>
-<script src="{{ asset('library/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
-<script src="{{ asset('library/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
 <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('library/selectric/public/jquery.selectric.min.js') }}"></script>
 

@@ -70,7 +70,7 @@
                                         <td>{{ $family->rw }}</td>
                                         <td>{{ $family->address }}</td>
                                         <td>
-                                        {{ isset($famMemberCount[$family->family_id]) ? $famMemberCount[$family->family_id] . ' Anggota' : '0 Anggota' }}
+                                            {{ isset($famMemberCount[$family->family_id]) ? $famMemberCount[$family->family_id] . ' Anggota' : '0 Anggota' }}
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-center">
@@ -95,6 +95,7 @@
                                                         </form>
                                                     </div>
                                                 </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -112,23 +113,23 @@
 </div>
 
 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="confirmModalLabel">Konfirmasi</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Apakah Anda yakin ingin melanjutkan?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary" id="confirmButton">Lanjutkan</button>
-      </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Konfirmasi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Apakah Anda yakin ingin melanjutkan?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-primary" id="confirmButton">Lanjutkan</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 @endsection
 
@@ -147,6 +148,5 @@
             window.location.href = "{{ route('family.create') }}";
         });
     });
-
 </script>
 @endpush

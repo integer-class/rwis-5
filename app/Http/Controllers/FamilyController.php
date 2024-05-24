@@ -36,7 +36,45 @@ class FamilyController extends Controller
                 ->paginate(8);
     
         }
-
         return view('pages.family.index', compact('families', 'famMemberCount'));
+    }
+
+    public function detail($id) {
+        $family = FamilyModel::find($id);
+        $famMembers = CitizenDataModel::select('citizen_data.*', 'wealth_data.education', 'wealth_data.job')
+            ->join('wealth_data', 'wealth_data.wealth_id', '=', 'citizen_data.wealth_id')
+            ->where('citizen_data.family_id', $id)
+            ->where('citizen_data.is_archived', false)
+            ->get();
+        return view('pages.family.detail', compact('family', 'famMembers'));
+    }
+
+    public function create() {
+        $citizens = CitizenDataModel::select('citizen_data.*')
+            ->where('citizen_data.is_archived', false)
+            ->paginate(5);
+        return view('pages.family.create', compact('citizens'));
+    }
+
+    public function store(Request $request) {
+        $family = new FamilyModel();
+        $family->family_id = $request->family_id;
+        $family->family_head_name = $request->family_head_name;
+        $family->address = $request->address;
+        $family->rt = $request->rt;
+        $family->rw = $request->rw;
+        $family->village = $request->village;
+        $family->sub_district = $request->sub_district;
+        $family->city = $request->city;
+        $family->province = $request->province;
+        $family->postal_code = $request->postal_code;
+        $family->save();
+        $familyId = $family->family_id;
+        foreach ($request->citizens as $citizenId) {
+            $citizen = CitizenDataModel::find($citizenId);
+            $citizen->family_id = $familyId;
+            $citizen->save();
+        }
+        return redirect()->route('family.index');
     }
 }
