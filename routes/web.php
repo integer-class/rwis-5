@@ -12,6 +12,7 @@ use App\Http\Controllers\RtController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FamilyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,15 @@ Route::group(['prefix'=>'citizen'], function(){
     Route::post('update/{id}', [CitizenController::class, 'update'])->name('citizen.update');
     Route::delete('archive/{id}', [CitizenController::class, 'archive'])->name('citizen.archive');
 }) ->name('citizen')->middleware('auth');
+Route::group(['prefix'=>'family'], function(){
+    Route::get('/', [FamilyController::class, 'index'])->name('family.index');
+    Route::get('create', [FamilyController::class, 'create'])->name('family.create');
+    Route::get('detail/{id}', [FamilyController::class, 'detail'])->name('family.detail');
+    Route::post('store', [FamilyController::class, 'store'])->name('family.store');
+    Route::get('edit/{id}', [FamilyController::class, 'edit'])->name('family.edit');
+    Route::post('update/{id}', [FamilyController::class, 'update'])->name('family.update');
+    Route::delete('archive/{id}', [FamilyController::class, 'archive'])->name('family.archive');
+}) ->name('family')->middleware('auth');
 Route::get('bansos', [BansosController::class, 'index'])->name('bansos')->middleware('auth');
 Route::get('letter', [LetterController::class, 'index'])->name('letter')->middleware('auth');
 Route::get('report', [ReportController::class, 'index'])->name('report')->middleware('auth');

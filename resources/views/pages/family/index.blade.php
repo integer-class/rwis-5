@@ -11,9 +11,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Data Warga</h1>
+            <h1>Data Keluarga</h1>
             <div class="section-header-button">
-                <a href="{{ route('citizen.create') }}" class="btn btn-primary" id="tambahButton">Tambah Baru</a>
+                <a href="{{ route('family.create') }}" class="btn btn-primary" id="tambahButton">Tambah Baru</a>
             </div>
         </div>
         <div class="section-body">
@@ -22,9 +22,9 @@
                         @include('layouts.alert')
                     </div>
                 </div> --}}
-            <h2 class="section-title">Informasi Data Warga</h2>
+            <h2 class="section-title">Informasi Data Keluarga</h2>
             <p class="section-lead">
-                Melalui halaman ini kamu bisa melihat seluruh data warga yang ada, dan kamu bisa melakukan edit atau arsip pada data warga
+                Melalui halaman ini kamu bisa melihat seluruh data keluarga yang ada, dan kamu bisa melakukan edit atau arsip pada data keluarga
             </p>
 
             @if (session('message'))
@@ -38,7 +38,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="float-right">
-                                <form method="GET" action="{{ route('citizen.index') }}">
+                                <form method="GET" action="{{ route('family.index') }}">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="Cari nama warga" name="keyword">
                                         <div class="input-group-append">
@@ -54,33 +54,23 @@
                                 <table class="table-striped table">
                                     <tr>
 
-                                        <th>NIK</th>
-                                        <th>Nama Warga</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>Nomor Telepon</th>
-                                        <th>Alamat Domisili</th>
-                                        <th>Alamat KTP</th>
+                                        <th>NoKK</th>
+                                        <th>Nama Kepala Keluarga</th>
+                                        <th>RT</th>
+                                        <th>RW</th>
+                                        <th>Alamat</th>
+                                        <th>Jumlah Anggota</th>
                                         <th>Aksi</th>
                                     </tr>
-                                    @foreach ($citizens as $citizen)
+                                    @foreach ($families as $family)
                                     <tr>
-
-                                        <td>{{ $citizen->citizen_data_id }}
-                                        </td>
+                                        <td>{{ $family->family_id }}</td>
+                                        <td>{{ $family->family_head_name }}</td>
+                                        <td>{{ $family->rt }}</td>
+                                        <td>{{ $family->rw }}</td>
+                                        <td>{{ $family->address }}</td>
                                         <td>
-                                            {{ $citizen->name }}
-                                        </td>
-                                        <td>
-                                            {{ $citizen->gender }}
-                                        </td>
-                                        <td>
-                                            {{ $citizen->phone_number }}
-                                        </td>
-                                        <td>
-                                            {{ $citizen->address_domisili }}
-                                        </td>
-                                        <td>
-                                            {{ $citizen->address_ktp }}
+                                        {{ isset($famMemberCount[$family->family_id]) ? $famMemberCount[$family->family_id] . ' Anggota' : '0 Anggota' }}
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-center">
@@ -89,14 +79,14 @@
                                                         Aksi
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="{{ route('citizen.detail', $citizen->citizen_data_id) }}" id="detailButton">
+                                                        <a class="dropdown-item" href="{{ route('family.detail', $family->family_id) }}" id="detailButton">
                                                             <i class="fas fa-eye"></i> Lihat
                                                         </a>
-                                                        <a class="dropdown-item" href="{{ route('citizen.edit', $citizen->citizen_data_id) }}" id="editButton">
+                                                        <a class="dropdown-item" href="{{ route('family.edit', $family->family_id) }}" id="editButton">
                                                             <i class="fas fa-edit"></i> Edit
                                                         </a>
                                                         <div class="dropdown-divider"></div>
-                                                        <form action="{{ route('citizen.archive', $citizen->citizen_data_id) }}" method="POST">
+                                                        <form action="{{ route('family.archive', $family->family_id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="dropdown-item text-warning" id="archiveButton">
@@ -111,7 +101,7 @@
                                 </table>
                             </div>
                             <div class="float-right">
-                                {{ $citizens->withQueryString()->links() }}
+                                {{ $families->withQueryString()->links() }}
                             </div>
                         </div>
                     </div>
@@ -154,7 +144,7 @@
         e.preventDefault();
         $('#confirmModal').modal('show');
         $('#confirmButton').on('click', function() {
-            window.location.href = "{{ route('citizen.create') }}";
+            window.location.href = "{{ route('family.create') }}";
         });
     });
 
