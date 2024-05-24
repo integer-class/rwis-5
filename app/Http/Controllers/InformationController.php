@@ -30,13 +30,13 @@ class InformationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'activity' => 'required|string|max:255',
             'desc' => 'required|string',
             'date' => 'required|date',
             'time1' => 'required|date_format:H:i',
             'time2' => 'required|date_format:H:i',
             'place' => 'required|string|max:255',
-            'image' => 'nullable|image|max:2048',
+            'img' => 'nullable|image|max:2048',
         ]);
 
         $inform = new InformationModel();
@@ -55,11 +55,6 @@ class InformationController extends Controller
             $inform->image = $fileName;
         }
 
-
-        // $extfile = $request->img->getClientOriginalExtension();
-        // $fileName = 'information-' . time() . '.' . $extfile;
-        // // $request->img->storeAs('public', $fileName);
-        // $inform->image = $fileName;
 
         $inform->save();
 
