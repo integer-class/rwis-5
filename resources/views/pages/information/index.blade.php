@@ -9,7 +9,13 @@
 @section('main')<div class="main-content information-page">
         <section class="section">
             <div class="section-header">
-                <h1>Pusat Informasi</h1>
+                @if(Auth::user()->level == 'warga')
+                    <h1>Pusat Informasi Warga</h1>
+                @elseif(Auth::user()->level == 'rt')
+                    <h1>Pusat Informasi RT</h1>
+                @elseif(Auth::user()->level == 'rw')
+                    <h1>Pusat Informasi RW</h1>
+                @endif
             </div>
 
             <div class="section-body">

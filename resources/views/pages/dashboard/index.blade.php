@@ -14,7 +14,13 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Dashboard</h1>
+                @if(Auth::user()->level == 'warga')
+                    <h1>Dashboard warga</h1>
+                @elseif(Auth::user()->level == 'rt')
+                    <h1>Dashboard rt</h1>
+                @elseif(Auth::user()->level == 'rw')
+                    <<h1>Dashboard rw</h1>
+                @endif
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">

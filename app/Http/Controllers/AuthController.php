@@ -14,35 +14,50 @@ class AuthController extends Controller
 {
     public function index()
     {
+
         return view('pages.auth.login');
     }
 
     public function login_process(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'nik' => 'required',
-            'password' => 'required'
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'nik' => 'required',
+        //     'password' => 'required'
+        // ]);
         
-        if ($validator->fails()) {
-            return redirect()->route('login')->withErrors($validator)->withInput();
+        // if ($validator->fails()) {
+        //     return redirect()->route('login')->withErrors($validator)->withInput();
+        // }
+
+        // $nik = $request->nik;
+        // $password = $request->password;
+
+        // $user = CitizenUserModel::where('nik', $nik)->first();
+
+        // if (!$user) {
+        //     return redirect()->route('login')->with('error', 'NIK tidak ditemukan');
+        // }
+
+        // if (!Hash::check($password, $user->password)) {
+        //     return redirect()->route('login')->with('error', 'Password salah');
+        // }
+
+        // Auth::login($user);
+        // return redirect()->route('citizen.index')->with('success', 'Login berhasil');
+
+        $request->validate([
+            'nik' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $user = CitizenUserModel::where('nik', $request->nik)->first();
+
+        if ($user && $request->password === $user->password) {
+            Auth::login($user);
+            return redirect()->route('citizen.index');
+        } else {
+            return back()->withErrors(['nik' => 'NIK atau password salah.']);
         }
-
-        $nik = $request->nik;
-        $password = $request->password;
-
-        $user = CitizenUserModel::where('nik', $nik)->first();
-
-        if (!$user) {
-            return redirect()->route('login')->with('error', 'NIK tidak ditemukan');
-        }
-
-        if (!Hash::check($password, $user->password)) {
-            return redirect()->route('login')->with('error', 'Password salah');
-        }
-
-        Auth::login($user);
-        return redirect()->route('citizen.index')->with('success', 'Login berhasil');
     }
 
     public function register()

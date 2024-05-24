@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'General Settings')
+@section('title', 'Detail Warga')
 
 @push('style')
 <!-- CSS Libraries -->
@@ -17,12 +17,12 @@
             </div>
             <h1>Detail Warga</h1>
             <div class="section-header-button">
-                <a href="{{ route('citizen.edit', $citizen->citizen_data_id) }}" class="btn btn-primary">Edit</a>
+                <a href="{{ route('citizen.edit', $citizen->citizen_data_id) }}" class="btn btn-primary" id="editButton">Edit</a>
 
-                <form action="{{ route('citizen.archive', $citizen->citizen_data_id) }}" method="POST" class="d-inline">
+                <form id="archiveForm" action="{{ route('citizen.archive', $citizen->citizen_data_id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                    <button class="btn btn-warning" id="archiveButton">Arsipkan</button>
                 </form>
             </div>
             <div class="section-header-breadcrumb">
@@ -105,27 +105,63 @@
                         </div>
                         <div class="card-body">
                             <p class="text-muted">Nomor Kartu Keluarga</p>
-                            <p><strong>{{ $family->family_id }}</strong></p>
+                            @if ($citizen->family_id)
+                            <p><strong>{{ $citizen->family_id }}</strong></p>
+                            @else
+                            <p><strong>Belum terdaftar</strong></p>
+                            @endif
                             <p class="text-muted">Nama Kepala Keluarga</p>
-                            <p><strong>{{ $family->family_head_name }}</strong></p>
+                            @if ($citizen->family_id)
+                            <p><strong>{{ $family->family_head_name }}</strong>
+                            @else
+                            <p><strong>Belum terdaftar</strong></p>
+                            @endif
                             <p class="text-muted">Alamat KK</p>
-                            <p><strong>{{ $family->address }}</strong></p>
+                            @if ($citizen->family_id)
+                            <p><strong>{{ $family->address }}</strong>
+                            @else
+                            <p><strong>Belum terdaftar</strong></p>
+                            @endif
                             <p class="text-muted">RT/RW</p>
-                            <p><strong>{{ $family->rt }} / {{ $family->rw }}</strong></p>
+                            @if ($citizen->family_id)
+                            <p><strong>{{ $family->rt }}/{{ $family->rw }}</strong>
+                            @else
+                            <p><strong>Belum terdaftar</strong></p>
+                            @endif
                         </div>
                     </div>
                     <div class="card" id="keluarga-2" style="display: none;">
                         <div class="card-body">
                             <p class="text-muted">Desa/Kelurahan</p>
-                            <p><strong>{{ $family->village }}</strong></p>
+                            @if ($citizen->family_id)
+                            <p><strong>{{ $family->village }}</strong>
+                            @else
+                            <p><strong>Belum terdaftar</strong></p>
+                            @endif
                             <p class="text-muted">Kecamatan</p>
-                            <p><strong>{{ $family->sub_district }}</strong></p>
+                            @if ($citizen->family_id)
+                            <p><strong>{{ $family->sub_district }}</strong>
+                            @else
+                            <p><strong>Belum terdaftar</strong></p>
+                            @endif
                             <p class="text-muted">Kabupaten/Kota</p>
-                            <p><strong>{{ $family->city }}</strong></p>
+                            @if ($citizen->family_id)
+                            <p><strong>{{ $family->city }}</strong>
+                            @else
+                            <p><strong>Belum terdaftar</strong></p>
+                            @endif
                             <p class="text-muted">Provinsi</p>
-                            <p><strong>{{ $family->province }}</strong></p>
+                            @if ($citizen->family_id)
+                            <p><strong>{{ $family->province }}</strong>
+                            @else
+                            <p><strong>Belum terdaftar</strong></p>
+                            @endif
                             <p class="text-muted">Kode Pos</p>
-                            <p><strong>{{ $family->postal_code }}</strong></p>
+                            @if ($citizen->family_id)
+                            <p><strong>{{ $family->postal_code }}</strong>
+                            @else
+                            <p><strong>Belum terdaftar</strong></p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -161,14 +197,34 @@
                             <p class="text-muted">Pekerjaan</p>
                             <p><strong>{{ $wealth->job }}</strong></p>
                             <p class="text-muted">Rentan Penghasilan</p>
-                            <p><strong>{{ $wealth->income }}</strong></p>
-                            <p class="text-muted">Asset</p>
-                            <p><strong>{{ $wealth->asset_id }}</strong></p>
+                            <p><strong>{{ $income }}</strong></p>
                         </div>
                     </div>
                 </div>
             </div>
     </section>
+</div>
+
+
+<!-- Modal Confirmation -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmationModalLabel">Konfirmasi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Apakah Anda yakin ingin melanjutkan?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-primary" id="confirmButton">Lanjutkan</button>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
 
@@ -179,50 +235,26 @@
 
 <!-- Page Specific JS File -->
 <script src="{{ asset('js/page/features-setting-detail.js') }}"></script>
+<script src="{{ asset('js/detail-citizen.js') }}"></script>
 <script>
-    $(document).ready(function() {
-        $('.nav-link').click(function(e) {
-            e.preventDefault();
-
-            $('.nav-link').removeClass('active');
-
-            $(this).addClass('active');
-
-            var target = $(this).data('target');
-
-            $('.card:not(#lihat-juga)').hide();
-
-            $(target).show();
-
-            if (target === '#data-personal') {
-                $('#data-personal, #alamat, #kontak').show();
-            } else if (target === '#keluarga') {
-                $('#keluarga-1, #keluarga-2').show();
-            } else if (target === '#kesehatan') {
-                $('#kesehatan').show();
-            } else if (target === '#pekerjaan') {
-                $('#pekerjaan').show();
-            }
-
-            // Move #keluarga before #data-personal when #keluarga is shown
-            if (target === '#keluarga') {
-                $('#keluarga-1').insertBefore('#data-personal');
-                $('#keluarga-2').insertBefore('#alamat');
-            }
-            // Move #data-personal before #keluarga when #data-personal is shown
-            else if (target === '#data-personal' && ($('#keluarga-1').is(':visible') || $('#keluarga-2').is(':visible'))) {
-                $(target).insertBefore('#keluarga-1');
-            }
-            // Move #kesehatan before #data-personal when #kesehatan is shown
-            else if (target === '#kesehatan' && $('#kesehatan').is(':visible')) {
-                $(target).insertBefore('#data-personal');
-            }
-            // Move #pekerjaan before #data-personal when #pekerjaan is shown
-            else if (target === '#pekerjaan' && $('#pekerjaan').is(':visible')) {
-                $(target).insertBefore('#data-personal');
-            }
-        });
+  // Event listener for Edit button
+  document.getElementById('editButton').addEventListener('click', function(event) {
+    event.preventDefault();
+    $('#confirmationModal').modal('show');
+    document.getElementById('confirmButton').addEventListener('click', function() {
+      // Redirect to edit page
+      window.location.href = "{{ route('citizen.edit', $citizen->citizen_data_id) }}";
     });
-</script>
+  });
 
+  // Event listener for Archive button
+  document.getElementById('archiveButton').addEventListener('click', function(event) {
+    event.preventDefault();
+    $('#confirmationModal').modal('show');
+    document.getElementById('confirmButton').addEventListener('click', function() {
+      // Submit the archive form
+      document.getElementById('archiveForm').submit();
+    });
+  });
+</script>
 @endpush

@@ -13,7 +13,7 @@
         <div class="section-header">
             <h1>Data Warga</h1>
             <div class="section-header-button">
-                <a href="{{ route('citizen.create') }}" class="btn btn-primary">Tambah Baru</a>
+                <a href="{{ route('citizen.create') }}" class="btn btn-primary" id="tambahButton">Tambah Baru</a>
             </div>
         </div>
         <div class="section-body">
@@ -24,7 +24,7 @@
                 </div> --}}
             <h2 class="section-title">Informasi Data Warga</h2>
             <p class="section-lead">
-                You can manage all Users, such as editing, deleting and more.
+                Melalui halaman ini kamu bisa melihat seluruh data warga yang ada, dan kamu bisa melakukan edit atau arsip pada data warga
             </p>
 
             @if (session('message'))
@@ -60,7 +60,7 @@
                                         <th>Nomor Telepon</th>
                                         <th>Alamat Domisili</th>
                                         <th>Alamat KTP</th>
-                                        <th>Action</th>
+                                        <th>Aksi</th>
                                     </tr>
                                     @foreach ($citizens as $citizen)
                                     <tr>
@@ -84,24 +84,23 @@
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <!-- dropdown button : view, edit, archive -->
                                                 <div class="dropdown d-inline">
                                                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        Action
+                                                        Aksi
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="{{ route('citizen.detail', $citizen->citizen_data_id) }}">
+                                                        <a class="dropdown-item" href="{{ route('citizen.detail', $citizen->citizen_data_id) }}" id="detailButton">
                                                             <i class="fas fa-eye"></i> Lihat
                                                         </a>
-                                                        <a class="dropdown-item" href="{{ route('citizen.edit', $citizen->citizen_data_id) }}">
+                                                        <a class="dropdown-item" href="{{ route('citizen.edit', $citizen->citizen_data_id) }}" id="editButton">
                                                             <i class="fas fa-edit"></i> Edit
                                                         </a>
                                                         <div class="dropdown-divider"></div>
                                                         <form action="{{ route('citizen.archive', $citizen->citizen_data_id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                                                <i class="fas fa-trash"></i> Hapus
+                                                            <button type="submit" class="dropdown-item text-warning" id="archiveButton">
+                                                                <i class="fas fa-trash"></i> Arsipkan
                                                             </button>
                                                         </form>
                                                     </div>
@@ -109,8 +108,6 @@
                                         </td>
                                     </tr>
                                     @endforeach
-
-
                                 </table>
                             </div>
                             <div class="float-right">
@@ -123,6 +120,26 @@
         </div>
     </section>
 </div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Konfirmasi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Apakah Anda yakin ingin melanjutkan?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-primary" id="confirmButton">Lanjutkan</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @push('scripts')
@@ -131,4 +148,15 @@
 
 <!-- Page Specific JS File -->
 <script src="{{ asset('js/page/features-posts.js') }}"></script>
+
+<script>
+    document.getElementById('tambahButton').addEventListener('click', function(e) {
+        e.preventDefault();
+        $('#confirmModal').modal('show');
+        $('#confirmButton').on('click', function() {
+            window.location.href = "{{ route('citizen.create') }}";
+        });
+    });
+
+</script>
 @endpush
