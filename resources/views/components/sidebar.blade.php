@@ -20,13 +20,13 @@
                     href="{{ route('information.index') }}"><i class="far fa-user"></i> <span>Pusat Informasi</span></a>
             </li>
 
-            <li class="{{ Request::is('citizen') || Request::is('family') ? 'active' : '' }}">
+            <li class="{{ Request::is('citizen*') || Request::is('family*') ? 'active' : '' }}">
                 <a class="nav-link has-dropdown"><i class="fa-solid fa-users"></i> <span>Warga</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ Request::is('citizen') ? 'active' : '' }}">
+                    <li class="{{ Request::is('citizen*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('citizen.index') }}">Data Warga</a>
                     </li>
-                    <li class="{{ Request::is('family') ? 'active' : '' }}">
+                    <li class="{{ Request::is('family*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('family.index') }}">Data Keluarga</a>
                     </li>
                 </ul>
@@ -51,7 +51,6 @@
                 <a class="nav-link"
                     href="{{ route('facility') }}"><i class="fa-solid fa-city"></i> <span>Fasilitas</span></a>
             </li>
-           
         </ul> 
     </aside>
 </div>
