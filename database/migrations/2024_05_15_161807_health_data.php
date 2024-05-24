@@ -17,8 +17,8 @@ return new class extends Migration
             $table->enum('blood_type', ['A', 'B', 'O', 'AB', 'Belum Tahu'])->nullable()->default('Belum Tahu');
             $table->string('weight')->nullable()->default(0);
             $table->string('height')->nullable()->default(0);
-            $table->string('disability')->nullable()->default('Tidak Ada');
-            $table->string('disease')->nullable()->default('Tidak Ada');
+            $table->enum('disability', ['Tidak', 'Ya'])->nullable()->default('Tidak');
+            $table->enum('disease', ['Tidak', 'Ya'])->nullable()->default('Tidak');
             $table->timestamps();
 
             // $table->foreign('citizen_data_id')->references('citizen_data_id')->on('citizen_data');

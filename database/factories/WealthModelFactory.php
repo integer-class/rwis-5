@@ -21,10 +21,9 @@ class WealthModelFactory extends Factory
 
         return [
             'wealth_id' => $this->faker->unique()->randomNumber(5),
-            'asset_id' => $this->faker->randomElement($asset_id),
-            'job' => $this->faker->jobTitle(),
-            'education' => $this->faker->randomElement(['SD', 'SMP', 'SMA', 'Sarjana', 'Magister', 'Doktor']),
-            'income' => $this->faker->randomNumber(7)
+            'job' => $this->faker->randomElement(['Pelajar', 'PNS', 'TNI', 'POLRI', 'Swasta', 'Wiraswasta', 'Petani', 'Nelayan', 'Buruh', 'Lainnya']),
+            'education' => $this->faker->randomElement(['SD', 'SMP', 'SMA', 'Diploma', 'Sarjana', 'Magister', 'Doktor']),
+            'income' => $this->faker->randomElement(['1', '2', '3', '4', '5', '6'])
         ];
     }
 }

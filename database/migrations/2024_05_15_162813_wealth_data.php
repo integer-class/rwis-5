@@ -12,11 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('wealth_data', function (Blueprint $table) {
-            $table->id('wealth_id');
-            $table->string('asset_id')->nullable();
-            $table->string('job')->nullable()->default('Tidak Bekerja');
-            $table->string('education')->nullable()->default('Tidak Sekolah');
-            $table->string('income')->nullable()->default(0);
+            $table->id('wealth_id')->unique();
+            $table->enum('job', ['Pelajar', 'PNS', 'TNI', 'POLRI', 'Swasta', 'Wiraswasta', 'Petani', 'Nelayan', 'Buruh', 'Lainnya'])->nullable()->default('lainnya');
+            $table->enum('education', ['SD', 'SMP', 'SMA', 'Diploma', 'Sarjana', 'Magister', 'Doktor'])->nullable()->default('SD');
+            $table->enum('income',['1', '2', '3', '4', '5', '6'])->nullable()->default('1');
             $table->timestamps();
 
             // $table->foreign('citizen_data_id')->references('citizen_data_id')->on('citizen_data');

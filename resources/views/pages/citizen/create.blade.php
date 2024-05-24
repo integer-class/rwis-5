@@ -212,19 +212,30 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Pekerjaan</label>
-                                    <input type="text" class="form-control" name="job" required>
+                                    <select class="form-control" name="job" required>
+                                        <option value="Pelajar">Pelajar</option>
+                                        <option value="PNS">PNS</option>
+                                        <option value="TNI">TNI</option>
+                                        <option value="POLRI">Polri</option>
+                                        <option value="Swasta">Swasta</option>
+                                        <option value="Wiraswasta">Wiraswasta</option>
+                                        <option value="Petani">Petani</option>
+                                        <option value="Nelayan">Nelayan</option>
+                                        <option value="Buruh">Buruh</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    </select>
                                     <small class="text-muted">Pekerjaan warga saat ini</small>
                                 </div>
                                 <div class="form-group">
                                     <label>Pendidikan Terakhir</label>
                                     <select class="form-control" name="education" required>
-                                        <option value="sd">SD</option>
-                                        <option value="smp">SMP</option>
-                                        <option value="sma">SMA</option>
-                                        <option value="diploma">Diploma</option>
-                                        <option value="sarjana">Sarjana</option>
-                                        <option value="magister">Magister</option>
-                                        <option value="doktor">Doktor</option>
+                                        <option value="SD">SD</option>
+                                        <option value="SMP">SMP</option>
+                                        <option value="SMA">SMA</option>
+                                        <option value="Diploma">Diploma</option>
+                                        <option value="Sarjana">Sarjana</option>
+                                        <option value="Magister">Magister</option>
+                                        <option value="Doktor">Doktor</option>
                                     </select>
                                     <small class="text-muted">Pendidikan terakhir warga</small>
                                 </div>

@@ -14,7 +14,6 @@ class WealthModel extends Model
 
     protected $fillable = [
         'wealth_id',
-        'asset_id',
         'job',
         'education',
         'income',
@@ -23,10 +22,5 @@ class WealthModel extends Model
     public function citizen_data()
     {
         return $this->hasOne(CitizenDataModel::class, 'wealth_id', 'wealth_id');
-    }
-
-    public function asset()
-    {
-        return $this->belongsTo(AssetModel::class, 'asset_id', 'asset_id');
     }
 }

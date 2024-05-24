@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('maritial_status', ['Belum kawin', 'Kawin', 'Cerai hidup', 'Cerai mati'])->nullable();
             $table->string('birth_place')->nullable();
             $table->date('birth_date')->nullable();
-            $table->string('religion')->nullable();
+            $table->enum('religion', ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghucu'])->nullable();
             $table->string('address_ktp')->nullable();
             $table->string('address_domisili')->nullable();
             $table->string('phone_number')->nullable();
