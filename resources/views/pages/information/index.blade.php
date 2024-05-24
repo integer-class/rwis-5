@@ -9,7 +9,7 @@
 @section('main')<div class="main-content information-page">
         <section class="section">
             <div class="section-header">
-                @if(Auth::user()->level == 'warga')
+                @if (Auth::user()->level == 'warga')
                     <h1>Pusat Informasi Warga</h1>
                 @elseif(Auth::user()->level == 'rt')
                     <h1>Pusat Informasi RT</h1>
@@ -25,13 +25,9 @@
             <div class="section-body">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators"
-                            data-slide-to="0"
-                            class="active"></li>
-                        <li data-target="#carouselExampleIndicators"
-                            data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators"
-                            data-slide-to="2"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                     </ol>
                     <div class="card corusel-card">
                         <div class="card-body">
@@ -63,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
@@ -75,54 +71,23 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4">
-                        <article class="article">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/posyandu.png') }}">
+                    @foreach ($informations as $info)
+                        <div class="col-md-4">
+                            <article class="article">
+                                <div class="article-header">
+                                    <div class="article-image" data-background="{{ asset('storage/' . $info->image) }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="article-details">
-                                <h1 class="title">Kunjungan Posyandu</h1>
-                                <p class="date">03 September 2024</p>
-                                <p class="scedule">Balai RW 07 (09.00 - 12.00)</p>
-                                <a href="#"
-                                    class="btn btn-secondary">Edit Kegiatan</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-md-4">
-                        <article class="article">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/posyandu.png') }}">
+                                <div class="article-details">
+                                    <h1 class="title">{{ $info->title }}</h1>
+                                    <p class="date">{{ $info->date }}</p>
+                                    <p class="scedule">{{ $info->place }} ({{ $info->time }})</p>
+                                    <a href="{{ route('information.edit', $info->id) }}" class="btn btn-secondary">Edit Kegiatan</a>
                                 </div>
-                            </div>
-                            <div class="article-details">
-                                <h1 class="title">Kunjungan Posyandu</h1>
-                                <p class="date">03 September 2024</p>
-                                <p class="scedule">Balai RW 07 (09.00 - 12.00)</p>
-                                <a href="#"
-                                    class="btn btn-secondary">Edit Kegiatan</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-md-4">
-                        <article class="article">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/posyandu.png') }}">
-                                </div>
-                            </div>
-                            <div class="article-details">
-                                <h1 class="title">Kunjungan Posyandu</h1>
-                                <p class="date">03 September 2024</p>
-                                <p class="scedule">Balai RW 07 (09.00 - 12.00)</p>
-                                <a href="#"
-                                    class="btn btn-secondary">Edit Kegiatan</a>
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
+                    @endforeach
+                    
                 </div>
             </div>
         </section>

@@ -13,7 +13,9 @@ class InformationController extends Controller
      */
     public function index()
     {
-        return view('pages.information.index');
+        $informations = InformationModel::all();
+
+        return view('pages.information.index', compact('informations'));
     }
 
     /**
@@ -74,7 +76,14 @@ class InformationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $information = InformationModel::findOrFail($id);
+    
+        // Split the time data
+        $timeArray = explode(' - ', $information->time);
+        $time1 = $timeArray[0];
+        $time2 = $timeArray[1];
+
+        return view('pages.information.edit', compact('information', 'time1', 'time2'));
     }
 
     /**
@@ -82,7 +91,36 @@ class InformationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'activity' => 'required|string|max:255',
+            'desc' => 'required|string',
+            'date' => 'required|date',
+            'time1' => 'required|date_format:H:i',
+            'time2' => 'required|date_format:H:i',
+            'place' => 'required|string|max:255',
+            'img' => 'nullable|image|max:2048',
+        ]);
+
+        $inform = InformationModel::where('id', $id)->first();
+        $inform->title = $request->activity;
+        $inform->desc = $request->desc;
+        $inform->date = $request->date;
+        $time1 = Carbon::createFromFormat('H:i', $request->time1)->format('H:i');
+        $time2 = Carbon::createFromFormat('H:i', $request->time2)->format('H:i');
+        $inform->time = $time1 . ' - ' . $time2;
+        $inform->place = $request->place;
+
+        if ($request->hasFile('img')) {
+            $extfile = $request->img->getClientOriginalExtension();
+            $fileName = 'information-' . time() . '.' . $extfile;
+            $request->img->storeAs('public', $fileName);
+            $inform->image = $fileName;
+        }
+
+
+        $inform->save();
+
+        return redirect()->route('information.index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
