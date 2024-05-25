@@ -7,6 +7,7 @@ use App\Http\Controllers\InformationController;
 use App\Http\Controllers\LetterController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\CitizenController;
+use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\RwController;
 use App\Http\Controllers\RtController;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +57,11 @@ Route::group(['prefix'=>'family'], function(){
     Route::post('update/{id}', [FamilyController::class, 'update'])->name('family.update');
     Route::delete('archive/{id}', [FamilyController::class, 'archive'])->name('family.archive');
 }) ->name('family')->middleware('auth');
+Route::group(['prefix'=>'archive'], function(){
+    Route::get('/', [ArchiveController::class, 'index'])->name('archive.index');
+    Route::delete('restoreFamily/{id}', [ArchiveController::class, 'restoreFamily'])->name('archive.restoreFamily');
+    Route::delete('restoreCitizen/{id}', [ArchiveController::class, 'restoreCitizen'])->name('archive.restoreCitizen');
+}) ->name('archive')->middleware('auth');
 Route::get('bansos', [BansosController::class, 'index'])->name('bansos')->middleware('auth');
 Route::get('letter', [LetterController::class, 'index'])->name('letter')->middleware('auth');
 Route::get('report', [ReportController::class, 'index'])->name('report')->middleware('auth');

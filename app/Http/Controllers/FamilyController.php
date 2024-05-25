@@ -14,10 +14,11 @@ class FamilyController extends Controller
         $famMemberCount = CitizenDataModel::select('family_data.family_head_name', 'family_data.family_id')
             ->join('family_data', 'family_data.family_id', '=', 'citizen_data.family_id')
             ->where('family_data.is_archived', false)
+            ->where('citizen_data.is_archived', false)
             ->get()
             ->groupBy('family_id')
             ->map(function ($item) {
-                return $item->count();
+            return $item->count();
             });
         if ($Keyword) {
             $families = FamilyModel::select('family_data.*')
@@ -44,6 +45,13 @@ class FamilyController extends Controller
         $family = FamilyModel::find($id);
         $family->is_archived = true;
         $family->save();
+        $citizens = CitizenDataModel::select('citizen_data.*')
+            ->where('family_id', $id)
+            ->get();
+        foreach ($citizens as $citizen) {
+            $citizen->is_archived = true;
+            $citizen->save();
+        }
         return redirect()->route('family.index');
     }
 

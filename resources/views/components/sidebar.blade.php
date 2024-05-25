@@ -20,7 +20,7 @@
                     href="{{ route('information.index') }}"><i class="far fa-user"></i> <span>Pusat Informasi</span></a>
             </li>
 
-            <li class="{{ Request::is('citizen*') || Request::is('family*') ? 'active' : '' }}">
+            <li class="{{ Request::is('citizen*') || Request::is('family*') || Request::is('archive*') ? 'active' : '' }}">
                 <a class="nav-link has-dropdown"><i class="fa-solid fa-users"></i> <span>Warga</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('citizen*') ? 'active' : '' }}">
@@ -28,6 +28,9 @@
                     </li>
                     <li class="{{ Request::is('family*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('family.index') }}">Data Keluarga</a>
+                    </li>
+                    <li class="{{ Request::is('archive*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('archive.index') }}">Data Arsip</a>
                     </li>
                 </ul>
             </li>
