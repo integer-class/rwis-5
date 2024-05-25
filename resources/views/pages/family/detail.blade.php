@@ -38,7 +38,7 @@
             </p>
 
             <div id="output-status"></div>
-            <div class="col">
+            <div class="row">
                 <div class="col">
                     <div class="card">
                         <div class="card-header">

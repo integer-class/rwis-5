@@ -27,14 +27,14 @@
 
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('citizen.index')}}">Data Warga</a></div>
-                    <div class="breadcrumb-item">Detail Warga</div>
+                    <div class="breadcrumb-item">Edit Warga</div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Informasi Detail Warga</h2>
+                <h2 class="section-title">Halaman Edit Warga</h2>
                 <p class="section-lead">
-                    Informasi mengenai data pribadi, keluarga terkait dan kesehatan.
+                    Melalui halaman ini kamu bisa mengedit data warga yang sudah terdaftar.
                 </p>
 
                 <div id="output-status"></div>
