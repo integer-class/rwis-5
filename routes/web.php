@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FamilyController;
+use App\Http\Controllers\TemplateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +64,17 @@ Route::group(['prefix'=>'archive'], function(){
     Route::delete('restoreCitizen/{id}', [ArchiveController::class, 'restoreCitizen'])->name('archive.restoreCitizen');
 }) ->name('archive')->middleware('auth');
 Route::get('bansos', [BansosController::class, 'index'])->name('bansos')->middleware('auth');
-Route::get('letter', [LetterController::class, 'index'])->name('letter')->middleware('auth');
+
+Route::group(['prefix'=>'letter'], function(){
+    Route::get('/', [LetterController::class, 'index'])->name('letter.index');
+    Route::get('upload', [LetterController::class, 'uploadTemp'])->name('letter.upload');
+    Route::get('create', [LetterController::class, 'create'])->name('letter.create');
+    Route::post('store', [LetterController::class, 'store'])->name('letter.store');
+    Route::get('edit/{id}', [LetterController::class, 'edit'])->name('letter.edit');
+    Route::post('update/{id}', [LetterController::class, 'update'])->name('letter.update');
+}) ->name('letter')->middleware('auth');
+
+
 Route::get('report', [ReportController::class, 'index'])->name('report')->middleware('auth');
 Route::get('facility', [FacilityController::class, 'index'])->name('facility')->middleware('auth');
 

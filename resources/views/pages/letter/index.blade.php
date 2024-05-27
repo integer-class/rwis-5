@@ -28,6 +28,9 @@
 
             <div class="section-header">
                 <h1>Verifikasi Tanda Tangan Digital</h1>
+                <div class="section-header-button">
+                    <a href="{{ route('letter.create') }}" class="btn btn-primary" id="tambahButton">Tambah</a>
+                </div>
             </div>
 
             <div class="section-body">
@@ -37,34 +40,52 @@
                         <div class="table-responsive">
                             <table class="table-striped table">
                                 <tr>
-            
                                     <th>Nama</th>
                                     <th>Alamat</th>
                                     <th>No. Whatsapp</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
-                                {{-- @foreach ($citizens as $citizen) --}}
+                                @foreach ($letters as $letter)
                                     <tr>
                                         <td>
-                                           anu
+                                           {{ $letter->name }}
                                         </td>
                                         <td>
-                                            anu
+                                            {{ $letter->address }}
                                         </td>
                                         <td>
-                                            anu
+                                            {{ $letter->whatsapp_number }}
                                         </td>
-                                        <td><span class="badge badge-success">Sudah Verifikasi</span></td>
                                         <td>
-                                            <a href='{{-- {{ route('user.edit', $citizens->nik) }} --}}'
-                                                class="btn btn-outline-info btn-icon">
-                                                <i class="fas fa-edit"></i>
-                                                Cek Berkas
-                                            </a>
+                                            @if ($letter->status == 'Belum Verifikasi')
+                                                <span class="badge badge-danger">{{ $letter->status }}</span>
+                                            @elseif ($letter->status == 'Sudah Verifikasi')
+                                                <span class="badge badge-success">{{ $letter->status }}</span>
+                                            @else 
+                                                <span class="badge badge-secondary">{{ $letter->status }}</span>
+                                            @endif
                                         </td>
+                                        <td>
+                                            <div class="d-flex justify-content-left">
+                                                <div class="dropdown d-inline">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Aksi
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="{{ '/storage/letters/'.$letter->file_path }}" id="detailButton" target="_blank">
+                                                            <i class="fas fa-eye"></i> Cek Berkas
+                                                        </a>
+                                                        <a class="dropdown-item" href="{{ route('letter.edit', $letter->id) }}" id="editButton">
+                                                            <i class="fas fa-edit"></i> Update
+                                                        </a>
+                                                        
+                                                    </div>
+                                                </div>
+                                        </td>
+                            
                                     </tr>
-                                {{-- @endforeach --}}
+                                @endforeach
             
             
                             </table>

@@ -42,7 +42,7 @@
 
             <li class="{{ Request::is('letter') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ route('letter') }}"><i class="fa-solid fa-envelope"></i> <span>Penyuratan</span></a>
+                    href="{{ route('letter.index') }}"><i class="fa-solid fa-envelope"></i> <span>Penyuratan</span></a>
             </li>
 
             <li class="{{ Request::is('report') ? 'active' : '' }}">
