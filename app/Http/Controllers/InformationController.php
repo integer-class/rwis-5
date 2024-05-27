@@ -13,7 +13,7 @@ class InformationController extends Controller
      */
     public function index()
     {
-        $informations = InformationModel::all();
+        $informations = InformationModel::select('information_data.*')->paginate(3);
 
         return view('pages.information.index', compact('informations'));
     }

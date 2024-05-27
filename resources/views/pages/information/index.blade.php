@@ -70,6 +70,7 @@
                     </a>
                 </div>
 
+
                 <div class="row">
                     @foreach ($informations as $info)
                         <div class="col-md-4">
@@ -82,12 +83,15 @@
                                     <h1 class="title">{{ $info->title }}</h1>
                                     <p class="date">{{ $info->date }}</p>
                                     <p class="scedule">{{ $info->place }} ({{ $info->time }})</p>
-                                    <a href="{{ route('information.edit', $info->id) }}" class="btn btn-secondary">Edit Kegiatan</a>
+                                    <a href="{{ route('information.edit', $info->id) }}" class="btn btn-secondary">Edit
+                                        Kegiatan</a>
                                 </div>
                             </article>
                         </div>
                     @endforeach
-                    
+                </div>
+                <div class="float-right">
+                    {{ $informations->withQueryString()->links() }}
                 </div>
             </div>
         </section>
