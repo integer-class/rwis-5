@@ -62,7 +62,12 @@ Route::group(['prefix'=>'archive'], function(){
     Route::delete('restoreFamily/{id}', [ArchiveController::class, 'restoreFamily'])->name('archive.restoreFamily');
     Route::delete('restoreCitizen/{id}', [ArchiveController::class, 'restoreCitizen'])->name('archive.restoreCitizen');
 }) ->name('archive')->middleware('auth');
-Route::get('bansos', [BansosController::class, 'index'])->name('bansos')->middleware('auth');
+Route::group(['prefix'=>'bansos'], function(){
+    Route::get('/', [BansosController::class, 'index'])->name('bansos.index');
+    Route::get('calculate', [BansosController::class, 'calculate'])->name('bansos.calculate');
+    Route::get('result', [BansosController::class, 'result'])->name('bansos.result');
+    Route::get('detail/{id}', [BansosController::class, 'detail'])->name('bansos.detail');
+}) ->name('bansos')->middleware('auth');
 Route::get('letter', [LetterController::class, 'index'])->name('letter')->middleware('auth');
 Route::get('report', [ReportController::class, 'index'])->name('report')->middleware('auth');
 Route::get('facility', [FacilityController::class, 'index'])->name('facility')->middleware('auth');

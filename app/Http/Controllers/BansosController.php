@@ -1,64 +1,48 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\BansosModel;
+use App\Models\CitizenDataModel;
+use App\Services\MabacService;
 use Illuminate\Http\Request;
 
 class BansosController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
+{   
+    protected $mabacService;
+
+    public function __construct(MabacService $mabacService)
+    {
+        $this->mabacService = $mabacService;
+    }
+
     public function index()
     {
-        return view('pages.bansos.index');
+        $bansosable = BansosModel::select('citizen_data.citizen_data_id', 'citizen_data.name', 'citizen_data.phone_number', 'citizen_data.address_ktp', 'bansos_data.status')
+            ->join('citizen_data', 'citizen_data.citizen_data_id', '=', 'bansos_data.citizen_data_id')
+            ->where('bansos_data.is_bansosable', true)->paginate(8);
+        return view('pages.bansos.index', compact('bansosable'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    // calculate warga yang layak menerima bansos menggunakan mabac
+    public function calculate()
     {
-        //
-    }
+        $alternatives = CitizenDataModel::select('citizen_data.citizen_data_id', 'wealth_data.income', 'wealth_data.job', 'wealth_data.education', 'health_data.disease', 'health_data.disability', 'health_data.age')
+            ->join('wealth_data', 'wealth_data.wealth_id', '=', 'citizen_data.wealth_id')
+            ->join('health_data', 'health_data.health_id', '=', 'citizen_data.health_id')
+            ->get();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $criterias_weight = [
+            'income' => 0.3,
+            'job' => 0.2,
+            'education' => 0.05,
+            'disease' => 0.15,
+            'disability' => 0.15,
+            'age' => 0.15
+        ];
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        $result = $this->mabacService->calculate($alternatives, $criterias_weight);
+        dd($result);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('pages.bansos.calculate', compact('result'));
     }
 }

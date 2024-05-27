@@ -1,124 +1,77 @@
 @extends('layouts.app')
 
-@section('title', 'Blank Page')
+@section('title', 'Bansos')
 
 @push('style')
-    <!-- CSS Libraries -->
+<!-- CSS Libraries -->
 @endpush
 
 @section('main')<div class="main-content">
-        <section class="section bansos">
-            <div class="section-header">
-                <h1>Informasi Penerimaan Bantuan Sosial</h1>
-                <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#" class="btn btn-primary">Tambahkan Informasi</a></div>
-                </div>
+    <section class="section bansos">
+        <div class="section-header">
+            <h1>Seleksi Bantuan Sosial</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="{{ route('information.create') }}" class="btn btn-primary">Tambahkan Informasi</a></div>
             </div>
+        </div>
 
-            <div class="section-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <article class="article">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/duid.png') }}">
-                                </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col">
+                    <article class="article">
+                        <div class="article-header">
+                            <div class="article-image" data-background="{{ asset('img/duid.png') }}">
                             </div>
-                            <div class="article-details text-center">
-                                <h1 class="title">Bantuan Tunai Langsung</h1>
-                                <a href="" class="clasify">Cek Klasifikasi</a> <br>
-                                <a href="#"
-                                    class="btn btn-outline-secondary mt-4">Edit Kegiatan</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-md-4">
-                        <article class="article">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/beras.jpg') }}">
-                                </div>
-                            </div>
-                            <div class="article-details text-center">
-                                <h1 class="title">Bantuan Pangan Non Tunai</h1>
-                                <a href="" class="clasify">Cek Klasifikasi</a> <br>
-                                <a href="#"
-                                    class="btn btn-outline-secondary mt-4">Edit Kegiatan</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-md-4">
-                        <article class="article">
-                            <div class="article-header">
-                                <div class="article-image"
-                                    data-background="{{ asset('img/kartu.png') }}">
-                                </div>
-                            </div>
-                            <div class="article-details text-center">
-                                <h1 class="title">Program Keluarga Harapan</h1>
-                                <a href="" class="clasify">Cek Klasifikasi</a> <br>
-                                <a href="#"
-                                    class="btn btn-outline-secondary mt-4">Edit Kegiatan</a>
-                            </div>
-                        </article>
-                    </div>
+                        </div>
+                        <div class="article-details text-center">
+                            <h1 class="title">Bantuan Sosial Warga Kurang Mampu</h1>
+                            <a href="{{ route('bansos.calculate') }}" class="btn btn-outline-secondary mt-4">Cek Kelayakan Warga</a>
+                        </div>
+                    </article>
                 </div>
             </div>
+        </div>
 
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="title-table mb-4">Data Penerimaan Bantuan Sosial</h1>
-                    <div class="table-responsive">
-                        <table class="table-striped table">
-                            <tr>
-        
-                                <th>Nama</th>
-                                <th>Alamat</th>
-                                <th>RT</th>
-                                <th>Tipe Kriteria</th>
-                                <th>NIK</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                            {{-- @foreach ($citizens as $citizen) --}}
-                                <tr>
-        
-                                    <td>anu
-                                    </td>
-                                    <td>
-                                        anu
-                                    </td>
-                                    <td>
-                                       anu
-                                    </td>
-                                    <td>
-                                        anu
-                                    </td>
-                                    <td>
-                                        anu
-                                    </td>
-                                    <td><span class="badge badge-success">Sudah Verifikasi</span></td>
-                                    <td>
-                                        <a href='{{-- {{ route('user.edit', $citizens->nik) }} --}}'
-                                            class="btn btn-info btn-icon">
-                                            <i class="fas fa-edit"></i>
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
-                            {{-- @endforeach --}}
-        
-        
-                        </table>
-                    </div>
+        <div class="card">
+            <div class="card-body">
+                <h1 class="title-table mb-4">Data Penerimaan Bantuan Sosial</h1>
+                <div class="table-responsive">
+                    <table class="table-striped table">
+                        <tr>
+
+                            <th>NIK</th>
+                            <th>Nama</th>
+                            <th>No. Telepon</th>
+                            <th>Alamat</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                        @foreach ($bansosable as $bansos)
+                        <tr>
+                            <td>{{ $bansos->citizen_data_id }}</td>
+                            <td>{{ $bansos->name }}</td>
+                            <td>{{ $bansos->phone_number }}</td>
+                            <td>{{ $bansos->address_ktp }}</td>
+                            @if ($bansos->status==1)
+                            <td><span class="badge badge-success">Penerima</span></td>
+                            @else
+                            <td><span class="badge badge-warning">Dalam Pengajuan</span></td>
+                            @endif
+                            <td>
+                                liat apa?
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
+</div>
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
+<!-- JS Libraies -->
 
-    <!-- Page Specific JS File -->
+<!-- Page Specific JS File -->
 @endpush
