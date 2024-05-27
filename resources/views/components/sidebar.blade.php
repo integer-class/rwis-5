@@ -37,7 +37,7 @@
 
             <li class="{{ Request::is('bansos') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ route('bansos') }}"><i class="fa-solid fa-money-bill"></i> <span>Bantuan Sosial</span></a>
+                    href="{{ route('bansos.index') }}"><i class="fa-solid fa-money-bill"></i> <span>Bantuan Sosial</span></a>
             </li>
 
             <li class="{{ Request::is('letter') ? 'active' : '' }}">
