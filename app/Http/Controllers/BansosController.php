@@ -42,7 +42,6 @@ class BansosController extends Controller
 
         $result = $this->mabacService->calculate($alternatives, $criterias_weight);
         dd($result);
-
-        return view('pages.bansos.calculate', compact('result'));
+        return view('pages.bansos.index', compact('result'));
     }
 }
