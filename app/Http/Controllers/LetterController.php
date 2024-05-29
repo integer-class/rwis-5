@@ -12,14 +12,16 @@ class LetterController extends Controller
 {
     public function index()
     {
-        $letters = LetterModel::select('letter_data.*')->paginate(5);
-        $files = TemplateModel::all();
+        $letters = LetterModel::select('letter_data.*')
+            ->where('is_archived', false)->paginate(5);
+        $templates = TemplateModel::select('letter_temp.*')
+            ->where('is_archived', false)->paginate(3);
 
-        return view('pages.letter.index', compact('letters','files'));
+        return view('pages.letter.index', compact('letters','templates'));
         
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('pages.letter.create');
     }
@@ -55,24 +57,6 @@ class LetterController extends Controller
         return redirect()->route('letter.index')->with('success', 'File berhasil diupload');
     }
 
-    public function uploadTemp(Request $request)
-    {
-        if ($request->hasFile('files')) {
-            foreach ($request->file('files') as $file) {
-                $path = $file->store('template_letter', 'public');
-                $filesize = $file->getSize();
-
-                TemplateModel::create([
-                    'name' => $file->getClientOriginalName(),
-                    'filesize' => $filesize,
-                    'path' => $path,
-                ]);
-            }
-        }
-
-        return response()->json(['message' => 'Files uploaded successfully'], 200);
-    }
-
     public function edit($id){
 
         $letter = LetterModel::find($id);
@@ -96,6 +80,8 @@ class LetterController extends Controller
         $letter->whatsapp_number = $request->whatsapp_number;
         $letter->status = $request->status;
 
+        $letter->is_archived = false;
+
         if ($request->hasFile('file')) {
             $nameSender = $request->name;
             $waSender = $request->whatsapp_number;
@@ -105,10 +91,20 @@ class LetterController extends Controller
             $letter->file_path = $fileName;
         }
 
+
         $letter->save();
 
 
         return redirect()->route('letter.index')->with('success', 'File berhasil diupdate');
 
     }    
+
+    public function archive($id)
+    {
+        $info = LetterModel::where('id', $id)->first();
+        $info->is_archived = true;
+        $info->save();
+
+        return redirect()->route('letter.index');
+    }
 }

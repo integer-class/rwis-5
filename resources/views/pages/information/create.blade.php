@@ -89,7 +89,7 @@
                                         <label>Foto Kegiatan</label>
                                         <div class="custom-file">
                                             <input type="file" id="img" class="form-control"
-                                                name="img">
+                                                name="img" required>
                                         </div>
                                         <small class="text-muted" style="display: block;">Foto dokumentasi seputar kegiatan
                                             yang akan dilaksanakan</small>

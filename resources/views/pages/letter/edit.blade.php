@@ -62,7 +62,7 @@
                                         <label>File Surat</label>
                                         <div class="custom-file">
                                             <input type="file" id="file" class="form-control"
-                                                name="file" value="{{ $letter->file_path }}">
+                                                name="file">
                                         </div>
                                         <small class="text-muted" style="display: block;">Masukkan file yang sudah ditanda tangani</small>
                                         @error('file')

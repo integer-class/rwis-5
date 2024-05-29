@@ -18,6 +18,7 @@ class LetterModel extends Model
         'address',
         'whatsapp_number',
         'status',
-        'file_path'
+        'file_path',
+        'is_archived',
     ];
 }

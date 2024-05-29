@@ -38,6 +38,7 @@ Route::group(['prefix'=>'information'], function(){
     Route::post('store', [InformationController::class, 'store'])->name('information.store');
     Route::get('edit/{id}', [InformationController::class, 'edit'])->name('information.edit');
     Route::post('update/{id}', [InformationController::class, 'update'])->name('information.update');
+    Route::delete('archive/{id}', [InformationController::class, 'archive'])->name('information.archive');
 }) ->name('information')->middleware('auth');
 
 Route::group(['prefix'=>'citizen'], function(){
@@ -72,11 +73,19 @@ Route::group(['prefix'=>'bansos'], function(){
 
 Route::group(['prefix'=>'letter'], function(){
     Route::get('/', [LetterController::class, 'index'])->name('letter.index');
-    Route::get('upload', [LetterController::class, 'uploadTemp'])->name('letter.upload');
     Route::get('create', [LetterController::class, 'create'])->name('letter.create');
     Route::post('store', [LetterController::class, 'store'])->name('letter.store');
     Route::get('edit/{id}', [LetterController::class, 'edit'])->name('letter.edit');
     Route::post('update/{id}', [LetterController::class, 'update'])->name('letter.update');
+    Route::delete('archive/{id}', [LetterController::class, 'archive'])->name('letter.archive');
+}) ->name('letter')->middleware('auth');
+
+Route::group(['prefix'=>'template'], function(){
+    Route::get('create', [TemplateController::class, 'create'])->name('template.create');
+    Route::post('store', [TemplateController::class, 'store'])->name('template.store');
+    Route::get('edit/{id}', [TemplateController::class, 'edit'])->name('template.edit');
+    Route::post('update/{id}', [TemplateController::class, 'update'])->name('template.update');
+    Route::delete('archive/{id}', [TemplateController::class, 'archive'])->name('template.archive');
 }) ->name('letter')->middleware('auth');
 
 

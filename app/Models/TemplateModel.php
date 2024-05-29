@@ -16,5 +16,6 @@ class TemplateModel extends Model
         'name',
         'filesize',
         'path',
+        'is_archived',
     ];
 }

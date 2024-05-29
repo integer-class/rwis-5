@@ -20,5 +20,6 @@ class InformationModel extends Model
         'time',
         'place',
         'image',
+        'is_archived',
     ];
 }

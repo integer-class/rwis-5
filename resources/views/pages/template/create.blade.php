@@ -11,73 +11,44 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Tambah Letter</h1>
+                <h1>Tambah Template Surat</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Data Letter</a></div>
-                    <div class="breadcrumb-item">Tambah Letter</div>
+                    <div class="breadcrumb-item"><a href="#">Data Template Surat</a></div>
+                    <div class="breadcrumb-item">Tambah Template Surat</div>
                 </div>
             </div>
-            <form action="{{ route('letter.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('template.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="section-body">
 
-                    <h2 class="section-title">Tambah Letter</h2>
-                    <p class="section-lead">Kamu bisa menambahkan data Letter yang berisi surat</p>
+                    <h2 class="section-title">Tambah Template Surat</h2>
+                    <p class="section-lead">Kamu bisa menambahkan data template surat</p>
 
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Tambah Letter</h4>
+                                    <h4>Tambah Template Surat</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Nama</label>
+                                        <label>Nama File</label>
                                         <input type="text" class="form-control" name="name" required>
-                                        <small class="text-muted">Nama kamu lah</small>
+                                        <small class="text-muted">Nama file yang akan diupload</small>
                                         @error('name')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Alamat</label>
-                                        <input type="text" class="form-control" name="address" required></input>
-                                        <small class="text-muted">Omahmu nk ndi</small>
-                                        @error('address')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Nomor WA</label>
-                                        <input type="text" class="form-control" name="whatsapp_number" required>
-                                        <small class="text-muted">Ningali nomor WA panjenengan</small>
-                                        @error('whatsapp_number')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label>File Surat</label>
+                                        <label>File Template Surat</label>
                                         <div class="custom-file">
                                             <input type="file" id="file" class="form-control"
                                                 name="file" required>
                                         </div>
                                         <small class="text-muted" style="display: block;">File Surat</small>
                                         @error('file')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Status</label>
-                                        <select class="form-control" name="status" required>
-                                            <option>Sudah Verifikasi</option>
-                                            <option selected>Belum Verifikasi</option>
-                                            <option>Mbuh Ilang</option>
-                                        </select>
-                                        <small class="text-muted">guduk status hubunganmu ndol</small>
-                                        @error('status')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

@@ -13,7 +13,8 @@ class InformationController extends Controller
      */
     public function index()
     {
-        $informations = InformationModel::select('information_data.*')->paginate(3);
+        $informations = InformationModel::select('information_data.*')
+            ->where('is_archived', false)->paginate(3);
 
         return view('pages.information.index', compact('informations'));
     }
@@ -110,6 +111,8 @@ class InformationController extends Controller
         $inform->time = $time1 . ' - ' . $time2;
         $inform->place = $request->place;
 
+        $inform->is_archived = false;
+
         if ($request->hasFile('img')) {
             $extfile = $request->img->getClientOriginalExtension();
             $fileName = 'information-' . time() . '.' . $extfile;
@@ -126,8 +129,12 @@ class InformationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function archive($id)
     {
-        //
+        $info = InformationModel::where('id', $id)->first();
+        $info->is_archived = true;
+        $info->save();
+
+        return redirect()->route('information.index');
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('time')->nullable();
             $table->string('place')->nullable();
             $table->string('image')->nullable();
+            $table->boolean('is_archived')->default(false);
             $table->timestamps();
         });
     }

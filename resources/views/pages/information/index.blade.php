@@ -83,8 +83,20 @@
                                     <h1 class="title">{{ $info->title }}</h1>
                                     <p class="date">{{ $info->date }}</p>
                                     <p class="scedule">{{ $info->place }} ({{ $info->time }})</p>
-                                    <a href="{{ route('information.edit', $info->id) }}" class="btn btn-secondary">Edit
-                                        Kegiatan</a>
+
+                                    <div class="d-flex justify-content-between">
+                                        <a href="{{ route('information.edit', $info->id) }}"
+                                            class="btn btn-secondary">Edit
+                                            Kegiatan</a>
+
+                                        <form action="{{ route('information.archive', $info->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" id="archiveButton">
+                                                 Arsipkan
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </article>
                         </div>
