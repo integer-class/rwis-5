@@ -23,69 +23,54 @@
                 @endif
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-primary">
                             <i class="far fa-user"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Pengguna</h4>
+                                <h4>Total Warga</h4>
                             </div>
                             <div class="card-body">
-                                122
+                                {{ $citizenTotal }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-danger">
                             <i class="far fa-newspaper"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Penerima Bansos</h4>
+                                <h4>Total Laki-laki</h4>
                             </div>
                             <div class="card-body">
-                                10293
+                                {{ $womanTotal }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-warning">
                             <i class="far fa-file"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total UMKM</h4>
+                                <h4>Total Perempuan</h4>
                             </div>
                             <div class="card-body">
-                                29
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="card card-statistic-1">
-                        <div class="card-icon bg-success">
-                            <i class="fas fa-circle"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>Laporan Pending</h4>
-                            </div>
-                            <div class="card-body">
-                                3
+                                {{ $manTotal }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 col-md-12 col-12 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h4>Statistik Laporan Warga</h4>
@@ -130,73 +115,219 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 col-12 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Recent Activities</h4>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h1>Data Umur Warga</h1>
+            </div>
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                                <i class="far fa-user"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Warga Berumur 0-17</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $under18 }}
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <ul class="list-unstyled list-unstyled-border">
-                                <li class="media">
-                                    <img class="rounded-circle mr-3"
-                                        width="50"
-                                        src="{{ asset('img/avatar/avatar-1.png') }}"
-                                        alt="avatar">
-                                    <div class="media-body">
-                                        <div class="text-primary float-right">Now</div>
-                                        <div class="media-title">Farhan A Mujib</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="rounded-circle mr-3"
-                                        width="50"
-                                        src="{{ asset('img/avatar/avatar-2.png') }}"
-                                        alt="avatar">
-                                    <div class="media-body">
-                                        <div class="float-right">12m</div>
-                                        <div class="media-title">Ujang Maman</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="rounded-circle mr-3"
-                                        width="50"
-                                        src="{{ asset('img/avatar/avatar-3.png') }}"
-                                        alt="avatar">
-                                    <div class="media-body">
-                                        <div class="float-right">17m</div>
-                                        <div class="media-title">Rizal Fakhri</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="rounded-circle mr-3"
-                                        width="50"
-                                        src="{{ asset('img/avatar/avatar-4.png') }}"
-                                        alt="avatar">
-                                    <div class="media-body">
-                                        <div class="float-right">21m</div>
-                                        <div class="media-title">Alfa Zulkarnain</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="pt-1 pb-1 text-center">
-                                <a href="#"
-                                    class="btn btn-primary btn-lg btn-round">
-                                    View All
-                                </a>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-danger">
+                                <i class="far fa-newspaper"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Warga Berumur 18-50</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $from18to50 }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                                <i class="far fa-file"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Warga Berumur 51-100</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $above50 }}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h1>Data Golongan Darah</h1>
+            </div>
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                                <i class="far fa-user"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Warga Bergolongan Darah A</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $bloodA }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-danger">
+                                <i class="far fa-newspaper"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Warga Bergolongan Darah B</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $bloodB }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                                <i class="far fa-file"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Warga Bergolongan Darah AB</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $bloodAB }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                                <i class="far fa-file"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Warga Bergolongan Darah O</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $bloodO }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h1>Data Pendidikan</h1>
+            </div>
+            <div class="section-body">
+                <div class="row justify-content-between">
+                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                                <i class="far fa-user"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Lulusan Dibawah SMA</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $underSma }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-danger">
+                                <i class="far fa-newspaper"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Lulusan SMA</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $Sma }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                                <i class="far fa-file"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Lulusan Sarjana</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $S1 }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                                <i class="far fa-file"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Lulusan Magister</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $S2 }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                                <i class="far fa-file"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Lulusan Doktor</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $S3 }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 @endsection
 
