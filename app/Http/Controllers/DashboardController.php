@@ -21,9 +21,9 @@ class DashboardController extends Controller
         
         // $today = Carbon::today();
 
-        $under18 = HealthModel::where('age', '>', 18 )->count();
+        $under18 = HealthModel::where('age', '<', 18 )->count();
         $from18to50 = HealthModel::whereBetween('age', [18, 50])->count();
-        $above50 = HealthModel::where('age', '<', 50)->count();
+        $above50 = HealthModel::where('age', '>', 50)->count();
 
         $bloodA = HealthModel::where('blood_type', 'A')->count();
         $bloodB = HealthModel::where('blood_type', 'B')->count();

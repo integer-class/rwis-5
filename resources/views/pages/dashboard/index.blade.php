@@ -4,17 +4,15 @@
 
 @push('style')
     <!-- CSS Libraries -->
-    <link rel="stylesheet"
-        href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
 @endpush
 
 @section('main')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                @if(Auth::user()->level == 'warga')
+                @if (Auth::user()->level == 'warga')
                     <h1>Dashboard warga</h1>
                 @elseif(Auth::user()->level == 'rt')
                     <h1>Dashboard rt</h1>
@@ -70,22 +68,19 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                <div class="col-lg-8 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h4>Statistik Laporan Warga</h4>
                             <div class="card-header-action">
                                 <div class="btn-group">
-                                    <a href="#"
-                                        class="btn btn-primary">Week</a>
-                                    <a href="#"
-                                        class="btn">Month</a>
+                                    <a href="#" class="btn btn-primary">Week</a>
+                                    <a href="#" class="btn">Month</a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <canvas id="myChart"
-                                height="182"></canvas>
+                            <canvas id="myChart" height="182"></canvas>
                             <div class="statistic-details mt-sm-4">
                                 <div class="statistic-details-item">
                                     <span class="text-muted"><span class="text-primary"><i
@@ -112,6 +107,43 @@
                                     <div class="detail-name">This Year's Sales</div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Data Umur Warga</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="myChart" height="182"></canvas>
+                            <div class="mb-4">
+                                <div class="text-small font-weight-bold text-muted float-right">{{ $under18 }}</div>
+                                <div class="font-weight-bold mb-1">Umur dibawah 18 Tahun</div>
+                                <div class="progress" data-height="3">
+                                    <div class="progress-bar" role="progressbar" data-width="{{ $under18/$citizenTotal * 100 }}%" aria-valuenow="{{ $under18 }}"
+                                        aria-valuemin="0" aria-valuemax="{{ $citizenTotal }}"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="text-small font-weight-bold text-muted float-right">{{ $from18to50 }}</div>
+                                <div class="font-weight-bold mb-1">Umur 18-50 Tahun</div>
+                                <div class="progress" data-height="3">
+                                    <div class="progress-bar" role="progressbar" data-width="{{ $from18to50 / $citizenTotal * 100 }}%" aria-valuenow="{{ $from18to50 }}"
+                                        aria-valuemin="0" aria-valuemax="{{ $citizenTotal }}"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="text-small font-weight-bold text-muted float-right">{{ $above50 }}</div>
+                                <div class="font-weight-bold mb-1">Umur diatas 50 Tahun</div>
+                                <div class="progress" data-height="3">
+                                    <div class="progress-bar" role="progressbar" data-width="{{ $above50/$citizenTotal * 100 }}%" aria-valuenow="{{ $above50 }}"
+                                        aria-valuemin="0" aria-valuemax="{{ $citizenTotal }}"></div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
