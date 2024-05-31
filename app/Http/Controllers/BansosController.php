@@ -20,6 +20,7 @@ class BansosController extends Controller
         $bansosable = BansosModel::select('citizen_data.citizen_data_id', 'citizen_data.name', 'citizen_data.phone_number', 'citizen_data.address_ktp', 'bansos_data.status')
             ->join('citizen_data', 'citizen_data.citizen_data_id', '=', 'bansos_data.citizen_data_id')
             ->where('bansos_data.is_bansosable', true)->paginate(8);
+
         return view('pages.bansos.index', compact('bansosable'));
     }
 
@@ -41,8 +42,7 @@ class BansosController extends Controller
         ];
 
         $result = $this->mabacService->calculate($alternatives, $criterias_weight);
-        dd($result);
 
-        return view('pages.bansos.calculate', compact('result'));
+        return view('pages.bansos.result', compact('result'));
     }
 }
