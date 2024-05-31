@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FamilyController;
+use App\Http\Controllers\TemplateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ Route::group(['prefix'=>'information'], function(){
     Route::post('store', [InformationController::class, 'store'])->name('information.store');
     Route::get('edit/{id}', [InformationController::class, 'edit'])->name('information.edit');
     Route::post('update/{id}', [InformationController::class, 'update'])->name('information.update');
+    Route::delete('archive/{id}', [InformationController::class, 'archive'])->name('information.archive');
 }) ->name('information')->middleware('auth');
 
 Route::group(['prefix'=>'citizen'], function(){
@@ -62,10 +64,34 @@ Route::group(['prefix'=>'archive'], function(){
     Route::delete('restoreFamily/{id}', [ArchiveController::class, 'restoreFamily'])->name('archive.restoreFamily');
     Route::delete('restoreCitizen/{id}', [ArchiveController::class, 'restoreCitizen'])->name('archive.restoreCitizen');
 }) ->name('archive')->middleware('auth');
-Route::get('bansos', [BansosController::class, 'index'])->name('bansos')->middleware('auth');
-Route::get('letter', [LetterController::class, 'index'])->name('letter')->middleware('auth');
+Route::group(['prefix'=>'bansos'], function(){
+    Route::get('/', [BansosController::class, 'index'])->name('bansos.index');
+    Route::get('calculate', [BansosController::class, 'calculate'])->name('bansos.calculate');
+    Route::get('result', [BansosController::class, 'result'])->name('bansos.result');
+    Route::get('detail/{id}', [BansosController::class, 'detail'])->name('bansos.detail');
+}) ->name('bansos')->middleware('auth');
+
+Route::group(['prefix'=>'letter'], function(){
+    Route::get('/', [LetterController::class, 'index'])->name('letter.index');
+    Route::get('create', [LetterController::class, 'create'])->name('letter.create');
+    Route::post('store', [LetterController::class, 'store'])->name('letter.store');
+    Route::get('edit/{id}', [LetterController::class, 'edit'])->name('letter.edit');
+    Route::post('update/{id}', [LetterController::class, 'update'])->name('letter.update');
+    Route::delete('archive/{id}', [LetterController::class, 'archive'])->name('letter.archive');
+}) ->name('letter')->middleware('auth');
+
+Route::group(['prefix'=>'template'], function(){
+    Route::get('create', [TemplateController::class, 'create'])->name('template.create');
+    Route::post('store', [TemplateController::class, 'store'])->name('template.store');
+    Route::get('edit/{id}', [TemplateController::class, 'edit'])->name('template.edit');
+    Route::post('update/{id}', [TemplateController::class, 'update'])->name('template.update');
+    Route::delete('archive/{id}', [TemplateController::class, 'archive'])->name('template.archive');
+}) ->name('letter')->middleware('auth');
+
+
 Route::get('report', [ReportController::class, 'index'])->name('report')->middleware('auth');
 Route::get('facility', [FacilityController::class, 'index'])->name('facility')->middleware('auth');
+Route::resource('facilities', FacilityController::class);
 
 Route::get('/', function () {
     return view('welcome');

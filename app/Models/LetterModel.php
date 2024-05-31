@@ -5,21 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InformationModel extends Model
+class LetterModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'information_data';
+    protected $table = 'letter_data';
     protected $primaryKey = 'id';
 
     protected $fillable = [
         'id',
-        'title',
-        'desc',
-        'date',
-        'time',
-        'place',
-        'image',
+        'name',
+        'address',
+        'whatsapp_number',
+        'status',
+        'file_path',
         'is_archived',
     ];
 }

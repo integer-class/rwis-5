@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('information_data', function (Blueprint $table) {
+        Schema::create('letter_data', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('desc')->nullable();
-            $table->date('date')->nullable();
-            $table->string('time')->nullable();
-            $table->string('place')->nullable();
-            $table->string('image')->nullable();
+            $table->string('name');
+            $table->string('address');
+            $table->string('whatsapp_number');
+            $table->string('status');
+            $table->string('file_path')->nullable();
             $table->boolean('is_archived')->default(false);
             $table->timestamps();
         });
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('information_data');
+        Schema::dropIfExists('letter_data');
     }
 };

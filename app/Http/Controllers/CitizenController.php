@@ -27,7 +27,7 @@ class CitizenController extends Controller
                 session()->flash('message', 'Pencarian ditemukan: ' . $keyword);
                 session()->flash('alert-class', 'alert-success');
             }
-            return view('pages.citizen.index', compact('citizens'));
+        return view('pages.citizen.index', compact('citizens'));
         } else {
             $citizens = CitizenDataModel::select('citizen_data.*')
                 ->where('citizen_data.is_archived', false)
