@@ -102,3 +102,18 @@ Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('login_process', [AuthController::class, 'login_process'])->name('login_process');
 Route::post('register_process', [AuthController::class, 'register_process'])->name('register_process');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware('auth')->group(function () {
+   
+    Route::get('report', [ReportController::class, 'index'])->name('report.index');
+    Route::get('report/create', [ReportController::class, 'create'])->name('report.create');
+    Route::post('report', [ReportController::class, 'store'])->name('report.store');
+    Route::get('report/{id}/edit', [ReportController::class, 'edit'])->name('report.edit');
+    Route::put('report/{id}', [ReportController::class, 'update'])->name('report.update');
+    Route::delete('report/{id}', [ReportController::class, 'destroy'])->name('report.destroy');
+    Route::get('report/{id}/status/{status}', [ReportController::class, 'changeStatus'])->name('report.changeStatus');
+    Route::get('/reports/{report}', [ReportController::class, 'show'])->name('report.show');
+    Route::put('/report/{id}/accept', [ReportController::class, 'accept'])->name('report.accept');
+    
+    
+    });

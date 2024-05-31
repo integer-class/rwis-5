@@ -47,7 +47,7 @@
 
             <li class="{{ Request::is('report') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ route('report') }}"><i class="fa-solid fa-comment"></i> <span>Pelaporan Masalah</span></a>
+                    href="{{ route('report.index') }}"><i class="fa-solid fa-comment"></i> <span>Pelaporan Masalah</span></a>
             </li>
 
             <li class="{{ Request::is('facility') ? 'active' : '' }}">
