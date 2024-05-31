@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bansos_data', function (Blueprint $table) {
             $table->id('bansos_id')->unique();
-            $table->unsignedBigInteger('distribution_id');
+            $table->unsignedBigInteger('distribution_id')->nullable();
             $table->unsignedBigInteger('citizen_data_id');
             $table->boolean('is_bansosable')->default(false); 
             $table->boolean('status')->default(false); // 0 = belum diterima, 1 = sudah diterima
