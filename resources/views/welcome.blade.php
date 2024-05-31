@@ -26,6 +26,7 @@
                     SIMWARGA we want #RVVolution
                 </p>
             </div>
+
             {{-- corusel img --}}
             <div class="col-md-6">
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
@@ -62,12 +63,23 @@
 
             </div>
         </div>
+        
         {{-- search --}}
-        <div class="input-group mt-5">
-            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
-                aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+        <div class="search-container">
+            <div class="search-label d-flex justify-content-start align-items-center">
+                <span class="text-uppercase font-weight-bold text-dark" style="font-size: 14px; letter-spacing: 2.8px;font-weight: bold;">
+                   SEARCH
+                </span>
+            </div>
+            <div class="search-input position-relative d-flex align-items-center bg-white">
+                <input type="text" class="form-control border-0 bg-transparent" placeholder="Type to search..." style="flex-grow: 1;">
+                <button class="search-button d-flex justify-content-center align-items-center border-0">
+                    <img src="{{asset('img/search.png')}}" alt="Search Icon" class="search-icon">
+                </button>
+            </div>
         </div>
+    
+                  
         {{-- capsule --}}
         <div class="row mt-5 justify-content-evenly">
             <div class="col-md-4">
@@ -537,6 +549,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="becomeapart">
+        <img src="{{ asset('img/becomeapart.png') }}" alt="Become a Part">
     </div>
 
     <div class="location p-5">
