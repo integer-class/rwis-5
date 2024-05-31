@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('whatsapp_number');
             $table->string('status');
             $table->string('file_path')->nullable();
+            $table->boolean('is_archived')->default(false);
             $table->timestamps();
         });
     }

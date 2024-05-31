@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('filesize');
             $table->string('path');
+            $table->boolean('is_archived')->default(false);
             $table->timestamps();
         });
     }
