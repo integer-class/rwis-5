@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             CitizenSeeder::class,
             CitizenUserSeeder::class,
             BansosSeeder::class,
+            FacilitySeeder::class
         ]);
     }
 }

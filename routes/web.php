@@ -91,6 +91,7 @@ Route::group(['prefix'=>'template'], function(){
 
 Route::get('report', [ReportController::class, 'index'])->name('report')->middleware('auth');
 Route::get('facility', [FacilityController::class, 'index'])->name('facility')->middleware('auth');
+Route::resource('facilities', FacilityController::class);
 
 Route::get('/', function () {
     return view('welcome');
