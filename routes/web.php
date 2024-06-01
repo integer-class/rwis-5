@@ -67,6 +67,8 @@ Route::group(['prefix'=>'bansos'], function(){
     Route::get('calculate', [BansosController::class, 'calculate'])->name('bansos.calculate');
     Route::get('result', [BansosController::class, 'result'])->name('bansos.result');
     Route::get('detail/{id}', [BansosController::class, 'detail'])->name('bansos.detail');
+    Route::post('confirm/{id}', [BansosController::class, 'confirm'])->name('bansos.confirm');
+    Route::get('submit/{id}', [BansosController::class, 'submit'])->name('bansos.submit');
 }) ->name('bansos')->middleware('auth');
 Route::get('letter', [LetterController::class, 'index'])->name('letter')->middleware('auth');
 Route::get('report', [ReportController::class, 'index'])->name('report')->middleware('auth');

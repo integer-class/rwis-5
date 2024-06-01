@@ -11,7 +11,7 @@
         <div class="section-header">
             <h1>Seleksi Bantuan Sosial</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ route('information.create') }}" class="btn btn-primary">Tambahkan Informasi</a></div>
+                <!-- <div class="breadcrumb-item active"><a href="{{ route('information.create') }}" class="btn btn-primary">Tambahkan Informasi</a></div> -->
             </div>
         </div>
 
@@ -58,7 +58,7 @@
                             <td><span class="badge badge-warning">Dalam Pengajuan</span></td>
                             @endif
                             <td>
-                                liat apa?
+                                <a href="{{ route('bansos.detail', $bansos->citizen_data_id) }}" class="btn btn-primary">Detail</a>
                             </td>
                         </tr>
                         @endforeach
@@ -74,4 +74,5 @@
 <!-- JS Libraies -->
 
 <!-- Page Specific JS File -->
+
 @endpush
