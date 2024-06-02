@@ -99,11 +99,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login', [AuthController::class, 'index'])->name('login');
-Route::get('register', [AuthController::class, 'register'])->name('register');
-Route::post('login_process', [AuthController::class, 'login_process'])->name('login_process');
-Route::post('register_process', [AuthController::class, 'register_process'])->name('register_process');
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('login_process');
+
+// Route::get('login', [AuthController::class, 'index'])->name('login');
+// Route::get('register', [AuthController::class, 'register'])->name('register');
+// Route::post('login_process', [AuthController::class, 'login_process'])->name('login_process');
+// Route::post('register_process', [AuthController::class, 'register_process'])->name('register_process');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
    
