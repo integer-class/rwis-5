@@ -21,7 +21,7 @@ class CitizenUserModelFactory extends Factory
             'citizen_user_id' => $this->faker->unique()->randomNumber(5),
             'citizen_data_id' => $this->faker->randomElement($citizen_data_id),
             'nik' => $this->faker->unique()->randomNumber(9),
-            'level' => $this->faker->randomElement(['rt', 'warga']),
+            'level' => $this->faker->randomElement(['rt', 'warga', 'rw']),
             'password' => $this->faker->randomElement(['12345678', 'password'])
         ];
     }

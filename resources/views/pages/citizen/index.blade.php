@@ -12,11 +12,9 @@
         <section class="section">
             <div class="section-header">
                 <h1>Data Warga</h1>
-                @can('rt')
-                    <div class="section-header-button">
-                        <a href="{{ route('citizen.create') }}" class="btn btn-primary" id="tambahButton">Tambah Baru</a>
-                    </div>
-                @endcan
+                <div class="section-header-button">
+                    <a href="{{ route('citizen.create') }}" class="btn btn-primary" id="tambahButton">Tambah Baru</a>
+                </div>
             </div>
             <div class="section-body">
                 {{-- <div class="row">

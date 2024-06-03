@@ -21,7 +21,7 @@
                         Informasi</span></a>
             </li>
 
-            @can('rt','rw')
+            @can('admin')
                 <li
                     class="{{ Request::is('citizen*') || Request::is('family*') || Request::is('archive*') ? 'active' : '' }}">
                     <a class="nav-link has-dropdown"><i class="fa-solid fa-users"></i> <span>Warga</span></a>
