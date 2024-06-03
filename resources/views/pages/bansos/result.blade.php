@@ -110,8 +110,7 @@
         modal.find('.modal-body #citizenDisease').text(disease)
         modal.find('.modal-body #citizenDisability').text(disability)
         modal.find('.modal-body #citizenAge').text(age)
-        modal.find('.modal-footer #submitLink').attr('href', '{{ url('
-            ') }}/bansos/submit/' + id)
+        modal.find('.modal-footer #submitLink').attr('href', '{{ url('') }}/bansos/submit/' + id) // jangan di enter
     })
 </script>
 @endpush
