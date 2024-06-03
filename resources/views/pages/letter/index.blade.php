@@ -11,7 +11,7 @@
         <section class="section letter">
             <div class="section-header">
                 <h1>Templat Surat</h1>
-                @can('rt', 'rw')
+                @can('admin')
                     <div class="section-header-button">
                         <a href="{{ route('template.create') }}" class="btn btn-primary" id="tambahButton">Tambah</a>
                     </div>
@@ -31,7 +31,7 @@
                                             <embed src="{{ '/storage/template_letters/' . $temp->path }}"
                                                 type="application/pdf" width="100%" height="600px">
 
-                                            @can('rt', 'rw')
+                                            @can('admin')
                                                 <div class="d-flex justify-content-between">
                                                     <a href="{{ route('template.edit', $temp->id) }}">
                                                         <button class="btn btn-primary" type="button" id="editButton">
@@ -61,7 +61,7 @@
 
             <div class="section-header">
                 <h1>Verifikasi Tanda Tangan Digital</h1>
-                @can('rt', 'rw')
+                @can('admin')
                     <div class="section-header-button">
                         <a href="{{ route('letter.create') }}" class="btn btn-primary" id="tambahButton">Tambah</a>
                     </div>
@@ -80,7 +80,7 @@
                                     <th>Alamat</th>
                                     <th>No. Whatsapp</th>
                                     <th>Status</th>
-                                    @can('rt', 'rw')
+                                    @can('admin')
                                         <th>Action</th>
                                     @endcan
                                 </tr>
@@ -105,7 +105,7 @@
                                                 <span class="badge badge-secondary">{{ $letter->status }}</span>
                                             @endif
                                         </td>
-                                        @can('rt', 'rw')
+                                        @can('admin')
                                             <td>
                                                 <div class="d-flex justify-content-left">
                                                     <div class="dropdown d-inline">

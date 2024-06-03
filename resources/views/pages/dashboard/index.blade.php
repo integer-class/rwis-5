@@ -17,7 +17,7 @@
                 @elseif(Auth::user()->level == 'rt')
                     <h1>Dashboard rt</h1>
                 @elseif(Auth::user()->level == 'rw')
-                    <<h1>Dashboard rw</h1>
+                    <h1>Dashboard rw</h1>
                 @endif
             </div>
             <div class="row">

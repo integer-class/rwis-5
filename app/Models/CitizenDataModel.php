@@ -44,4 +44,9 @@ class CitizenDataModel extends Model
     {
         return $this->belongsTo(WealthModel::class, 'wealth_id', 'wealth_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(CitizenUserModel::class, 'citizen_user_id', 'citizen_user_id');
+    }
 }

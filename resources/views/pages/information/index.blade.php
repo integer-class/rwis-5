@@ -17,7 +17,7 @@
                     <h1>Pusat Informasi RW</h1>
                 @endif
 
-                @can('rt', 'rw')
+                @can('admin')
                     <div class="section-header-button">
                         <a href="{{ route('information.create') }}" class="btn btn-primary" id="tambahButton">Tambah Baru</a>
                     </div>
@@ -26,7 +26,7 @@
             </div>
 
             <div class="section-body">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                {{-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -71,7 +71,7 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
-                </div>
+                </div> --}}
 
 
                 <div class="row">
@@ -87,7 +87,7 @@
                                     <p class="date">{{ $info->date }}</p>
                                     <p class="scedule">{{ $info->place }} ({{ $info->time }})</p>
 
-                                    @can('rt', 'rw')
+                                    @can('admin')
                                         <div class="d-flex justify-content-between">
                                             <a href="{{ route('information.edit', $info->id) }}" class="btn btn-secondary">Edit
                                                 Kegiatan</a>
