@@ -109,16 +109,13 @@ Route::post('/login', [AuthController::class, 'authenticate'])->name('login_proc
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
-   
     Route::get('report', [ReportController::class, 'index'])->name('report.index');
     Route::get('report/create', [ReportController::class, 'create'])->name('report.create');
     Route::post('report', [ReportController::class, 'store'])->name('report.store');
-    Route::get('report/{id}/edit', [ReportController::class, 'edit'])->name('report.edit');
     Route::put('report/{id}', [ReportController::class, 'update'])->name('report.update');
-    Route::delete('report/{id}', [ReportController::class, 'destroy'])->name('report.destroy');
-    Route::get('report/{id}/status/{status}', [ReportController::class, 'changeStatus'])->name('report.changeStatus');
-    Route::get('/reports/{report}', [ReportController::class, 'show'])->name('report.show');
-    Route::put('/report/{id}/accept', [ReportController::class, 'accept'])->name('report.accept');
-    
-    
-    });
+    Route::put('report/{id}/status/{status}', [ReportController::class, 'changeStatus'])->name('report.changeStatus');
+    Route::get('report/{id}', [ReportController::class, 'show'])->name('report.show');
+    Route::put('report/{id}/accept', [ReportController::class, 'accept'])->name('report.accept');
+    Route::put('report/{id}/reject', [ReportController::class, 'reject'])->name('report.reject');
+    Route::put('report/{id}/archive', [ReportController::class, 'archive'])->name('report.archive');
+});
