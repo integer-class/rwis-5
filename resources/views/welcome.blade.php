@@ -149,7 +149,7 @@
 
                 {{-- card --}}
                 
-                <a href="">
+                <a href="{{ route('information.index') }}">
                     <div class="card information-card mt-5">
                         <div class="row">
                             <div class="col-md-2 mt-4 ms-4">
@@ -167,7 +167,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="">
+                {{-- <a href="">
                     <div class="card information-card mt-5">
                         <div class="row">
                             <div class="col-md-2 mt-4 ms-4">
@@ -184,7 +184,7 @@
                             </div>
                         </div>
                     </div>
-                </a>
+                </a> --}}
             </div>
 
             {{-- image --}}
