@@ -14,8 +14,24 @@
             <h4>Login</h4>
         </div>
 
+        @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+                </button>
+            </div>
+        @endif
+
+        {{-- @if (session()->has('loginError'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('loginError') }}
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+                </button>
+            </div>
+        @endif --}}
+
         <div class="card-body">
-            <form method="POST" action="{{ url('login_process') }}" class="needs-validation" novalidate="">
+            <form method="POST" action="{{ route('login_process') }}" class="needs-validation" novalidate="">
                 @csrf
                 <div class="form-group">
                     <label for="nik">NIK</label>
@@ -23,7 +39,7 @@
                         class="form-control @error('nik')
                         is-invalid
                     @enderror"
-                        name="nik" tabindex="1" required autofocus>
+                        name="nik" tabindex="1" required autofocus value="{{ old('nik') }}">
                     @error('nik')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -59,9 +75,9 @@
 
         </div>
     </div>
-    <div class="text-muted mt-5 text-center">
+    {{-- <div class="text-muted mt-5 text-center">
         Don't have an account? <a href="{{ route('register') }}">Create One</a>
-    </div>
+    </div> --}}
 @endsection
 
 @push('scripts')

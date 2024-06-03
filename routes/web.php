@@ -69,6 +69,8 @@ Route::group(['prefix'=>'bansos'], function(){
     Route::get('calculate', [BansosController::class, 'calculate'])->name('bansos.calculate');
     Route::get('result', [BansosController::class, 'result'])->name('bansos.result');
     Route::get('detail/{id}', [BansosController::class, 'detail'])->name('bansos.detail');
+    Route::post('confirm/{id}', [BansosController::class, 'confirm'])->name('bansos.confirm');
+    Route::get('submit/{id}', [BansosController::class, 'submit'])->name('bansos.submit');
 }) ->name('bansos')->middleware('auth');
 
 Route::group(['prefix'=>'letter'], function(){
@@ -97,11 +99,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login', [AuthController::class, 'index'])->name('login');
-Route::get('register', [AuthController::class, 'register'])->name('register');
-Route::post('login_process', [AuthController::class, 'login_process'])->name('login_process');
-Route::post('register_process', [AuthController::class, 'register_process'])->name('register_process');
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('login_process');
+
+// Route::get('login', [AuthController::class, 'index'])->name('login');
+// Route::get('register', [AuthController::class, 'register'])->name('register');
+// Route::post('login_process', [AuthController::class, 'login_process'])->name('login_process');
+// Route::post('register_process', [AuthController::class, 'register_process'])->name('register_process');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('report', [ReportController::class, 'index'])->name('report.index');

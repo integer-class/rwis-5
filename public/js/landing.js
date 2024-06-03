@@ -7,14 +7,14 @@ function scrollToSection(id) {
   }
 
   // Event listeners for menu items
-  document.querySelectorAll('.nav-link').forEach(item => {
+  document.querySelectorAll('.nav-effect').forEach(item => {
     item.addEventListener('click', () => {
       const sectionId = item.getAttribute('href');
       scrollToSection(sectionId);
     });
   });
 
-  const navbarLinks = document.querySelectorAll('.nav-link');
+  const navbarLinks = document.querySelectorAll('.nav-effect');
 
   // Add event listener to each navbar link
   navbarLinks.forEach(link => {

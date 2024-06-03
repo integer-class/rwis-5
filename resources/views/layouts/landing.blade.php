@@ -16,6 +16,7 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
 
+
     @stack('style')
 
     <!-- Template CSS -->
@@ -60,13 +61,14 @@
 
     <!-- General JS Scripts -->
     <script src="{{ asset('js/landing.js')}}"></script>
-    <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('library/popper.js/dist/umd/popper.js') }}"></script>
-    <script src="{{ asset('library/tooltip.js/dist/umd/tooltip.js') }}"></script>
+    <script src="{{ asset('library/tooltip.js/dist/umd/tooltip.js') }}"></script> --}}
     <script src="{{ asset('library/bootstrap-5.3.3-dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('library/jquery.nicescroll/dist/jquery.nicescroll.min.js') }}"></script>
-    <script src="{{ asset('library/moment/min/moment.min.js') }}"></script>
-    <script src="{{ asset('js/stisla.js') }}"></script>
+    {{-- <script src="{{ asset('library/moment/min/moment.min.js') }}"></script>
+    <script src="{{ asset('js/stisla.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 
     @stack('scripts')

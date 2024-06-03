@@ -11,7 +11,7 @@
         <div class="section-header">
             <h1>Seleksi Bantuan Sosial</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ route('information.create') }}" class="btn btn-primary">Tambahkan Informasi</a></div>
+                <!-- <div class="breadcrumb-item active"><a href="{{ route('information.create') }}" class="btn btn-primary">Tambahkan Informasi</a></div> -->
             </div>
         </div>
 
@@ -25,7 +25,9 @@
                         </div>
                         <div class="article-details text-center">
                             <h1 class="title">Bantuan Sosial Warga Kurang Mampu</h1>
-                            <a href="{{ route('bansos.calculate') }}" class="btn btn-outline-secondary mt-4">Cek Kelayakan Warga</a>
+                            @can('rt', 'rw')
+                                <a href="{{ route('bansos.calculate') }}" class="btn btn-outline-secondary mt-4">Cek Kelayakan Warga</a>
+                            @endcan
                         </div>
                     </article>
                 </div>
@@ -58,7 +60,7 @@
                             <td><span class="badge badge-warning">Dalam Pengajuan</span></td>
                             @endif
                             <td>
-                                liat apa?
+                                <a href="{{ route('bansos.detail', $bansos->citizen_data_id) }}" class="btn btn-primary">Detail</a>
                             </td>
                         </tr>
                         @endforeach
@@ -74,4 +76,5 @@
 <!-- JS Libraies -->
 
 <!-- Page Specific JS File -->
+
 @endpush
