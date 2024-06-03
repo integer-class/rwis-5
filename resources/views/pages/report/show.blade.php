@@ -21,7 +21,7 @@
                     <p>Tanggal: {{ $report->tanggal }}</p>
                     <p>Status: {{ $report->status }}</p>
                     <p>Image: <img src="{{ asset('storage/' . $report->image) }}" alt="Report Image" width="200"></p>
-                    <a href="{{ route('report.index') }}" class="btn btn-primary">Kembali ke Laporan Masuk</a>
+                    <a href="{{ route('report.index') }}" class="btn btn-primary">Kembali</a>
                 </div>
             </div>
         </div>
@@ -30,5 +30,5 @@
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
+    <!-- JS Libraries -->
 @endpush

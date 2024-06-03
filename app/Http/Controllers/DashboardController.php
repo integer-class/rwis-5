@@ -34,6 +34,10 @@ class DashboardController extends Controller
         $swasta = WealthModel::whereIn('job', ['Swasta','Buruh'])->count();
         $pelajar = WealthModel::where('job', 'Pelajar')->count();
         $negeri = WealthModel::whereIn('job', ['PNS','POLRI','TNI'])->count();
+        $petani = WealthModel::where('job', 'Petani')->count();
+        $nelayan = WealthModel::where('job', 'Nelayan')->count();
+        $lainnya = WealthModel::where('job', 'Lainnya')->count();
+        $jobTotal = WealthModel::count();
 
         $underSma = WealthModel::whereNotIn('education', ['SMA','Sarjana','Magister','Doktor'])->count();
         $Sma = WealthModel::where('education', 'SMA')->count();
@@ -41,7 +45,15 @@ class DashboardController extends Controller
         $S2 = WealthModel::where('education', 'Magister')->count();
         $S3 = WealthModel::where('education', 'Doktor')->count();
 
+        $income1 = WealthModel::where('income', 1)->count();
+        $income2 = WealthModel::where('income', 2)->count();
+        $income3 = WealthModel::where('income', 3)->count();
+        $income4 = WealthModel::where('income', 4)->count();
+        $income5 = WealthModel::where('income', 5)->count();
+        $income6 = WealthModel::where('income', 6)->count();
 
-        return view('pages.dashboard.index', compact('citizenTotal', 'womanTotal', 'manTotal', 'under18', 'from18to50', 'above50', 'bloodA', 'bloodB', 'bloodAB', 'bloodO', 'wiraswasta', 'swasta', 'pelajar', 'negeri', 'underSma', 'Sma', 'S1','S2','S3'));
+        
+
+        return view('pages.dashboard.index', compact('citizenTotal', 'womanTotal', 'manTotal', 'under18', 'from18to50', 'above50', 'bloodA', 'bloodB', 'bloodAB', 'bloodO', 'wiraswasta', 'swasta', 'pelajar', 'negeri', 'petani', 'nelayan', 'lainnya', 'jobTotal', 'underSma', 'Sma', 'S1', 'S2', 'S3', 'income1', 'income2', 'income3', 'income4', 'income5', 'income6'));
     }
 }

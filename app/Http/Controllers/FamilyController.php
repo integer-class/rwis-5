@@ -88,6 +88,7 @@ class FamilyController extends Controller
         $family->province = $request->province;
         $family->postal_code = $request->postal_code;
         $family->save();
+        
         $familyId = $family->family_id;
         foreach ($request->citizens as $citizenId) {
             $citizen = CitizenDataModel::find($citizenId);
