@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('citizen_data_id')->nullable();
             $table->string('nik')->unique();
             $table->enum('level', ['rw', 'rt', 'warga'])->default('warga'); 
+            $table->string('no_rt')->nullable();
             $table->string('password');
             $table->timestamps();
 

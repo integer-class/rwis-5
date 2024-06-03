@@ -313,7 +313,7 @@
                 <div class="card rw">
                     <div class="card-body">
                         <div class="position-absolute bottom-0 start-0 ms-4">
-                            <p class="num" id="citizenCount">1</p>
+                            <p class="num" id="citizenCount">{{ $citizenCount }}</p>
                             <p class="title">Citizen</p>
                         </div>
                     </div>

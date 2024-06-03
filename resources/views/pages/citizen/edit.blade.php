@@ -111,22 +111,27 @@
                     <div class="col-md-5">
                         <div class="card" id="alamat">
                             <div class="card-header">
-                                <h4>Alamat</h4>
+                                <h4>Alamat & Kontak</h4>
                             </div>
                             <div class="card-body">
                                 <p class="text-muted">Alamat Domisili</p>
                                 <input type="text" class="form-control" value="{{ $citizen->address_domisili }}" name="address_domisili" required>
                                 <p class="text-muted">Alamat KTP</p>
                                 <input type="text" class="form-control" value="{{ $citizen->address_ktp }}" name="address_ktp" required>
+                                <p class="text-muted">Nomor Telepon</p>
+                                <input type="text" class="form-control" value="{{ $citizen->phone_number }}" name="phone_number" required>
                             </div>
                         </div>
                         <div class="card" id="kontak">
                             <div class="card-header">
-                                <h4>Kontak</h4>
+                                <h4>Akun</h4>
                             </div>
                             <div class="card-body">
-                                <p class="text-muted">Nomor Telepon</p>
-                                <input type="text" class="form-control" value="{{ $citizen->phone_number }}" name="phone_number" required>
+                                <p class="text-muted">Level</p>
+                                <select class="form-control" name="level" value="{{ $citizen->level }}" required>
+                                    <option value="warga">Warga</option>
+                                    <option value="rt">RT</option>
+                                </select>
                             </div>
                         </div>
                     </div>

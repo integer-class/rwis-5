@@ -21,7 +21,15 @@
         <form action="{{ route('citizen.store') }}" method="POST">
             @csrf
             <div class="section-body">
-
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <h2 class="section-title">Tambah warga</h2>
                 <p class="section-lead">Kamu bisa menambahkan data warga mulai dari data pribadi, data kesehatan dan kekayaan.</p>
 
