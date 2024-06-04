@@ -97,6 +97,8 @@
                         <div class="card-body">
                             <p class="text-muted">Level</p>
                             <p><strong>{{ $user->level }}</strong></p>
+                            <p class="text-muted">RT</p>
+                            <p><strong>{{ $user->no_rt }}</strong></p>
                         </div>
                     </div>
                 </div>

@@ -13,8 +13,8 @@
         <div class="section-header">
             <h1>Tambah Warga</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Data Warga</a></div>
+                <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="{{ route('citizen.index')}}">Data Warga</a></div>
                 <div class="breadcrumb-item">Tambah Warga</div>
             </div>
         </div>
@@ -258,6 +258,18 @@
                                         <option value="6">Lebih dari Rp. 5.000.000</option>
                                     </select>
                                     <small class="text-muted">Rentan penghasilan warga</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Data Penduduk</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>No RT</label>
+                                    <input type="text" class="form-control" name="rt" required>
+                                    <small class="text-muted">Nomor RT warga</small>
                                 </div>
                             </div>
                         </div>

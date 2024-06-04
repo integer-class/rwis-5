@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('password');
             $table->timestamps();
 
-            // $table->foreign('citizen_data_id')->references('citizen_data_id')->on('citizen_data');
+            $table->foreign('citizen_data_id')->references('citizen_data_id')->on('citizen_data')->onDelete('cascade');
+
         });
     }
 

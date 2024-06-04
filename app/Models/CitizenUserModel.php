@@ -18,6 +18,7 @@ class CitizenUserModel extends Authenticatable
         'citizen_data_id',
         'nik',
         'level',
+        'no_rt',
         'password'
     ];
 
