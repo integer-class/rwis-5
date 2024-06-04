@@ -73,7 +73,7 @@ class CitizenController extends Controller
         $health->save();
 
         $citizen = new CitizenDataModel();
-        $citizen->citizen_data_id = $request->nik;
+        $citizen->nik = $request->nik;
         $citizen->wealth_id = $wealth->wealth_id;
         $citizen->health_id = $health->health_id;
         $citizen->name = $request->name;
@@ -91,7 +91,7 @@ class CitizenController extends Controller
 
         $user = new CitizenUserModel();
         $user->nik = $request->nik;
-        $user->citizen_data_id = $request->nik;
+        $user->name = $request->name;
         $user->password = $request->nik;
         $user->level = 'warga';
         $user->save();
@@ -102,22 +102,22 @@ class CitizenController extends Controller
     public function detail($id)
     {
         $citizen = CitizenDataModel::select('citizen_data.*')
-            ->where('citizen_data_id', $id)
+            ->where('nik', $id)
             ->first();
         $family = null;
         if ($citizen->family_id) {
             $family = FamilyModel::select('family_data.*')
                 ->join('citizen_data', 'family_data.family_id', '=', 'citizen_data.family_id')
-                ->where('citizen_data_id', $id)
+                ->where('nik', $id)
                 ->first();
         }
         $health = HealthModel::select('health_data.*')
             ->join('citizen_data', 'health_data.health_id', '=', 'citizen_data.health_id')
-            ->where('citizen_data_id', $id)
+            ->where('nik', $id)
             ->first();
         $wealth = WealthModel::select('wealth_data.*')
             ->join('citizen_data', 'wealth_data.wealth_id', '=', 'citizen_data.wealth_id')
-            ->where('citizen_data_id', $id)
+            ->where('nik', $id)
             ->first();
 
         $income = $wealth->income;
@@ -136,14 +136,14 @@ class CitizenController extends Controller
             $income = 'Lebih dari Rp 5.000.000';
         }
 
-        $user = CitizenUserModel::where('citizen_data_id', $id)->first();
+        $user = CitizenUserModel::where('nik', $id)->first();
 
         return view('pages.citizen.detail', compact('citizen', 'family', 'health', 'wealth', 'income', 'user'));
     }
 
     public function archive($id)
     {
-        $citizen = CitizenDataModel::where('citizen_data_id', $id)->first();
+        $citizen = CitizenDataModel::where('nik', $id)->first();
         $citizen->is_archived = true;
         $citizen->save();
 
@@ -153,14 +153,14 @@ class CitizenController extends Controller
     public function edit($id)
     {
         $citizen = CitizenDataModel::select('citizen_data.*')
-            ->where('citizen_data_id', $id)
+            ->where('nik', $id)
             ->first();
 
         $family = null;
         if ($citizen->family_id) {
             $family = FamilyModel::select('family_data.*')
                 ->join('citizen_data', 'family_data.family_id', '=', 'citizen_data.family_id')
-                ->where('citizen_data_id', $id)
+                ->where('nik', $id)
                 ->first();
         }
 
@@ -170,12 +170,12 @@ class CitizenController extends Controller
             
         $health = HealthModel::select('health_data.*')
             ->join('citizen_data', 'health_data.health_id', '=', 'citizen_data.health_id')
-            ->where('citizen_data_id', $id)
+            ->where('nik', $id)
             ->first();
 
         $wealth = WealthModel::select('wealth_data.*')
             ->join('citizen_data', 'wealth_data.wealth_id', '=', 'citizen_data.wealth_id')
-            ->where('citizen_data_id', $id)
+            ->where('nik', $id)
             ->first();
 
         return view('pages.citizen.edit', compact('citizen', 'family', 'health', 'wealth', 'all_family'));
@@ -202,8 +202,8 @@ class CitizenController extends Controller
             'level' => 'required'
         ]);
 
-        $citizen = CitizenDataModel::where('citizen_data_id', $id)->first();
-        $citizen->citizen_data_id = $request->nik;
+        $citizen = CitizenDataModel::where('nik', $id)->first();
+        $citizen->nik = $request->nik;
         $citizen->family_id = $request->family_id;
         $citizen->name = $request->name;
         $citizen->gender = $request->gender;
@@ -231,7 +231,7 @@ class CitizenController extends Controller
         $health->disease = $request->disease;
         $health->save();
 
-        $user = CitizenUserModel::where('citizen_data_id', $id)->first();
+        $user = CitizenUserModel::where('nik', $id)->first();
         $user->level = $request->level;
         $user->save();
 

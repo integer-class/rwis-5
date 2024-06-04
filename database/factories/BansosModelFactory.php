@@ -19,10 +19,10 @@ class BansosModelFactory extends Factory
     {
         return DB::transaction(function () {
             // Get all citizen_data_id from CitizenDataModel
-            $allCitizenDataIds = \App\Models\CitizenDataModel::pluck('citizen_data_id')->toArray();
+            $allCitizenDataIds = \App\Models\CitizenDataModel::pluck('nik')->toArray();
     
             // Get all citizen_data_id that have been used in BansosModel
-            $usedCitizenDataIds = \App\Models\BansosModel::pluck('citizen_data_id')->toArray();
+            $usedCitizenDataIds = \App\Models\BansosModel::pluck('nik')->toArray();
     
             // Get the citizen_data_ids that have not been used yet
             $unusedCitizenDataIds = array_diff($allCitizenDataIds, $usedCitizenDataIds);
@@ -38,7 +38,7 @@ class BansosModelFactory extends Factory
             unset($unusedCitizenDataIds[$key]);
     
             return [
-                'citizen_data_id' => $citizen_data_id,
+                'nik' => $citizen_data_id,
                 'is_bansosable' => $this->faker->boolean(),
                 'status' => $this->faker->boolean(),
             ];

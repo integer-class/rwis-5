@@ -67,7 +67,7 @@
                                         @foreach ($citizens as $citizen)
                                             <tr>
 
-                                                <td>{{ $citizen->citizen_data_id }}
+                                                <td>{{ $citizen->nik }}
                                                 </td>
                                                 <td>
                                                     {{ $citizen->name }}
@@ -94,18 +94,18 @@
                                                             </button>
                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                                 <a class="dropdown-item"
-                                                                    href="{{ route('citizen.detail', $citizen->citizen_data_id) }}"
+                                                                    href="{{ route('citizen.detail', $citizen->nik) }}"
                                                                     id="detailButton">
                                                                     <i class="fas fa-eye"></i> Lihat
                                                                 </a>
                                                                 <a class="dropdown-item"
-                                                                    href="{{ route('citizen.edit', $citizen->citizen_data_id) }}"
+                                                                    href="{{ route('citizen.edit', $citizen->nik) }}"
                                                                     id="editButton">
                                                                     <i class="fas fa-edit"></i> Edit
                                                                 </a>
                                                                 <div class="dropdown-divider"></div>
                                                                 <form
-                                                                    action="{{ route('citizen.archive', $citizen->citizen_data_id) }}"
+                                                                    action="{{ route('citizen.archive', $citizen->nik) }}"
                                                                     method="POST">
                                                                     @csrf
                                                                     @method('DELETE')
@@ -133,7 +133,7 @@
         </section>
     </div>
 
-    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel"
+    {{-- <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -152,7 +152,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 @push('scripts')
@@ -162,13 +162,13 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/features-posts.js') }}"></script>
 
-    <script>
-        document.getElementById('tambahButton').addEventListener('click', function(e) {
+    {{-- <script>
+        document.getElementById('archiveButton').addEventListener('click', function(e) {
             e.preventDefault();
             $('#confirmModal').modal('show');
             $('#confirmButton').on('click', function() {
                 window.location.href = "{{ route('citizen.create') }}";
             });
-        });
+        }); --}}
     </script>
 @endpush

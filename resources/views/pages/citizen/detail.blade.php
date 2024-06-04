@@ -17,9 +17,9 @@
             </div>
             <h1>Detail Warga</h1>
             <div class="section-header-button">
-                <a href="{{ route('citizen.edit', $citizen->citizen_data_id) }}" class="btn btn-primary" id="editButton">Edit</a>
+                <a href="{{ route('citizen.edit', $citizen->nik) }}" class="btn btn-primary" id="editButton">Edit</a>
 
-                <form id="archiveForm" action="{{ route('citizen.archive', $citizen->citizen_data_id) }}" method="POST" class="d-inline">
+                <form id="archiveForm" action="{{ route('citizen.archive', $citizen->nik) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-warning" id="archiveButton">Arsipkan</button>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="card-body">
                             <p class="text-muted">NIK</p>
-                            <p><strong>{{ $citizen->citizen_data_id }}</strong></p>
+                            <p><strong>{{ $citizen->nik }}</strong></p>
                             <p class="text-muted">Nama Lengkap</p>
                             <p><strong>{{ $citizen->name }}</strong></p>
                             <p class="text-muted">Jenis Kelamin</p>
@@ -246,7 +246,7 @@
         $('#confirmationModal').modal('show');
         document.getElementById('confirmButton').addEventListener('click', function() {
             // Redirect to edit page
-            window.location.href = "{{ route('citizen.edit', $citizen->citizen_data_id) }}";
+            window.location.href = "{{ route('citizen.edit', $citizen->nik) }}";
         });
     });
 

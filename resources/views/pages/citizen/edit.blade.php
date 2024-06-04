@@ -11,7 +11,7 @@
 @section('main')
 <div class="main-content">
     <section class="section">
-        <form action="{{ route('citizen.update', $citizen->citizen_data_id) }}" method="POST">
+        <form action="{{ route('citizen.update', $citizen->nik) }}" method="POST">
             @csrf
             <div class="section-header">
 
@@ -22,7 +22,7 @@
 
                 <div class="section-header-button">
                     <button type="submit" class="btn btn-primary" id="saveButton">Simpan</button>
-                    <a href="{{ route('citizen.detail', $citizen->citizen_data_id) }}" class="btn btn-danger" id="cancelButton">Batal</a>
+                    <a href="{{ route('citizen.detail', $citizen->nik) }}" class="btn btn-danger" id="cancelButton">Batal</a>
                 </div>
 
                 <div class="section-header-breadcrumb">
@@ -61,7 +61,7 @@
                             </div>
                             <div class="card-body">
                                 <label for="nik" class="form-label">Nomor Induk Kependudukan</label>
-                                <input type="text" class="form-control" value="{{ $citizen->citizen_data_id }}" name="nik" required>
+                                <input type="text" class="form-control" value="{{ $citizen->nik }}" name="nik" required>
                                 <label for="nkk" class="form-label">Nomor Kartu Keluarga</label>
                                 @if ($citizen->family_id)
                                 <select class="form-control" name="family_id" required>

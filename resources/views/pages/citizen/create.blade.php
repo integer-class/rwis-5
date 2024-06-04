@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Lahir</label>
-                                    <input type="text" class="form-control datepicker" name="birth_date" required>
+                                    <input type="date" class="form-control datepicker" name="birth_date" required>
                                     <small class="text-muted" style="display: block;">Tanggal lahir warga</small>
                                 </div>
                                 <div class="form-group">

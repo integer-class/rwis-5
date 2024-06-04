@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('citizen_user_data', function (Blueprint $table) {
-            $table->id('citizen_user_id');
-            $table->unsignedBigInteger('citizen_data_id')->nullable();
-            $table->string('nik')->unique();
+            $table->id('nik');
+            $table->string('name');
             $table->enum('level', ['rw', 'rt', 'warga'])->default('warga'); 
             $table->string('no_rt')->nullable();
             $table->string('password');

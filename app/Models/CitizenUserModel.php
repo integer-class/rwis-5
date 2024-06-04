@@ -11,19 +11,19 @@ class CitizenUserModel extends Authenticatable
     use HasFactory;
 
     protected $table = 'citizen_user_data';
-    protected $primaryKey = 'citizen_user_id';
+    protected $primaryKey = 'nik';
 
     protected $fillable = [
-        'citizen_user_id',
-        'citizen_data_id',
         'nik',
+        'name',
+        'no_rt',
         'level',
         'password'
     ];
 
     public function citizen_data()
     {
-        return $this->hasOne(CitizenDataModel::class, 'citizen_user_id', 'citizen_user_id');
+        return $this->hasOne(CitizenDataModel::class, 'nik', 'nik');
     }
 
 }

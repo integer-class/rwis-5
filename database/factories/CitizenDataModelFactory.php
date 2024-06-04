@@ -22,7 +22,7 @@ class CitizenDataModelFactory extends Factory
         $wealth_id = \App\Models\WealthModel::pluck('wealth_id')->toArray();
 
         return [
-            'citizen_data_id' => $this->faker->unique()->randomNumber(9),
+            'nik' => $this->faker->unique()->randomNumber(9),
             'family_id' => $this->faker->randomElement($family_id),
             'health_id' => $this->faker->randomElement($health_id),
             'wealth_id' => $this->faker->randomElement($wealth_id),
@@ -34,7 +34,7 @@ class CitizenDataModelFactory extends Factory
             'religion' =>$this->faker->randomElement(['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghucu']),
             'address_ktp' => $this->faker->address(),
             'address_domisili' => $this->faker->address(),
-            'phone_number' => $this->faker->phoneNumber()
+            'phone_number' => $this->faker->phoneNumber(),
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\CitizenDataModel;
 use App\Models\FamilyModel;
+use App\Models\InformationModel;
 use Illuminate\Http\Request;
 
 class ArchiveController extends Controller
@@ -29,6 +30,11 @@ class ArchiveController extends Controller
                 ->where('citizen_data.name', 'like', '%' . $keyword . '%')
                 ->where('citizen_data.is_archived', true)
                 ->paginate(8);
+            $informations = InformationModel::select('information_data.*')
+                ->where('title', 'like', '%' . $keyword . '%')
+                ->where('is_archived', true)
+                ->paginate(8);
+
             if ($families->count() == 0 && $citizens->count() == 0) {
                 session()->flash('message', 'Pencarian tidak ditemukan: ' . $keyword);
                 session()->flash('alert-class', 'alert-danger');
@@ -44,9 +50,12 @@ class ArchiveController extends Controller
                 ->join('family_data', 'family_data.family_id', '=', 'citizen_data.family_id')
                 ->where('citizen_data.is_archived', true)
                 ->paginate(8);
+            $informations = InformationModel::select('information_data.*')
+                ->where('is_archived', true)
+                ->paginate(8);
         }
 
-        return view('pages.archive.index', compact('families', 'citizens', 'famMemberCount'));
+        return view('pages.archive.index', compact('families', 'citizens', 'famMemberCount','informations'));
     }
 
     public function restoreFamily($id)
