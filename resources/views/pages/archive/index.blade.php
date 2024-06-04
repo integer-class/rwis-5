@@ -14,11 +14,7 @@
             <h1>Data Arsip</h1>
         </div>
         <div class="section-body">
-            {{-- <div class="row">
-                    <div class="col-12">
-                        @include('layouts.alert')
-                    </div>
-                </div> --}}
+           
             <h2 class="section-title">Informasi Data Arsip</h2>
             <p class="section-lead">
                 Melalui halaman ini kamu bisa melihat seluruh data warga dan keluarga yang sudah diarsipkan, dan kamu bisa melakukan
@@ -162,12 +158,13 @@
                                     </tr>
                                     @foreach ($informations as $info)
                                     <tr>
-                                        <td>{{ $citizen->title }}</td>
-                                        <td>{{ $citizen->desc }}</td>
-                                        <td>{{ $citizen->date }}</td>
-                                        <td>{{ $citizen->time }}</td>
-                                        <td>{{ $citizen->place }}</td>
-                                        <td>{{ $citizen->address_ktp }}</td>
+                                        <td>{{ $info->title }}</td>
+                                        <td>{{ $info->desc }}</td>
+                                        <td>{{ $info->date }}</td>
+                                        <td>{{ $info->time }}</td>
+                                        <td>{{ $info->place }}</td>
+                                        <td>
+                                            <img src="{{ Storage::url($info->image) }}" alt="Report Image" style="width: 50px;"></td>
                                         <td>
                                             <div class="d-flex justify-content-center">
                                                 <div class="dropdown d-inline">
@@ -175,16 +172,22 @@
                                                         Aksi
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="{{ route('citizen.detail', $citizen->nik) }}" id="detailButton">
-                                                            <i class="fas fa-eye"></i> Lihat
-                                                        </a>
-                                                        <form action="{{ route('archive.restoreCitizen', $citizen->nik) }}" method="POST">
+                                                        <form action="{{ route('archive.restoreInformation', $info->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="dropdown-item text-warning" id="archiveButton">
                                                                 <i class="fas fa-trash"></i> Keluarkan
                                                             </button>
                                                         </form>
+
+                                                        <form action="{{ route('archive.deleteInformation', $info->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="dropdown-item text-danger" id="archiveButton">
+                                                                <i class="fas fa-trash"></i> Hapus
+                                                            </button>
+                                                        </form>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

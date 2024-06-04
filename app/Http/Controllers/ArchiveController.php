@@ -5,6 +5,7 @@ use App\Models\CitizenDataModel;
 use App\Models\FamilyModel;
 use App\Models\InformationModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ArchiveController extends Controller
 {
@@ -86,5 +87,27 @@ class ArchiveController extends Controller
             $message = "Data warga berhasil dikembalikan";
         }
         return redirect()->route('archive.index')->with('message', $message)->with('alert-class', $alert);
+    }
+
+    public function restoreInformation($id)
+    {
+        $information = InformationModel::find($id);
+        $information->is_archived = false;
+        $information->save();
+        $message = "Data informasi berhasil dikembalikan";
+        return redirect()->route('archive.index')->with('message', $message)->with('alert-class', 'alert-success');
+    }
+
+    public function deleteInformation($id)
+    {
+        $information = InformationModel::find($id);
+        $filePath = $information->image;
+
+        if (Storage::exists($filePath)) {
+            Storage::delete($filePath);
+        }
+        $information->delete();
+        $message = "Data informasi berhasil dihapus";
+        return redirect()->route('archive.index')->with('message', $message)->with('alert-class', 'alert-success');
     }
 }

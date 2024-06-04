@@ -66,6 +66,8 @@ Route::group(['prefix'=>'archive'], function(){
     Route::get('/', [ArchiveController::class, 'index'])->name('archive.index')->middleware('auth');
     Route::delete('restoreFamily/{id}', [ArchiveController::class, 'restoreFamily'])->name('archive.restoreFamily')->middleware('auth');
     Route::delete('restoreCitizen/{id}', [ArchiveController::class, 'restoreCitizen'])->name('archive.restoreCitizen')->middleware('auth');
+    Route::delete('restoreInformation/{id}', [ArchiveController::class, 'restoreInformation'])->name('archive.restoreInformation')->middleware('auth');
+    Route::delete('deleteInformation/{id}', [ArchiveController::class, 'deleteInformation'])->name('archive.deleteInformation')->middleware('auth');
 }) ->name('archive');
 
 Route::group(['prefix'=>'bansos'], function(){
