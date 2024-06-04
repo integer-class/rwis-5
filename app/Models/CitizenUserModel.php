@@ -18,6 +18,7 @@ class CitizenUserModel extends Authenticatable
         'name',
         'no_rt',
         'level',
+        'no_rt',
         'password'
     ];
 

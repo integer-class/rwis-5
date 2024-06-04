@@ -60,7 +60,8 @@ class CitizenController extends Controller
             'address_current' => 'required',
             'job' => 'required',
             'income' => 'required',
-            'education' => 'required'
+            'education' => 'required',
+            'rt' => 'required',
         ]);
 
         $wealth = new WealthModel();
@@ -93,6 +94,7 @@ class CitizenController extends Controller
         $user->nik = $request->nik;
         $user->name = $request->name;
         $user->password = $request->nik;
+        $user->no_rt = $request->rt;
         $user->level = 'warga';
         $user->save();
 
@@ -177,32 +179,15 @@ class CitizenController extends Controller
             ->join('citizen_data', 'wealth_data.wealth_id', '=', 'citizen_data.wealth_id')
             ->where('nik', $id)
             ->first();
-
-        return view('pages.citizen.edit', compact('citizen', 'family', 'health', 'wealth', 'all_family'));
+        $user = CitizenUserModel::where('citizen_data_id', $id)->first();
+        
+        return view('pages.citizen.edit', compact('citizen', 'family', 'health', 'wealth', 'all_family', 'user'));
     }
 
     public function update(Request $request, $id)
     {   
 
-        // validate the data
-        $request->validate([
-            'nik' => 'required|numeric',
-            'name' => 'required',
-            'gender' => 'required',
-            'phone_number' => 'required|numeric',
-            'birth_date' => 'required',
-            'birth_place' => 'required',
-            'religion' => 'required',
-            'maritial_status' => 'required',
-            'address_ktp' => 'required',
-            'address_domisili' => 'required',
-            'job' => 'required',
-            'income' => 'required',
-            'education' => 'required',
-            'level' => 'required'
-        ]);
-
-        $citizen = CitizenDataModel::where('nik', $id)->first();
+        $citizen = CitizenDataModel::where('citizen_data_id', $id)->first();
         $citizen->nik = $request->nik;
         $citizen->family_id = $request->family_id;
         $citizen->name = $request->name;
@@ -233,6 +218,7 @@ class CitizenController extends Controller
 
         $user = CitizenUserModel::where('nik', $id)->first();
         $user->level = $request->level;
+        $user->no_rt = $request->rt;
         $user->save();
 
         return redirect()->route('citizen.detail', $id)->with('success', 'Data berhasil diubah');
