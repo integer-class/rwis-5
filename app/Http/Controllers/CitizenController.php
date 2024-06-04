@@ -45,6 +45,24 @@ class CitizenController extends Controller
 
     public function store(Request $request)
     {
+
+        // validate the data
+        $request->validate([
+            'nik' => 'required|numeric',
+            'name' => 'required',
+            'gender' => 'required',
+            'phone_number' => 'required|numeric',
+            'birth_date' => 'required',
+            'birth_place' => 'required',
+            'religion' => 'required',
+            'maritial_status' => 'required',
+            'address_ktp' => 'required',
+            'address_current' => 'required',
+            'job' => 'required',
+            'income' => 'required',
+            'education' => 'required'
+        ]);
+
         $wealth = new WealthModel();
         $wealth->job = $request->job;
         $wealth->income = $request->income;
@@ -74,8 +92,9 @@ class CitizenController extends Controller
         $user = new CitizenUserModel();
         $user->nik = $request->nik;
         $user->citizen_data_id = $request->nik;
-        $user->password = $request->password;
+        $user->password = $request->nik;
         $user->level = 'warga';
+        $user->save();
 
         return redirect()->route('citizen.index')->with('success', 'Data berhasil disimpan');
     }
@@ -117,7 +136,9 @@ class CitizenController extends Controller
             $income = 'Lebih dari Rp 5.000.000';
         }
 
-        return view('pages.citizen.detail', compact('citizen', 'family', 'health', 'wealth', 'income'));
+        $user = CitizenUserModel::where('citizen_data_id', $id)->first();
+
+        return view('pages.citizen.detail', compact('citizen', 'family', 'health', 'wealth', 'income', 'user'));
     }
 
     public function archive($id)
@@ -162,6 +183,25 @@ class CitizenController extends Controller
 
     public function update(Request $request, $id)
     {   
+
+        // validate the data
+        $request->validate([
+            'nik' => 'required|numeric',
+            'name' => 'required',
+            'gender' => 'required',
+            'phone_number' => 'required|numeric',
+            'birth_date' => 'required',
+            'birth_place' => 'required',
+            'religion' => 'required',
+            'maritial_status' => 'required',
+            'address_ktp' => 'required',
+            'address_domisili' => 'required',
+            'job' => 'required',
+            'income' => 'required',
+            'education' => 'required',
+            'level' => 'required'
+        ]);
+
         $citizen = CitizenDataModel::where('citizen_data_id', $id)->first();
         $citizen->citizen_data_id = $request->nik;
         $citizen->family_id = $request->family_id;
@@ -190,6 +230,10 @@ class CitizenController extends Controller
         $health->disability = $request->disability;
         $health->disease = $request->disease;
         $health->save();
+
+        $user = CitizenUserModel::where('citizen_data_id', $id)->first();
+        $user->level = $request->level;
+        $user->save();
 
         return redirect()->route('citizen.detail', $id)->with('success', 'Data berhasil diubah');
     }

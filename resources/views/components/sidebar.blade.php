@@ -17,7 +17,7 @@
             </li>
 
             <li class="{{ Request::is('information') || Request::is('information/create') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('information.index') }}"><i class="far fa-user"></i> <span>Pusat
+                <a class="nav-link" href="{{ route('information.index') }}"><i class="fa-solid fa-user"></i> <span>Pusat
                         Informasi</span></a>
             </li>
 
