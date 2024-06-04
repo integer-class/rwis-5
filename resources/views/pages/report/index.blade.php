@@ -16,104 +16,129 @@
             <h1>Laporan Masuk</h1>
         </div>
 
-        
-            <div class="section-body">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
+        <div class="section-body">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nama</th>
+                                    <th>Alamat</th>
+                                    <th>Judul Laporan</th>
+                                    <th>Tanggal</th>
+                                    <th>Gambar</th>
+                                    <th>Action</th>
+                                    <th class="text-center">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($reports as $report)
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Nama</th>
-                                        <th>Alamat</th>
-                                        <th>Judul Laporan</th>
-                                        <th>Tanggal</th>
-                                        <th>Gambar</th>
-                                        <th>Action</th>
-                                        <th class="text-center">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($reports as $report)
-                                        <tr>
-                                            <td>{{ $report->id }}</td>
-                                            <td>{{ $report->nama }}</td>
-                                            <td>{{ $report->alamat }}</td>
-                                            <td>{{ $report->judul_laporan }}</td>
-                                            <td>{{ $report->tanggal }}</td>
-                                            <td>
-                                                <img src="{{ Storage::url($report->image) }}" alt="Report Image" style="width: 50px;">
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('report.show', $report->id) }}" class="btn btn-outline-info btn-icon">
+                                        <td>{{ $report->id }}</td>
+                                        <td>{{ $report->nama }}</td>
+                                        <td>{{ $report->alamat }}</td>
+                                        <td>{{ $report->judul_laporan }}</td>
+                                        <td>{{ $report->tanggal }}</td>
+                                        <td>
+                                            <img src="{{ Storage::url($report->image) }}" alt="Report Image" style="width: 50px;">
+                                        </td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="{{ route('report.show', $report->id) }}" class="btn btn-outline-info btn-icon mr-2">
                                                     <i class="fas fa-file-alt"></i> Cek Berkas
                                                 </a>
-                                                @if ($report->status == 'Menunggu Verifikasi')
-                                                    <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'accepted']) }}" method="POST" style="display: inline;">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button type="submit" class="btn btn-success">Accept</button>
-                                                    </form>
-                                                    <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'rejected']) }}" method="POST" style="display: inline;">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button type="submit" class="btn btn-danger">Reject</button>
-                                                    </form>
-                                                    <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'archived']) }}" method="POST" style="display: inline;">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button type="submit" class="btn btn-outline-secondary">Archive</button>
-                                                    </form>
-                                                @elseif ($report->status == 'accepted')
-                                                    <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'Menunggu Verifikasi']) }}" method="POST" style="display: inline;">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button type="submit" class="btn btn-outline-warning">Unaccept</button>
-                                                    </form>
-                                                    <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'archived']) }}" method="POST" style="display: inline;">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button type="submit" class="btn btn-outline-secondary">Archive</button>
-                                                    </form>
-                                                @elseif ($report->status == 'rejected')
-                                                    <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'Menunggu Verifikasi']) }}" method="POST" style="display: inline;">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button type="submit" class="btn btn-outline-warning">Unreject</button>
-                                                    </form>
-                                                    <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'archived']) }}" method="POST" style="display: inline;">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button type="submit" class="btn btn-outline-secondary">Archive</button>
-                                                    </form>
-                                                @elseif ($report->status == 'archived')
-                                                    <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'Menunggu Verifikasi']) }}" method="POST" style="display: inline;">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button type="submit" class="btn btn-outline-success">Unarchive</button>
-                                                    </form>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($report->status == 'accepted')
-                                                    <span class="badge badge-success">Accepted</span>
-                                                @elseif ($report->status == 'rejected')
-                                                    <span class="badge badge-danger">Rejected</span>
-                                                @elseif ($report->status == 'archived')
-                                                    <span class="badge badge-secondary">Archived</span>
-                                                @else
-                                                    <span class="badge badge-primary">Menunggu Verifikasi</span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                                
+                                                <div class="dropdown d-inline">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Aksi
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        @if ($report->status == 'Menunggu Verifikasi')
+                                                            <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'accepted']) }}" method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit" class="dropdown-item text-success">
+                                                                    <i class="fas fa-check"></i> Accept
+                                                                </button>
+                                                            </form>
+                                                            <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'rejected']) }}" method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit" class="dropdown-item text-danger">
+                                                                    <i class="fas fa-times"></i> Reject
+                                                                </button>
+                                                            </form>
+                                                            <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'archived']) }}" method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit" class="dropdown-item text-secondary">
+                                                                    <i class="fas fa-archive"></i> Archive
+                                                                </button>
+                                                            </form>
+                                                        @elseif ($report->status == 'accepted')
+                                                            <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'Menunggu Verifikasi']) }}" method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit" class="dropdown-item text-warning">
+                                                                    <i class="fas fa-undo"></i> Unaccept
+                                                                </button>
+                                                            </form>
+                                                            <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'archived']) }}" method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit" class="dropdown-item text-secondary">
+                                                                    <i class="fas fa-archive"></i> Archive
+                                                                </button>
+                                                            </form>
+                                                        @elseif ($report->status == 'rejected')
+                                                            <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'Menunggu Verifikasi']) }}" method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit" class="dropdown-item text-warning">
+                                                                    <i class="fas fa-undo"></i> Unreject
+                                                                </button>
+                                                            </form>
+                                                            <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'archived']) }}" method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit" class="dropdown-item text-secondary">
+                                                                    <i class="fas fa-archive"></i> Archive
+                                                                </button>
+                                                            </form>
+                                                        @elseif ($report->status == 'archived')
+                                                            <form action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'Menunggu Verifikasi']) }}" method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit" class="dropdown-item text-success">
+                                                                    <i class="fas fa-undo"></i> Unarchive
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @if ($report->status == 'accepted')
+                                                <span class="badge badge-success">Accepted</span>
+                                            @elseif ($report->status == 'rejected')
+                                                <span class="badge badge-danger">Rejected</span>
+                                            @elseif ($report->status == 'archived')
+                                                <span class="badge badge-secondary">Archived</span>
+                                            @else
+                                                <span class="badge badge-primary">Menunggu Verifikasi</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+        </div>
         @endcan
 
         <div class="section-header">
