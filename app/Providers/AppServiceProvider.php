@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFour();
 
-        Gate::define('both', function (User $user) {
+        Gate::define('rtrw', function (User $user) {
             return $user->level === 'rt' || $user->level === 'rw';
         });
 
@@ -36,5 +36,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('rw', function (User $user) {
             return $user->level === 'rw';
         });
+
     }
 }

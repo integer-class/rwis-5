@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\CitizenDataModel;
 use App\Models\CitizenUserModel;
@@ -13,6 +14,7 @@ class CitizenController extends Controller
 {
     public function index(Request $request)
     {
+        $rt = Auth::user()->no_rt;
         $keyword = $request->keyword;
         if ($keyword) {
             $citizens = CitizenDataModel::select('citizen_data.*')
@@ -29,11 +31,19 @@ class CitizenController extends Controller
             }
         return view('pages.citizen.index', compact('citizens'));
         } else {
-            $citizens = CitizenDataModel::select('citizen_data.*')
+            $citizens = CitizenDataModel::select('citizen_data.nik', 'citizen_data.name', 'citizen_data.gender','citizen_data.phone_number' ,'citizen_data.address_domisili', 'citizen_data.address_ktp', 'citizen_user_data.no_rt', 'citizen_user_data.level')
+                ->join('citizen_user_data', 'citizen_user_data.nik', '=', 'citizen_data.nik')
                 ->where('citizen_data.is_archived', false)
                 ->paginate(8);
 
-            return view('pages.citizen.index', compact('citizens'));
+            $citizensRT = CitizenDataModel::select('citizen_data.nik', 'citizen_data.name', 'citizen_data.gender','citizen_data.phone_number' ,'citizen_data.address_domisili', 'citizen_data.address_ktp')
+                ->join('citizen_user_data', 'citizen_user_data.nik', '=', 'citizen_data.nik')
+                ->where('citizen_user_data.no_rt', $rt)
+                ->paginate(8);
+                
+            
+
+            return view('pages.citizen.index', compact('citizens', 'citizensRT'));
         }
     }
 
@@ -46,6 +56,8 @@ class CitizenController extends Controller
     public function store(Request $request)
     {
 
+        $rt = Auth::user()->no_rt;
+        $level = Auth::user()->level;
         // validate the data
         $request->validate([
             'nik' => 'required|numeric',
@@ -60,8 +72,7 @@ class CitizenController extends Controller
             'address_current' => 'required',
             'job' => 'required',
             'income' => 'required',
-            'education' => 'required',
-            'rt' => 'required',
+            'education' => 'required'
         ]);
 
         $wealth = new WealthModel();
@@ -90,13 +101,25 @@ class CitizenController extends Controller
         $citizen->is_archived = false;
         $citizen->save();
 
-        $user = new CitizenUserModel();
-        $user->nik = $request->nik;
-        $user->name = $request->name;
-        $user->password = $request->nik;
-        $user->no_rt = $request->rt;
-        $user->level = 'warga';
-        $user->save();
+        if ($level == 'rw') {
+            $user = new CitizenUserModel();
+            $user->nik = $request->nik;
+            $user->name = $request->name;
+            $user->password = $request->nik;
+            $user->no_rt = $request->rt;
+            $user->level = $request->level;
+            $user->save();
+        } else {
+            $user = new CitizenUserModel();
+            $user->nik = $request->nik;
+            $user->name = $request->name;
+            $user->password = $request->nik;
+            $user->no_rt = $rt;
+            $user->level = 'warga';
+            $user->save();
+        }
+
+        
 
         return redirect()->route('citizen.index')->with('success', 'Data berhasil disimpan');
     }
