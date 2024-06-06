@@ -17,8 +17,8 @@ class BansosController extends Controller
 
     public function index()
     {
-        $bansosable = BansosModel::select('citizen_data.citizen_data_id', 'citizen_data.name', 'citizen_data.phone_number', 'citizen_data.address_ktp', 'bansos_data.status')
-            ->join('citizen_data', 'citizen_data.citizen_data_id', '=', 'bansos_data.citizen_data_id')
+        $bansosable = BansosModel::select('citizen_data.nik', 'citizen_data.name', 'citizen_data.phone_number', 'citizen_data.address_ktp', 'bansos_data.status')
+            ->join('citizen_data', 'citizen_data.nik', '=', 'bansos_data.nik')
             ->where('bansos_data.is_bansosable', true)->paginate(8);
 
         // dd($bansosable);
