@@ -16,9 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('nik')->unique();
             $table->boolean('is_bansosable')->default(false); 
             $table->boolean('status')->default(false); // 0 = belum diterima, 1 = sudah diterima
-            $table->timestamps();
+            $table->timestamps();   
 
-            $table->foreign('citizen_data_id')->references('citizen_data_id')->on('citizen_data')->onDelete('cascade');
+            $table->foreign('nik')->references('nik')->on('citizen_data')->onDelete('cascade');
         });
     }
 

@@ -28,11 +28,11 @@ class BansosController extends Controller
     // calculate warga yang layak menerima bansos menggunakan mabac
     public function calculate()
     {
-        $existingBansosIds = BansosModel::pluck('citizen_data_id');
-        $alternatives = CitizenDataModel::select('citizen_data.citizen_data_id', 'wealth_data.income', 'wealth_data.job', 'wealth_data.education', 'health_data.disease', 'health_data.disability', 'health_data.age')
+        $existingBansosIds = BansosModel::pluck('nik');
+        $alternatives = CitizenDataModel::select('citizen_data.nik', 'wealth_data.income', 'wealth_data.job', 'wealth_data.education', 'health_data.disease', 'health_data.disability', 'health_data.age')
             ->join('wealth_data', 'wealth_data.wealth_id', '=', 'citizen_data.wealth_id')
             ->join('health_data', 'health_data.health_id', '=', 'citizen_data.health_id')
-            ->whereNotIn('citizen_data.citizen_data_id', $existingBansosIds)
+            ->whereNotIn('citizen_data.nik', $existingBansosIds)
             ->get();
 
 
@@ -47,10 +47,10 @@ class BansosController extends Controller
 
         $result = $this->mabacService->calculate($alternatives, $criterias_weight);
         $result = $result->map(function ($value) {
-            $citizen = CitizenDataModel::select('citizen_data.citizen_data_id', 'citizen_data.name', 'wealth_data.income', 'wealth_data.job', 'wealth_data.education', 'health_data.disease', 'health_data.disability', 'health_data.age')
+            $citizen = CitizenDataModel::select('citizen_data.nik', 'citizen_data.name', 'wealth_data.income', 'wealth_data.job', 'wealth_data.education', 'health_data.disease', 'health_data.disability', 'health_data.age')
             ->join('wealth_data', 'wealth_data.wealth_id', '=', 'citizen_data.wealth_id')
             ->join('health_data', 'health_data.health_id', '=', 'citizen_data.health_id')
-            ->where('citizen_data.citizen_data_id', $value['citizen_data_id'])
+            ->where('citizen_data.nik', $value['nik'])
             ->first();
             $value['name'] = $citizen->name;
             // income, job, education, disease, disability, age
@@ -68,10 +68,10 @@ class BansosController extends Controller
 
     public function detail($id)
     {
-        $bansosable = BansosModel::select('citizen_data.citizen_data_id', 'citizen_data.name', 'citizen_data.phone_number', 'citizen_data.address_ktp', 'bansos_data.status')
-            ->join('citizen_data', 'citizen_data.citizen_data_id', '=', 'bansos_data.citizen_data_id')
+        $bansosable = BansosModel::select('citizen_data.nik', 'citizen_data.name', 'citizen_data.phone_number', 'citizen_data.address_ktp', 'bansos_data.status')
+            ->join('citizen_data', 'citizen_data.nik', '=', 'bansos_data.nik')
             ->where('bansos_data.is_bansosable', true)
-            ->where('citizen_data.citizen_data_id', $id)
+            ->where('citizen_data.nik', $id)
             ->first();
         // dd($bansosable);
         return view('pages.bansos.detail', compact('bansosable'));
@@ -79,7 +79,7 @@ class BansosController extends Controller
 
     public function confirm($id)
     {
-        $bansosable = BansosModel::where('citizen_data_id', $id)->first();
+        $bansosable = BansosModel::where('nik', $id)->first();
         $bansosable->status = 1;
         $bansosable->save();
         // dd($bansosable);
@@ -91,7 +91,7 @@ class BansosController extends Controller
     {
         // insert data to bansos_data
         $bansosable = new BansosModel();
-        $bansosable->citizen_data_id = $id;
+        $bansosable->nik = $id;
         $bansosable->status = 0;
         $bansosable->is_bansosable = true;
         $bansosable->save();

@@ -41,7 +41,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <p class="text-muted">NIK</p>
-                                    <p><strong>{{ $bansosable->citizen_data_id }}</strong></p>
+                                    <p><strong>{{ $bansosable->nik }}</strong></p>
                                     <p class="text-muted">Nama Warga</p>
                                     <p><strong>{{ $bansosable->name }}</strong></p>
                                     <p class="text-muted">No. Telepon</p>
@@ -89,7 +89,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="{{ route('bansos.confirm', ['id' => $bansosable->citizen_data_id]) }}" method="POST">
+                <form action="{{ route('bansos.confirm', ['id' => $bansosable->nik]) }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-primary">Lanjutkan</button>
                 </form>

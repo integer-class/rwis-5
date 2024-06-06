@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Blank Page')
+@section('title', 'Persuratan')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -141,8 +141,6 @@
                                                     </div>
                                             </td>
                                         @endcan
-
-
                                     </tr>
                                 @endforeach
                             </table>
