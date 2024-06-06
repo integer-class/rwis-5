@@ -179,7 +179,7 @@ class CitizenController extends Controller
             ->join('citizen_data', 'wealth_data.wealth_id', '=', 'citizen_data.wealth_id')
             ->where('nik', $id)
             ->first();
-        $user = CitizenUserModel::where('citizen_data_id', $id)->first();
+        $user = CitizenUserModel::where('nik', $id)->first();
         
         return view('pages.citizen.edit', compact('citizen', 'family', 'health', 'wealth', 'all_family', 'user'));
     }
@@ -187,7 +187,7 @@ class CitizenController extends Controller
     public function update(Request $request, $id)
     {   
 
-        $citizen = CitizenDataModel::where('citizen_data_id', $id)->first();
+        $citizen = CitizenDataModel::where('nik', $id)->first();
         $citizen->nik = $request->nik;
         $citizen->family_id = $request->family_id;
         $citizen->name = $request->name;

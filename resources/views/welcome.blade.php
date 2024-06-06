@@ -220,7 +220,7 @@
         <div class="row mt-5">
             @foreach ($top3information as $information)
             <div class="col-md-4 card-program">
-                <div class="card" style="background-image: url('{{ asset('storage/'.$information->image) }}')">
+                <div class="card" style="background-image: url('{{ asset('storage/'.$information->image) }}'); background-size: cover; background-position: center;">
                     <div class="card-body">
                         <div class="card rounded-pill pt-2 ps-4 position-absolute bottom-0 start-0 mb-3 ms-3 program-pill">
                             <div class="row">

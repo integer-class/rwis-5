@@ -41,11 +41,11 @@
                         <tr class="{{ $loop->iteration == 1 ? 'table-success' : ($loop->iteration == 2 ? 'table-warning' : ($loop->iteration == 3 ? 'table-danger' : '')) }}">
                             <!-- index -->
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $bansos['citizen_data_id'] }}</td>
+                            <td>{{ $bansos['nik'] }}</td>
                             <td>{{ $bansos['name'] }}</td>
                             <td>{{ $bansos['value'] }}</td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmModal" data-name="{{ $bansos['name'] }}" data-id="{{ $bansos['citizen_data_id'] }}" data-income="{{ $bansos['income'] }}" data-job="{{ $bansos['job'] }}" data-education="{{ $bansos['education'] }}" data-disease="{{ $bansos['disease'] }}" data-disability="{{ $bansos['disability'] }}" data-age="{{ $bansos['age'] }}">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmModal" data-name="{{ $bansos['name'] }}" data-id="{{ $bansos['nik'] }}" data-income="{{ $bansos['income'] }}" data-job="{{ $bansos['job'] }}" data-education="{{ $bansos['education'] }}" data-disease="{{ $bansos['disease'] }}" data-disability="{{ $bansos['disability'] }}" data-age="{{ $bansos['age'] }}">
                                     Ajukan Bansos
                                 </button>
                             </td>

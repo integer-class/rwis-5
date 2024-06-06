@@ -128,10 +128,12 @@
                             </div>
                             <div class="card-body">
                                 <p class="text-muted">Level</p>
-                                <select class="form-control" name="level" value="{{ $citizen->level }}" required>
+                                <select class="form-control" name="level" value="{{ $user->level }}" required>
                                     <option value="warga">Warga</option>
                                     <option value="rt">RT</option>
                                 </select>
+                                <p class="text-muted">RT</p>
+                                <input type="text" class="form-control" value="{{ $user->no_rt }}" name="rt" required>
                             </div>
                         </div>
                     </div>

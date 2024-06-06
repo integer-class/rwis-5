@@ -50,7 +50,7 @@
                         </tr>
                         @foreach ($bansosable as $bansos)
                         <tr>
-                            <td>{{ $bansos->citizen_data_id }}</td>
+                            <td>{{ $bansos->nik }}</td>
                             <td>{{ $bansos->name }}</td>
                             <td>{{ $bansos->phone_number }}</td>
                             <td>{{ $bansos->address_ktp }}</td>
@@ -60,7 +60,7 @@
                             <td><span class="badge badge-warning">Dalam Pengajuan</span></td>
                             @endif
                             <td>
-                                <a href="{{ route('bansos.detail', $bansos->citizen_data_id) }}" class="btn btn-primary">Detail</a>
+                                <a href="{{ route('bansos.detail', $bansos->nik) }}" class="btn btn-primary">Detail</a>
                             </td>
                         </tr>
                         @endforeach
