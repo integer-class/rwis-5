@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,6 +97,17 @@ Route::group(['prefix'=>'template'], function(){
     Route::delete('archive/{id}', [TemplateController::class, 'archive'])->name('template.archive')->middleware('auth');
 }) ->name('letter');
 
+Route::group(['prefix' => 'warga'], function() {
+    Route::get('/profile/{id}', [ProfileController::class, 'profile'])->name('warga.profile')->middleware('auth');
+    Route::get('/family/{id}', [ProfileController::class, 'family'])->name('warga.family')->middleware('auth');
+    Route::get('/family/edit/{id}', [ProfileController::class, 'editFamily'])->name('warga.family.edit')->middleware('auth');
+    Route::post('/family/search/{id}', [ProfileController::class, 'searchFamily'])->name('warga.family.search')->middleware('auth');
+    Route::post('family/update/{id}', [ProfileController::class, 'updateFamily'])->name('warga.family.update')->middleware('auth');
+    Route::get('family/register/{id}', [ProfileController::class, 'registerFamily'])->name('warga.family.register')->middleware('auth');
+    Route::post('family/assign/{id}', [ProfileController::class, 'assignFamily'])->name('warga.family.assign')->middleware('auth');
+    Route::get('family/create/{id}', [ProfileController::class, 'createFamily'])->name('warga.family.create')->middleware('auth');
+    Route::post('family/store/{id}', [ProfileController::class, 'storeFamily'])->name('warga.family.store')->middleware('auth');
+})->name('warga');
 
 Route::get('report', [ReportController::class, 'index'])->name('report')->middleware('auth');
 Route::get('facility', [FacilityController::class, 'index'])->name('facility')->middleware('auth');

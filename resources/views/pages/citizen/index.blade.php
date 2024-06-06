@@ -55,7 +55,6 @@
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
-
                                             <th>NIK</th>
                                             <th>Nama Warga</th>
                                             <th>Jenis Kelamin</th>
