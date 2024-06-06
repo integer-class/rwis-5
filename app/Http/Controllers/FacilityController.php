@@ -1,11 +1,10 @@
 <?php
 
-// app/Http/Controllers/FacilityController.php
-
 namespace App\Http\Controllers;
 
 use App\Models\Facility;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FacilityController extends Controller
 {
@@ -62,6 +61,10 @@ class FacilityController extends Controller
         $facility = Facility::findOrFail($id);
 
         if ($request->hasFile('image')) {
+            // Delete the old image
+            Storage::delete('public/' . $facility->image);
+
+            // Store the new image
             $imagePath = $request->file('image')->store('facilities', 'public');
             $facility->update([
                 'name' => $request->name,
@@ -78,9 +81,9 @@ class FacilityController extends Controller
     public function destroy($id)
     {
         $facility = Facility::findOrFail($id);
+        Storage::delete('public/' . $facility->image);
         $facility->delete();
 
         return redirect()->route('facilities.index');
     }
 }
-

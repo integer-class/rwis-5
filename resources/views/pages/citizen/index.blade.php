@@ -12,9 +12,12 @@
         <section class="section">
             <div class="section-header">
                 <h1>Data Warga</h1>
-                <div class="section-header-button">
-                    <a href="{{ route('citizen.create') }}" class="btn btn-primary" id="tambahButton">Tambah Baru</a>
-                </div>
+                @can('rtrw')
+                    <div class="section-header-button">
+                        <a href="{{ route('citizen.create') }}" class="btn btn-primary" id="tambahButton">Tambah Baru</a>
+                    </div>
+                @endcan
+
             </div>
             <div class="section-body">
                 {{-- <div class="row">
@@ -52,78 +55,167 @@
 
                                 <div class="clearfix mb-3"></div>
 
-                                <div class="table-responsive">
-                                    <table class="table-striped table">
-                                        <tr>
-                                            <th>NIK</th>
-                                            <th>Nama Warga</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Nomor Telepon</th>
-                                            <th>Alamat Domisili</th>
-                                            <th>Alamat KTP</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                        @foreach ($citizens as $citizen)
+                                @can('rw')
+                                    <div class="table-responsive">
+                                        <table class="table-striped table">
                                             <tr>
 
-                                                <td>{{ $citizen->nik }}
-                                                </td>
-                                                <td>
-                                                    {{ $citizen->name }}
-                                                </td>
-                                                <td>
-                                                    {{ $citizen->gender }}
-                                                </td>
-                                                <td>
-                                                    {{ $citizen->phone_number }}
-                                                </td>
-                                                <td>
-                                                    {{ $citizen->address_domisili }}
-                                                </td>
-                                                <td>
-                                                    {{ $citizen->address_ktp }}
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex justify-content-center">
-                                                        <div class="dropdown d-inline">
-                                                            <button class="btn btn-primary dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton" data-toggle="dropdown"
-                                                                aria-haspopup="true" aria-expanded="false">
-                                                                Aksi
-                                                            </button>
-                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                <a class="dropdown-item"
-                                                                    href="{{ route('citizen.detail', $citizen->nik) }}"
-                                                                    id="detailButton">
-                                                                    <i class="fas fa-eye"></i> Lihat
-                                                                </a>
-                                                                <a class="dropdown-item"
-                                                                    href="{{ route('citizen.edit', $citizen->nik) }}"
-                                                                    id="editButton">
-                                                                    <i class="fas fa-edit"></i> Edit
-                                                                </a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <form
-                                                                    action="{{ route('citizen.archive', $citizen->nik) }}"
-                                                                    method="POST">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit"
-                                                                        class="dropdown-item text-warning"
-                                                                        id="archiveButton">
-                                                                        <i class="fas fa-trash"></i> Arsipkan
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                </td>
+                                                <th>NIK</th>
+                                                <th>Nama Warga</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>Nomor Telepon</th>
+                                                <th>Alamat Domisili</th>
+                                                <th>Alamat KTP</th>
+                                                <th>Nomor RT</th>
+                                                <th>Jabatan</th>
+                                                <th>Aksi</th>
                                             </tr>
-                                        @endforeach
-                                    </table>
-                                </div>
-                                <div class="float-right">
-                                    {{ $citizens->withQueryString()->links() }}
-                                </div>
+                                            @foreach ($citizens as $citizen)
+                                                <tr>
+
+                                                    <td>{{ $citizen->nik }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $citizen->name }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $citizen->gender }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $citizen->phone_number }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $citizen->address_domisili }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $citizen->address_ktp }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $citizen->no_rt }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $citizen->level }}
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex justify-content-center">
+                                                            <div class="dropdown d-inline">
+                                                                <button class="btn btn-primary dropdown-toggle" type="button"
+                                                                    id="dropdownMenuButton" data-toggle="dropdown"
+                                                                    aria-haspopup="true" aria-expanded="false">
+                                                                    Aksi
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('citizen.detail', $citizen->nik) }}"
+                                                                        id="detailButton">
+                                                                        <i class="fas fa-eye"></i> Lihat
+                                                                    </a>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('citizen.edit', $citizen->nik) }}"
+                                                                        id="editButton">
+                                                                        <i class="fas fa-edit"></i> Edit
+                                                                    </a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <form
+                                                                        action="{{ route('citizen.archive', $citizen->nik) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit"
+                                                                            class="dropdown-item text-warning"
+                                                                            id="archiveButton">
+                                                                            <i class="fas fa-trash"></i> Arsipkan
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </table>
+                                    </div>
+                                    <div class="float-right">
+                                        {{ $citizens->withQueryString()->links() }}
+                                    </div>
+                                @endcan
+
+                                @can('rt')
+                                    <div class="table-responsive">
+                                        <table class="table-striped table">
+                                            <tr>
+
+                                                <th>NIK</th>
+                                                <th>Nama Warga</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>Nomor Telepon</th>
+                                                <th>Alamat Domisili</th>
+                                                <th>Alamat KTP</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                            @foreach ($citizensRT as $citizen)
+                                                <tr>
+
+                                                    <td>{{ $citizen->nik }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $citizen->name }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $citizen->gender }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $citizen->phone_number }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $citizen->address_domisili }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $citizen->address_ktp }}
+                                                    </td>
+
+                                                    <td>
+                                                        <div class="d-flex justify-content-center">
+                                                            <div class="dropdown d-inline">
+                                                                <button class="btn btn-primary dropdown-toggle" type="button"
+                                                                    id="dropdownMenuButton" data-toggle="dropdown"
+                                                                    aria-haspopup="true" aria-expanded="false">
+                                                                    Aksi
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('citizen.detail', $citizen->nik) }}"
+                                                                        id="detailButton">
+                                                                        <i class="fas fa-eye"></i> Lihat
+                                                                    </a>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('citizen.edit', $citizen->nik) }}"
+                                                                        id="editButton">
+                                                                        <i class="fas fa-edit"></i> Edit
+                                                                    </a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <form
+                                                                        action="{{ route('citizen.archive', $citizen->nik) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit"
+                                                                            class="dropdown-item text-warning"
+                                                                            id="archiveButton">
+                                                                            <i class="fas fa-trash"></i> Arsipkan
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </table>
+                                    </div>
+                                    <div class="float-right">
+                                        {{ $citizensRT->withQueryString()->links() }}
+                                    </div>
+                                @endcan
+
                             </div>
                         </div>
                     </div>
