@@ -69,7 +69,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label>Status</label>
                                         <select class="form-control" name="status" required>
                                             <option>Sudah Verifikasi</option>
@@ -79,7 +79,7 @@
                                         @error('status')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 

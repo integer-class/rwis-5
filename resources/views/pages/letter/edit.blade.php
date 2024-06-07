@@ -84,7 +84,6 @@
                                             @else
                                                 <option>Sudah Verifikasi</option>
                                                 <option>Belum Verifikasi</option>
-                                                <option selected>Mbuh Ilang</option>
                                             @endif
                                         </select>
                                         <small class="text-muted">Update status ke Sudah Verifikasi jika anda sudah memberikan tanda tangan serta mengupload file tersebut</small>

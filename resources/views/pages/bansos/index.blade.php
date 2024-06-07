@@ -25,7 +25,7 @@
                         </div>
                         <div class="article-details text-center">
                             <h1 class="title">Bantuan Sosial Warga Kurang Mampu</h1>
-                            @can('admin')
+                            @can('rtrw')
                                 <a href="{{ route('bansos.calculate') }}" class="btn btn-outline-secondary mt-4">Cek Kelayakan Warga</a>
                             @endcan
                         </div>

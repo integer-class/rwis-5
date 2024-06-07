@@ -286,12 +286,12 @@
                                             <div class="selectgroup w-100">
                                                 <label class="selectgroup-item">
                                                     <input type="radio" name="level" value="rt"
-                                                        class="selectgroup-input" checked="">
+                                                        class="selectgroup-input">
                                                     <span class="selectgroup-button">Ketua RT</span>
                                                 </label>
                                                 <label class="selectgroup-item">
                                                     <input type="radio" name="level" value="warga"
-                                                        class="selectgroup-input">
+                                                        class="selectgroup-input" checked="">
                                                     <span class="selectgroup-button">Warga</span>
                                                 </label>
 

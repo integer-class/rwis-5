@@ -17,7 +17,7 @@
                     <h1>Pusat Informasi RW</h1>
                 @endif
 
-                @can('admin')
+                @can('rtrw')
                     <div class="section-header-button">
                         <a href="{{ route('information.create') }}" class="btn btn-primary" id="tambahButton">Tambah Baru</a>
                     </div>
@@ -87,7 +87,7 @@
                                     <p class="date">{{ $info->date }}</p>
                                     <p class="scedule">{{ $info->place }} ({{ $info->time }})</p>
 
-                                    @can('admin')
+                                    @can('rtrw')
                                         <div class="d-flex justify-content-between">
                                             <a href="{{ route('information.edit', $info->id) }}" class="btn btn-secondary">Edit
                                                 Kegiatan</a>

@@ -32,7 +32,6 @@ class LetterController extends Controller
             'name' => 'required',
             'address' => 'required',
             'whatsapp_number' => 'required',
-            'status' => 'required',
             'file' => 'nullable|mimes:pdf,doc,docx|max:2048',
         ]);
 
@@ -40,7 +39,7 @@ class LetterController extends Controller
         $letter->name = $request->name;
         $letter->address = $request->address;
         $letter->whatsapp_number = $request->whatsapp_number;
-        $letter->status = $request->status;
+        $letter->status = 'Belum Verifikasi';
 
         if ($request->hasFile('file')) {
             $nameSender = $request->name;
