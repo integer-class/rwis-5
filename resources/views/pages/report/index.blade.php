@@ -11,7 +11,7 @@
     <section class="section">
         <a href="{{ route('report.create') }}" class="btn btn-primary" style="margin-left: 15px;margin-top: 60px;margin-bottom: 20px;padding: 10px 10px; font-size: 15px;"> + Buat Laporan</a>
         
-        @can('admin')
+        @can('rtrw')
         <div class="section-header" style="margin-top: 20px;">
             <h1>Laporan Masuk</h1>
         </div>
@@ -23,7 +23,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>Nik</th>
                                     <th>Nama</th>
                                     <th>Alamat</th>
                                     <th>Judul Laporan</th>
@@ -36,7 +36,7 @@
                             <tbody>
                                 @foreach ($reports as $report)
                                     <tr>
-                                        <td>{{ $report->id }}</td>
+                                        <td>{{ $report->nik }}</td>
                                         <td>{{ $report->nama }}</td>
                                         <td>{{ $report->alamat }}</td>
                                         <td>{{ $report->judul_laporan }}</td>

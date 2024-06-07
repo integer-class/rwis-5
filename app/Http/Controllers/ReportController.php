@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Report;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
@@ -33,6 +34,8 @@ class ReportController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        $nik = Auth::user()->nik;
+
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images', 'public');
         } else {
@@ -40,12 +43,13 @@ class ReportController extends Controller
         }
 
         Report::create([
+            'nik' => $nik,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'judul_laporan' => $request->judul_laporan,
             'tanggal' => $request->tanggal,
             'image' => $imagePath,
-            'status' => 'Menunggu Verifikasi', // Set the default status
+            'status' => 'Menunggu Verifikasi',
         ]);
 
         return redirect()->route('report.index')->with('success', 'Report created successfully.');
@@ -95,7 +99,6 @@ class ReportController extends Controller
 
         return redirect()->route('report.index')->with('success', 'Report updated successfully.');
     }
-
 
     public function accept($id)
     {
