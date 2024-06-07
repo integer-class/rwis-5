@@ -15,7 +15,7 @@
             @csrf
             <div class="section-header">
                 <div class="section-header-back">
-                    <a href="{{ route('family.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                    <a href="{{ route('family.detail', $family->family_id)}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
                 </div>
                 <h1>Edit Keluarga</h1>
                 <div class="section-header-button">
@@ -24,6 +24,7 @@
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('family.index')}}">Data Keluarga</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('family.detail', $family->family_id)}}">Detail Keluarga</a></div>
                     <div class="breadcrumb-item">Edit Keluarga</div>
                 </div>
             </div>
@@ -71,7 +72,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="card"=>
+                            <div class="card">
                                 <div class="card-header">
                                     <h4>Anggota Keluarga</h4>
                                 </div>
@@ -88,9 +89,9 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $member->name }}</td>
-                                                <td>{{ $member->citizen_data_id }}</td>
+                                                <td>{{ $member->nik}}</td>
                                                 <td>
-                                                    <input type="checkbox" name="citizens[]" value="{{ $member->citizen_data_id }}" {{ $member->family_id == $family->family_id ? 'checked' : '' }}>
+                                                    <input type="checkbox" name="citizens[]" value="{{ $member->nik }}" {{ $member->family_id == $family->family_id ? 'checked' : '' }}>
                                                 </td>
                                             </tr>
                                             @endforeach
