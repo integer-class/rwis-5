@@ -20,11 +20,12 @@
                     <h1>Dashboard rw</h1>
                 @endif
             </div>
+            @can('rtrw')
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-primary">
-                            <i class="far fa-user"></i>
+                            <i class="fas fa-users"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
@@ -39,7 +40,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-danger">
-                            <i class="far fa-newspaper"></i>
+                            <i class="fas fa-male"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
@@ -54,7 +55,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-warning">
-                            <i class="far fa-file"></i>
+                            <i class="fas fa-female"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
@@ -66,6 +67,51 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-4 col-md-6 col-12 col-sm-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                                <i class="fas fa-hand-holding-usd"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Penerima Bansos</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $totalPenerimaBansos }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 col-sm-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-danger">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Penerima Bansos</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $penerimaBansos }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 col-sm-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Dalam Pengajuan</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $dalamProses }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-12 col-sm-12">
@@ -74,7 +120,7 @@
                             <h4>Data Pendidikan Warga</h4>
                         </div>
                         <div class="card-body">
-                            <canvas id="chartPendidikan" height="225"></canvas>
+                            <canvas id="chartPendidikan" height="215"></canvas>
                         </div>
                     </div>
                 </div>
@@ -97,14 +143,7 @@
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="section">
-            <div class="section-header">
-                <h1>Data Pekerjaan</h1>
-            </div>
-            <div class="section-body">
-                <div class="row">
+            <div class="row">
                     <!-- grafik pekerjaan -->
                     <div class="col-lg-6 col-md-12 col-12 col-sm-12">
                         <div class="card">
@@ -112,7 +151,7 @@
                                 <h4>Data Pekerjaan Warga</h4>
                             </div>
                             <div class="card-body">
-                                <canvas id="chartPekerjaan" height="182"></canvas>
+                                <canvas id="chartPekerjaan" height="50"></canvas>
                             </div>
                         </div>
                     </div>
@@ -123,11 +162,59 @@
                                     <h4>Data Pendapatan Warga</h4>
                                 </div>
                             <div class="card-body">
-                                <canvas id="chartPendapatan" height="182"></canvas>
+                                <canvas id="chartPendapatan" height="50"></canvas>
                             </div>
                         </div>
+                    </div>
                 </div>
-            </div>
+                @endcan
+                <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Kontak RW</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled list-unstyled-border">
+                                @foreach ($isRW as $item)
+                                    <li class="media">
+                                        <img class="mr-3 rounded-circle" width="50" src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
+                                        <div class="media-body">
+                                            <div class="media-right">
+                                                <div class="text-primary">{{ $item->name }}</div>
+                                            </div>
+                                            <div class="media-title">{{ $item->phone_number }}</div>
+                                            <div class="text-muted">{{ $item->address_domisili }}</div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Kontak RT</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled list-unstyled-border">
+                                @foreach ($isRT as $item)
+                                    <li class="media">
+                                        <img class="mr-3 rounded-circle" width="50" src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
+                                        <div class="media-body">
+                                            <div class="media-right">
+                                                <div class="text-primary">{{ $item->name }}</div>
+                                            </div>
+                                            <div class="media-title">{{ $item->phone_number }}</div>
+                                            <div class="text-muted">{{ $item->address_domisili }}</div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
         </section>
     </div>
 @endsection

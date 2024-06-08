@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BansosModel;
 use App\Models\CitizenDataModel;
 use App\Models\HealthModel;
 use Illuminate\Http\Request;
@@ -52,8 +53,23 @@ class DashboardController extends Controller
         $income5 = WealthModel::where('income', 5)->count();
         $income6 = WealthModel::where('income', 6)->count();
 
-        
+        $wargaAsli = CitizenDataModel::where('address_ktp', '=', 'address_domisili')->count();
+        $wargaPendatang = CitizenDataModel::where('address_ktp', '!=', 'address_domisili')->count();
 
-        return view('pages.dashboard.index', compact('citizenTotal', 'womanTotal', 'manTotal', 'under18', 'from18to50', 'above50', 'bloodA', 'bloodB', 'bloodAB', 'bloodO', 'wiraswasta', 'swasta', 'pelajar', 'negeri', 'petani', 'nelayan', 'lainnya', 'jobTotal', 'underSma', 'Sma', 'S1', 'S2', 'S3', 'income1', 'income2', 'income3', 'income4', 'income5', 'income6'));
+        $penerimaBansos = BansosModel::where('status', 1)->count();
+        $dalamProses = BansosModel::where('status', 0)->count();
+        $totalPenerimaBansos = BansosModel::count();
+
+        $isRT = CitizenDataModel::select('citizen_data.*', 'citizen_user_data.no_rt', 'citizen_user_data.level')
+            ->join('citizen_user_data', 'citizen_user_data.nik', '=', 'citizen_data.nik')
+            ->where('citizen_user_data.level', 'rt')
+            ->get();
+
+        $isRW = CitizenDataModel::select('citizen_data.*', 'citizen_user_data.no_rt', 'citizen_user_data.level')
+            ->join('citizen_user_data', 'citizen_user_data.nik', '=', 'citizen_data.nik')
+            ->where('citizen_user_data.level', 'rw')
+            ->get();
+
+        return view('pages.dashboard.index', compact('citizenTotal', 'womanTotal', 'manTotal', 'under18', 'from18to50', 'above50', 'bloodA', 'bloodB', 'bloodAB', 'bloodO', 'wiraswasta', 'swasta', 'pelajar', 'negeri', 'petani', 'nelayan', 'lainnya', 'jobTotal', 'underSma', 'Sma', 'S1', 'S2', 'S3', 'income1', 'income2', 'income3', 'income4', 'income5', 'income6', 'wargaAsli', 'wargaPendatang', 'penerimaBansos', 'dalamProses', 'totalPenerimaBansos', 'isRT', 'isRW'));
     }
 }
