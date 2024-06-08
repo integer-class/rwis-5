@@ -7,9 +7,11 @@
 
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
-        <div class="sidebar-brand">
-            <img src="{{ asset('img/logo.png') }}" alt="" width="142px">
-        </div>
+        <a href="{{ route('login') }}">
+            <div class="sidebar-brand">
+                <img src="{{ asset('img/logo.png') }}" alt="" width="142px">
+            </div>
+        </a>
         <ul class="sidebar-menu">
             <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('dashboard') }}"><i class="fa-solid fa-gauge"></i>

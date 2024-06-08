@@ -37,6 +37,10 @@ a{
     margin-left: 102px;
 }
 
+.nav-username{
+    color: rgba(58, 12, 163, 1);;
+}
+
 .btn-login{
     width: 109px;
     height: 50px;
@@ -286,7 +290,7 @@ p.desc{
 }
 
 .service .card-group{
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .neighborhood .title-1{
@@ -397,7 +401,7 @@ p.desc{
 }
 
 .creators .image-creators{
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .creators .name{
@@ -569,6 +573,15 @@ p.desc{
     margin: 0 auto; 
 }
 
+@media (max-width: 599px) {
+    .becomeapart img {
+        max-width: 100%; 
+        height: auto;   
+        display: block;
+        margin: 0 auto; 
+    }
+}
+
 .location{
     margin-top: 200px;
     background-color: rgba(237,240,254,255);
@@ -673,4 +686,10 @@ p.desc{
     width: 25px;
     height: 25px;
   }
+
+  @media (max-width: 599px) {
+
+  }
+
+  
   

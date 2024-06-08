@@ -28,21 +28,22 @@
             <ul class="navbar-nav">
                 @auth
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle nav-username" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Welcome back, {{ auth()->user()->nik }}
+                           Selamat Datang, {{ explode(' ', auth()->user()->name)[0] }}
+                            
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('dashboard') }}">
-                                <i class="fa-solid fa-table-columns"></i> My Dashboard</a></li>
+                                <i class="fa-solid fa-table-columns"></i> Dashboard Saya</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="dropdown-item">
-                                        <i class="fa-solid fa-right-from-bracket"></i> Logout
+                                    <button type="submit" class="dropdown-item text-danger">
+                                        <i class="fa-solid fa-right-from-bracket"></i> Keluar
                                     </button>
                                 </form>
                             </li>
