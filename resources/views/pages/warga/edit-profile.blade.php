@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Warga')
+@section('title', 'Edit Profile')
 
 @push('style')
 <!-- CSS Libraries -->
@@ -11,32 +11,28 @@
 @section('main')
 <div class="main-content">
     <section class="section">
-        <form action="{{ route('citizen.update', $citizen->nik) }}" method="POST">
+        <form action="{{ route('warga.profile.update', $citizen->nik) }}" method="POST">
             @csrf
             <div class="section-header">
 
                 <div class="section-header-back">
-                    <a href="{{ route('citizen.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                    <a href="{{ route('warga.profile', $citizen->nik )}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
                 </div>
-                <h1>Edit Warga</h1>
+                <h1>Edit Profile</h1>
 
                 <div class="section-header-button">
                     <button type="submit" class="btn btn-primary" id="saveButton">Simpan</button>
-                    <a href="{{ route('citizen.detail', $citizen->nik) }}" class="btn btn-danger" id="cancelButton">Batal</a>
+                    <a href="{{ route('warga.profile', $citizen->nik) }}" class="btn btn-danger" id="cancelButton">Batal</a>
                 </div>
 
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="{{ route('citizen.index')}}">Data Warga</a></div>
-                    <div class="breadcrumb-item">Edit Warga</div>
+                    <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('warga.profile', $citizen->nik )}}">Profile</a></div>
+                    <div class="breadcrumb-item">Edit Profile</div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Halaman Edit Warga</h2>
-                <p class="section-lead">
-                    Melalui halaman ini kamu bisa mengedit data warga yang sudah terdaftar.
-                </p>
-
                 <div id="output-status"></div>
                 <div class="row">
                     <div class="col-md-3">
@@ -122,20 +118,6 @@
                                 <input type="text" class="form-control" value="{{ $citizen->phone_number }}" name="phone_number" required>
                             </div>
                         </div>
-                        <div class="card" id="kontak">
-                            <div class="card-header">
-                                <h4>Akun</h4>
-                            </div>
-                            <div class="card-body">
-                                <p class="text-muted">Level</p>
-                                <select class="form-control" name="level" value="{{ $user->level }}" required>
-                                    <option value="warga">Warga</option>
-                                    <option value="rt">RT</option>
-                                </select>
-                                <p class="text-muted">RT</p>
-                                <input type="text" class="form-control" value="{{ $user->no_rt }}" name="rt" required>
-                            </div>
-                        </div>
                     </div>
                     <div class="col-md-5">
                         <div class="card" id="kesehatan" style="display: none;">
@@ -152,9 +134,16 @@
                                 <p class="text-muted">Tinggi Badan</p>
                                 <input type="text" class="form-control" value="{{ $health->height }}" name="height" required>
                                 <p class="text-muted">Disabilitas</p>
-                                <input type="text" class="form-control" value="{{ $health->disability }}" name="disability" required>
+                                <!-- ya atau tidak -->
+                                <select class="form-control" name="disability" value="{{ $health->disability }}" required>
+                                    <option value="Ya">Ya</option>
+                                    <option value="Tidak">Tidak</option>
+                                </select>
                                 <p class="text-muted">Kondisi Sakit</p>
-                                <input type="text" class="form-control" value="{{ $health->disease }}" name="disease" required>
+                                <select class="form-control" name="disease" value="{{ $health->disease }}" required>
+                                    <option value="Ya">Ya</option>
+                                    <option value="Tidak">Tidak</option>
+                                </select>
                             </div>
                         </div>
                     </div>

@@ -99,6 +99,8 @@ Route::group(['prefix'=>'template'], function(){
 
 Route::group(['prefix' => 'warga'], function() {
     Route::get('/profile/{id}', [ProfileController::class, 'profile'])->name('warga.profile')->middleware('auth');
+    Route::get('/profile/edit/{id}', [ProfileController::class, 'editProfile'])->name('warga.profile.edit')->middleware('auth');
+    Route::post('/profile/update/{id}', [ProfileController::class, 'updateProfile'])->name('warga.profile.update')->middleware('auth');
     Route::get('/family/{id}', [ProfileController::class, 'family'])->name('warga.family')->middleware('auth');
     Route::get('/family/edit/{id}', [ProfileController::class, 'editFamily'])->name('warga.family.edit')->middleware('auth');
     Route::post('/family/search/{id}', [ProfileController::class, 'searchFamily'])->name('warga.family.search')->middleware('auth');

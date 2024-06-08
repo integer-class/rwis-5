@@ -188,7 +188,7 @@ class CitizenController extends Controller
                 ->where('nik', $id)
                 ->first();
         }
-
+        
         $all_family = FamilyModel::select('family_data.*')
             ->where('family_data.is_archived', false)
             ->get();

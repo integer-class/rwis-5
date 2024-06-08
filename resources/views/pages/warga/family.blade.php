@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Keluarga')
+@section('title', 'Profile Keluarga')
 
 @push('style')
 <!-- CSS Libraries -->
@@ -95,8 +95,9 @@
                         </div>
                     </div>
                 </div>
+                @if ($family != null)
                 <div class="col">
-                    <div class="card"=>
+                    <div class="card">
                         <div class="card-header">
                             <h4>Anggota Keluarga</h4>
                         </div>
@@ -133,6 +134,7 @@
                     </div>
                 </div>
             </div>
+            @endif
     </section>
 </div>
 

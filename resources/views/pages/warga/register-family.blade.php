@@ -36,7 +36,7 @@ if (!empty($family) && isset($family[0]['family_id'])) {
         <div class="section-body">
             <h2 class="section-title">Tambah & Daftarkan Data Kartu Keluarga</h2>
             @if (session('status'))
-            <div class="alert alert-success">
+            <div class="alert {{ session('alert-class') }}">
                 {{ session('status') }}
             </div>
             @endif

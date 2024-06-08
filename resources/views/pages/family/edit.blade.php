@@ -63,6 +63,8 @@
                                             <label for="sub_district" class="form-label">Kecamatan</label>
                                             <input type="text" class="form-control" value="{{ $family->sub_district }}" name="sub_district" required>
                                             <label for="city" class="form-label">Kota / Kabupaten</label>
+                                            <input type="text" class="form-control" value="{{ $family->city }}" name="city" required>
+                                            <label for="province" class="form-label">Provinsi</label>
                                             <input type="text" class="form-control" value="{{ $family->province }}" name="province" required>
                                             <label for="postal_code" class="form-label">Kode Pos</label>
                                             <input type="text" class="form-control" value="{{ $family->postal_code }}" name="postal_code" required>

@@ -134,10 +134,12 @@ class FamilyController extends Controller
             $c->save();
         }
         // tambahkan family_id baru ke citizen yang dipilih
-        foreach ($request->citizens as $citizenId) {
-            $citizen = CitizenDataModel::find($citizenId);
-            $citizen->family_id = $familyId;
-            $citizen->save();
+        if ($request->citizens) {
+            foreach ($request->citizens as $citizenId) {
+                $citizen = CitizenDataModel::find($citizenId);
+                $citizen->family_id = $familyId;
+                $citizen->save();
+            }
         }
 
         return redirect()->route('family.detail', $id);
