@@ -7,7 +7,6 @@
 <style>
     .highlight {
         background-color: #ffff99;
-        /* Change this to the color you want */
     }
 </style>
 @endpush
@@ -27,7 +26,8 @@
 
         <div class="card">
             <div class="card-body">
-                <h1 class="title-table mb-4 text-center">Data Penerimaan Bantuan Sosial</h1>
+                <h1 class="title-table mb-4 text-center">Warga Layak Menerima Bantuan Sosial</h1>
+                <h5 class="text-center">Berdasarkan kriteria yang telah ditentukan, berikut adalah warga yang layak menerima bantuan sosial:</h2>
                 <div class="table-responsive">
                     <table class="table-striped table">
                         <tr>
@@ -39,7 +39,6 @@
                         </tr>
                         @foreach ($result as $bansos)
                         <tr class="{{ $loop->iteration == 1 ? 'table-success' : ($loop->iteration == 2 ? 'table-warning' : ($loop->iteration == 3 ? 'table-danger' : '')) }}">
-                            <!-- index -->
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $bansos['nik'] }}</td>
                             <td>{{ $bansos['name'] }}</td>

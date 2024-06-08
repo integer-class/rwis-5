@@ -26,7 +26,7 @@ class BansosController extends Controller
     }
 
     // calculate warga yang layak menerima bansos menggunakan mabac
-    public function calculate()
+    public function calculate(Request $request)
     {
         $existingBansosIds = BansosModel::pluck('nik');
         $alternatives = CitizenDataModel::select('citizen_data.nik', 'wealth_data.income', 'wealth_data.job', 'wealth_data.education', 'health_data.disease', 'health_data.disability', 'health_data.age')
@@ -34,7 +34,6 @@ class BansosController extends Controller
             ->join('health_data', 'health_data.health_id', '=', 'citizen_data.health_id')
             ->whereNotIn('citizen_data.nik', $existingBansosIds)
             ->get();
-
 
         $criterias_weight = [
             'income' => 0.3,
@@ -44,7 +43,7 @@ class BansosController extends Controller
             'disability' => 0.15,
             'age' => 0.15
         ];
-
+        $quota = $request->jumlah;
         $result = $this->mabacService->calculate($alternatives, $criterias_weight);
         $result = $result->map(function ($value) {
             $citizen = CitizenDataModel::select('citizen_data.nik', 'citizen_data.name', 'wealth_data.income', 'wealth_data.job', 'wealth_data.education', 'health_data.disease', 'health_data.disability', 'health_data.age')
@@ -62,6 +61,8 @@ class BansosController extends Controller
             $value['age'] = $citizen->age;
             return $value;
         });
+
+        $result = $result->take($quota); // Limit the result to the specified quota
 
         return view('pages.bansos.result', compact('result'));
     }

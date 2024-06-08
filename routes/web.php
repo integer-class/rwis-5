@@ -73,7 +73,7 @@ Route::group(['prefix'=>'archive'], function(){
 
 Route::group(['prefix'=>'bansos'], function(){
     Route::get('/', [BansosController::class, 'index'])->name('bansos.index')->middleware('auth');
-    Route::get('calculate', [BansosController::class, 'calculate'])->name('bansos.calculate')->middleware('auth');
+    Route::post('calculate', [BansosController::class, 'calculate'])->name('bansos.calculate')->middleware('auth');
     Route::get('result', [BansosController::class, 'result'])->name('bansos.result')->middleware('auth');
     Route::get('detail/{id}', [BansosController::class, 'detail'])->name('bansos.detail')->middleware('auth');
     Route::post('confirm/{id}', [BansosController::class, 'confirm'])->name('bansos.confirm')->middleware('auth');

@@ -26,9 +26,19 @@
                         <div class="article-details text-center">
                             <h1 class="title">Bantuan Sosial Warga Kurang Mampu</h1>
                             @can('rtrw')
-                                <a href="{{ route('bansos.calculate') }}" class="btn btn-outline-secondary mt-4">Cek Kelayakan Warga</a>
+                            <form action="{{ route('bansos.calculate') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <!-- counter untk jumlah warga yang dihasilkan -->
+                                    <label for="jumlah_warga">Jumlah Warga</label>
+                                    tambahkan style agar ukuran input lebih kecil dan ditengah
+                                    <input type="number" class="form-control" name="jumlah" id="jumlah_warga" style="width: 10%; margin: auto;" required>
+                                </div>
+                                <button type="submit" class="btn btn-outline-secondary mt-4">Cek Kelayakan Warga</button>
+                            </form>
                             @endcan
                         </div>
+                    </article>
                     </article>
                 </div>
             </div>
@@ -76,5 +86,12 @@
 <!-- JS Libraies -->
 
 <!-- Page Specific JS File -->
+<script>
+    document.getElementById('jumlah_warga').addEventListener('input', function() {
+        if (this.value < 0) {
+            this.value = 0;
+        }
+    });
+</script>
 
 @endpush
