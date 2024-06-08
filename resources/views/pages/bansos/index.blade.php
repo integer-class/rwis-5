@@ -30,8 +30,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <!-- counter untk jumlah warga yang dihasilkan -->
-                                    <label for="jumlah_warga">Jumlah Warga</label>
-                                    tambahkan style agar ukuran input lebih kecil dan ditengah
+                                    <label for="jumlah_warga">Kuota Bansos</label>
                                     <input type="number" class="form-control" name="jumlah" id="jumlah_warga" style="width: 10%; margin: auto;" required>
                                 </div>
                                 <button type="submit" class="btn btn-outline-secondary mt-4">Cek Kelayakan Warga</button>
