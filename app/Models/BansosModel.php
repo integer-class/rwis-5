@@ -14,13 +14,13 @@ class BansosModel extends Model
 
     protected $fillable = [
         'bansos_id',
-        'citizen_data_id',
+        'nik',
         'is_bansosable',
         'status'
     ];
 
     public function citizen_data()
     {
-        return $this->hasOne(CitizenDataModel::class, 'citizen_data_id', 'citizen_data_id');
+        return $this->hasOne(CitizenDataModel::class, 'nik', 'nik');
     }
 }

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('citizen_data', function (Blueprint $table) {
-            $table->id('citizen_data_id')->unique();
+            $table->id('nik');
             $table->unsignedBigInteger('family_id')->nullable();
             $table->unsignedBigInteger('health_id')->nullable();
             $table->unsignedBigInteger('wealth_id')->nullable();
@@ -29,9 +29,10 @@ return new class extends Migration
             $table->boolean('is_verified')->default(false);
             $table->timestamps();
 
-            // $table->foreign('citizen_user_id')->references('citizen_user_id')->on('citizen_user_data');
-            // $table->foreign('family_id')->references('family_id')->on('family_data');
-            // $table->foreign('health_id')->references('health_id')->on('health_data');
+            $table->foreign('family_id')->references('family_id')->on('family_data')->onDelete('cascade');
+            $table->foreign('health_id')->references('health_id')->on('health_data')->onDelete('cascade');
+            $table->foreign('wealth_id')->references('wealth_id')->on('wealth_data')->onDelete('cascade');
+            
         });
     }
 

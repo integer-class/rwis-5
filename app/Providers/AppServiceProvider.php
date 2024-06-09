@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -22,5 +24,18 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFour();
+
+        Gate::define('rtrw', function (User $user) {
+            return $user->level === 'rt' || $user->level === 'rw';
+        });
+
+        Gate::define('rt', function (User $user) {
+            return $user->level === 'rt';
+        });
+
+        Gate::define('rw', function (User $user) {
+            return $user->level === 'rw';
+        });
+
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Warga')
+@section('title', 'Tambah Surat')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -36,7 +36,7 @@
                                     <div class="form-group">
                                         <label>Name</label>
                                         <input type="text" class="form-control" name="name" value="{{ $letter->name }}" required>
-                                        <small class="text-muted">Nama kamu lah</small>
+                                        <small class="text-muted">Masukkan nama lengkap anda</small>
                                         @error('name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -44,7 +44,7 @@
                                     <div class="form-group">
                                         <label>Alamat</label>
                                         <input type="text" class="form-control" name="address" value="{{ $letter->address }}" required></input>
-                                        <small class="text-muted">Omahmu nk ndi</small>
+                                        <small class="text-muted">Alamat rumah anda</small>
                                         @error('address')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -52,7 +52,7 @@
                                     <div class="form-group">
                                         <label>Nomor WA</label>
                                         <input type="text" class="form-control" name="whatsapp_number" value="{{ $letter->whatsapp_number }}" required>
-                                        <small class="text-muted">Ningali nomor WA panjenengan</small>
+                                        <small class="text-muted">Nomor telepon atau WhatsApp (WA) yang dapat dihubungi</small>
                                         @error('whatsapp_number')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -84,7 +84,6 @@
                                             @else
                                                 <option>Sudah Verifikasi</option>
                                                 <option>Belum Verifikasi</option>
-                                                <option selected>Mbuh Ilang</option>
                                             @endif
                                         </select>
                                         <small class="text-muted">Update status ke Sudah Verifikasi jika anda sudah memberikan tanda tangan serta mengupload file tersebut</small>

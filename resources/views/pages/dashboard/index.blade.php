@@ -17,14 +17,15 @@
                 @elseif(Auth::user()->level == 'rt')
                     <h1>Dashboard rt</h1>
                 @elseif(Auth::user()->level == 'rw')
-                    <<h1>Dashboard rw</h1>
+                    <h1>Dashboard rw</h1>
                 @endif
             </div>
+            @can('rtrw')
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-primary">
-                            <i class="far fa-user"></i>
+                            <i class="fas fa-users"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
@@ -39,7 +40,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-danger">
-                            <i class="far fa-newspaper"></i>
+                            <i class="fas fa-male"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
@@ -54,7 +55,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-warning">
-                            <i class="far fa-file"></i>
+                            <i class="fas fa-female"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
@@ -66,300 +67,155 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-4 col-md-6 col-12 col-sm-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                                <i class="fas fa-hand-holding-usd"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Penerima Bansos</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $totalPenerimaBansos }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 col-sm-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-danger">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Penerima Bansos</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $penerimaBansos }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 col-sm-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Dalam Pengajuan</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $dalamProses }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Statistik Laporan Warga</h4>
-                            <div class="card-header-action">
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-primary">Week</a>
-                                    <a href="#" class="btn">Month</a>
-                                </div>
-                            </div>
+                            <h4>Data Pendidikan Warga</h4>
                         </div>
                         <div class="card-body">
-                            <canvas id="myChart" height="182"></canvas>
-                            <div class="statistic-details mt-sm-4">
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span> 7%</span>
-                                    <div class="detail-value">$243</div>
-                                    <div class="detail-name">Today's Sales</div>
-                                </div>
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-danger"><i
-                                                class="fas fa-caret-down"></i></span> 23%</span>
-                                    <div class="detail-value">$2,902</div>
-                                    <div class="detail-name">This Week's Sales</div>
-                                </div>
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span>9%</span>
-                                    <div class="detail-value">$12,821</div>
-                                    <div class="detail-name">This Month's Sales</div>
-                                </div>
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span> 19%</span>
-                                    <div class="detail-value">$92,142</div>
-                                    <div class="detail-name">This Year's Sales</div>
-                                </div>
-                            </div>
+                            <canvas id="chartPendidikan" height="215"></canvas>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Umur Warga</h4>
+                            <h4>Diagram Umur Warga</h4>
                         </div>
                         <div class="card-body">
-                            <canvas id="myChart" height="182"></canvas>
-                            <div class="mb-4">
-                                <div class="text-small font-weight-bold text-muted float-right">{{ $under18 }}</div>
-                                <div class="font-weight-bold mb-1">Umur dibawah 18 Tahun</div>
-                                <div class="progress" data-height="3">
-                                    <div class="progress-bar" role="progressbar" data-width="{{ $under18/$citizenTotal * 100 }}%" aria-valuenow="{{ $under18 }}"
-                                        aria-valuemin="0" aria-valuemax="{{ $citizenTotal }}"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <div class="text-small font-weight-bold text-muted float-right">{{ $from18to50 }}</div>
-                                <div class="font-weight-bold mb-1">Umur 18-50 Tahun</div>
-                                <div class="progress" data-height="3">
-                                    <div class="progress-bar" role="progressbar" data-width="{{ $from18to50 / $citizenTotal * 100 }}%" aria-valuenow="{{ $from18to50 }}"
-                                        aria-valuemin="0" aria-valuemax="{{ $citizenTotal }}"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <div class="text-small font-weight-bold text-muted float-right">{{ $above50 }}</div>
-                                <div class="font-weight-bold mb-1">Umur diatas 50 Tahun</div>
-                                <div class="progress" data-height="3">
-                                    <div class="progress-bar" role="progressbar" data-width="{{ $above50/$citizenTotal * 100 }}%" aria-valuenow="{{ $above50 }}"
-                                        aria-valuemin="0" aria-valuemax="{{ $citizenTotal }}"></div>
-                                </div>
-                            </div>
-
+                            <canvas id="chartUmur" height="182"></canvas>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Diagram Golongan Darah Warga</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="chartGolonganDarah" height="182"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="section">
-            <div class="section-header">
-                <h1>Data Umur Warga</h1>
-            </div>
-            <div class="section-body">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-primary">
-                                <i class="far fa-user"></i>
+            <div class="row">
+                    <!-- grafik pekerjaan -->
+                    <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Data Pekerjaan Warga</h4>
                             </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Total Warga Berumur 0-17</h4>
-                                </div>
-                                <div class="card-body">
-                                    {{ $under18 }}
-                                </div>
+                            <div class="card-body">
+                                <canvas id="chartPekerjaan" height="50"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-danger">
-                                <i class="far fa-newspaper"></i>
-                            </div>
-                            <div class="card-wrap">
+                    <!-- progress bar pekerjaan -->
+                        <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+                            <div class="card">
                                 <div class="card-header">
-                                    <h4>Total Warga Berumur 18-50</h4>
+                                    <h4>Data Pendapatan Warga</h4>
                                 </div>
-                                <div class="card-body">
-                                    {{ $from18to50 }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-warning">
-                                <i class="far fa-file"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Total Warga Berumur 51-100</h4>
-                                </div>
-                                <div class="card-body">
-                                    {{ $above50 }}
-                                </div>
+                            <div class="card-body">
+                                <canvas id="chartPendapatan" height="50"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-header">
-                <h1>Data Golongan Darah</h1>
-            </div>
-            <div class="section-body">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-primary">
-                                <i class="far fa-user"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Total Warga Bergolongan Darah A</h4>
-                                </div>
-                                <div class="card-body">
-                                    {{ $bloodA }}
-                                </div>
-                            </div>
+                @endcan
+                <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Kontak RW</h4>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-danger">
-                                <i class="far fa-newspaper"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Total Warga Bergolongan Darah B</h4>
-                                </div>
-                                <div class="card-body">
-                                    {{ $bloodB }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-warning">
-                                <i class="far fa-file"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Total Warga Bergolongan Darah AB</h4>
-                                </div>
-                                <div class="card-body">
-                                    {{ $bloodAB }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-warning">
-                                <i class="far fa-file"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Total Warga Bergolongan Darah O</h4>
-                                </div>
-                                <div class="card-body">
-                                    {{ $bloodO }}
-                                </div>
-                            </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled list-unstyled-border">
+                                @foreach ($isRW as $item)
+                                    <li class="media">
+                                        <img class="mr-3 rounded-circle" width="50" src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
+                                        <div class="media-body">
+                                            <div class="media-right">
+                                                <div class="text-primary">{{ $item->name }}</div>
+                                            </div>
+                                            <div class="media-title">{{ $item->phone_number }}</div>
+                                            <div class="text-muted">{{ $item->address_domisili }}</div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section class="section">
-            <div class="section-header">
-                <h1>Data Pendidikan</h1>
-            </div>
-            <div class="section-body">
-                <div class="row justify-content-between">
-                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-primary">
-                                <i class="far fa-user"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Total Lulusan Dibawah SMA</h4>
-                                </div>
-                                <div class="card-body">
-                                    {{ $underSma }}
-                                </div>
-                            </div>
+                <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Kontak RT</h4>
                         </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-danger">
-                                <i class="far fa-newspaper"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Total Lulusan SMA</h4>
-                                </div>
-                                <div class="card-body">
-                                    {{ $Sma }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-warning">
-                                <i class="far fa-file"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Total Lulusan Sarjana</h4>
-                                </div>
-                                <div class="card-body">
-                                    {{ $S1 }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-warning">
-                                <i class="far fa-file"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Total Lulusan Magister</h4>
-                                </div>
-                                <div class="card-body">
-                                    {{ $S2 }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-warning">
-                                <i class="far fa-file"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Total Lulusan Doktor</h4>
-                                </div>
-                                <div class="card-body">
-                                    {{ $S3 }}
-                                </div>
-                            </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled list-unstyled-border">
+                                @foreach ($isRT as $item)
+                                    <li class="media">
+                                        <img class="mr-3 rounded-circle" width="50" src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
+                                        <div class="media-body">
+                                            <div class="media-right">
+                                                <div class="text-primary">{{ $item->name }}</div>
+                                            </div>
+                                            <div class="media-title">{{ $item->phone_number }}</div>
+                                            <div class="text-muted">{{ $item->address_domisili }}</div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
-
     </div>
 @endsection
 
@@ -374,4 +230,177 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/index-0.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('chartPendidikan').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Dibawah SMA', 'SMA', 'S1', 'S2', 'S3'],
+                datasets: [{
+                    label: 'Jumlah',
+                    data: [{{ $underSma }}, {{ $Sma }}, {{ $S1 }}, {{ $S2 }}, {{ $S3 }}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var ctx = document.getElementById('chartUmur').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['0-17', '18-50', '51-100'],
+                datasets: [{
+                    label: 'Jumlah',
+                    data: [{{ $under18 }}, {{ $from18to50 }}, {{ $above50 }}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var ctx = document.getElementById('chartGolonganDarah').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['A', 'B', 'AB', 'O'],
+                datasets: [{
+                    label: 'Jumlah',
+                    data: [{{ $bloodA }}, {{ $bloodB }}, {{ $bloodAB }}, {{ $bloodO }}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var ctx = document.getElementById('chartPekerjaan').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Wiraswasta', 'Swasta', 'Negeri', 'Petani', 'Nelayan', 'Lainnya'],
+                datasets: [{
+                    label: 'Jumlah',
+                    data: [{{ $wiraswasta }}, {{ $swasta }}, {{ $negeri }}, {{ $petani }}, {{ $nelayan }}, {{ $lainnya }}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var ctx = document.getElementById('chartPendapatan').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['<1jt', '1-2jt', '2-3jt', '3-4jt', '4-5jt', '>5jt'],
+                datasets: [{
+                    label: 'Jumlah',
+                    data: [{{$income1}}, {{$income2}}, {{$income3}}, {{$income4}}, {{$income5}}, {{$income6}}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+    </script>
 @endpush

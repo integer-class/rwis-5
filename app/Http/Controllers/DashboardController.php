@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BansosModel;
 use App\Models\CitizenDataModel;
 use App\Models\HealthModel;
 use Illuminate\Http\Request;
@@ -34,6 +35,10 @@ class DashboardController extends Controller
         $swasta = WealthModel::whereIn('job', ['Swasta','Buruh'])->count();
         $pelajar = WealthModel::where('job', 'Pelajar')->count();
         $negeri = WealthModel::whereIn('job', ['PNS','POLRI','TNI'])->count();
+        $petani = WealthModel::where('job', 'Petani')->count();
+        $nelayan = WealthModel::where('job', 'Nelayan')->count();
+        $lainnya = WealthModel::where('job', 'Lainnya')->count();
+        $jobTotal = WealthModel::count();
 
         $underSma = WealthModel::whereNotIn('education', ['SMA','Sarjana','Magister','Doktor'])->count();
         $Sma = WealthModel::where('education', 'SMA')->count();
@@ -41,7 +46,30 @@ class DashboardController extends Controller
         $S2 = WealthModel::where('education', 'Magister')->count();
         $S3 = WealthModel::where('education', 'Doktor')->count();
 
+        $income1 = WealthModel::where('income', 1)->count();
+        $income2 = WealthModel::where('income', 2)->count();
+        $income3 = WealthModel::where('income', 3)->count();
+        $income4 = WealthModel::where('income', 4)->count();
+        $income5 = WealthModel::where('income', 5)->count();
+        $income6 = WealthModel::where('income', 6)->count();
 
-        return view('pages.dashboard.index', compact('citizenTotal', 'womanTotal', 'manTotal', 'under18', 'from18to50', 'above50', 'bloodA', 'bloodB', 'bloodAB', 'bloodO', 'wiraswasta', 'swasta', 'pelajar', 'negeri', 'underSma', 'Sma', 'S1','S2','S3'));
+        $wargaAsli = CitizenDataModel::where('address_ktp', '=', 'address_domisili')->count();
+        $wargaPendatang = CitizenDataModel::where('address_ktp', '!=', 'address_domisili')->count();
+
+        $penerimaBansos = BansosModel::where('status', 1)->count();
+        $dalamProses = BansosModel::where('status', 0)->count();
+        $totalPenerimaBansos = BansosModel::count();
+
+        $isRT = CitizenDataModel::select('citizen_data.*', 'citizen_user_data.no_rt', 'citizen_user_data.level')
+            ->join('citizen_user_data', 'citizen_user_data.nik', '=', 'citizen_data.nik')
+            ->where('citizen_user_data.level', 'rt')
+            ->get();
+
+        $isRW = CitizenDataModel::select('citizen_data.*', 'citizen_user_data.no_rt', 'citizen_user_data.level')
+            ->join('citizen_user_data', 'citizen_user_data.nik', '=', 'citizen_data.nik')
+            ->where('citizen_user_data.level', 'rw')
+            ->get();
+
+        return view('pages.dashboard.index', compact('citizenTotal', 'womanTotal', 'manTotal', 'under18', 'from18to50', 'above50', 'bloodA', 'bloodB', 'bloodAB', 'bloodO', 'wiraswasta', 'swasta', 'pelajar', 'negeri', 'petani', 'nelayan', 'lainnya', 'jobTotal', 'underSma', 'Sma', 'S1', 'S2', 'S3', 'income1', 'income2', 'income3', 'income4', 'income5', 'income6', 'wargaAsli', 'wargaPendatang', 'penerimaBansos', 'dalamProses', 'totalPenerimaBansos', 'isRT', 'isRW'));
     }
 }

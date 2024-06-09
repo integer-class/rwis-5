@@ -14,11 +14,7 @@
             <h1>Data Arsip</h1>
         </div>
         <div class="section-body">
-            {{-- <div class="row">
-                    <div class="col-12">
-                        @include('layouts.alert')
-                    </div>
-                </div> --}}
+           
             <h2 class="section-title">Informasi Data Arsip</h2>
             <p class="section-lead">
                 Melalui halaman ini kamu bisa melihat seluruh data warga dan keluarga yang sudah diarsipkan, dan kamu bisa melakukan
@@ -112,7 +108,7 @@
                                     </tr>
                                     @foreach ($citizens as $citizen)
                                     <tr>
-                                        <td>{{ $citizen->citizen_data_id }}</td>
+                                        <td>{{ $citizen->nik }}</td>
                                         <td>{{ $citizen->name }}</td>
                                         <td>{{ $citizen->gender }}</td>
                                         <td>{{ $citizen->phone_number }}</td>
@@ -125,16 +121,73 @@
                                                         Aksi
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="{{ route('citizen.detail', $citizen->citizen_data_id) }}" id="detailButton">
+                                                        <a class="dropdown-item" href="{{ route('citizen.detail', $citizen->nik) }}" id="detailButton">
                                                             <i class="fas fa-eye"></i> Lihat
                                                         </a>
-                                                        <form action="{{ route('archive.restoreCitizen', $citizen->citizen_data_id) }}" method="POST">
+                                                        <form action="{{ route('archive.restoreCitizen', $citizen->nik) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="dropdown-item text-warning" id="archiveButton">
                                                                 <i class="fas fa-trash"></i> Keluarkan
                                                             </button>
                                                         </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </table>
+                            </div>
+                            <div class="float-right">
+                                {{ $citizens->withQueryString()->links() }}
+                            </div>
+
+                            <p class="text-muted mt-4">Data Informasi</p>
+                            <div class="clearfix mb-3"></div>
+                            <div class="table-responsive">
+                                <table class="table-striped table">
+                                    <tr>
+                                        <th>Judul</th>
+                                        <th>Deskripsi</th>
+                                        <th>Tanggal</th>
+                                        <th>Waktu</th>
+                                        <th>Tempat</th>
+                                        <th>Gambar</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                    @foreach ($informations as $info)
+                                    <tr>
+                                        <td>{{ $info->title }}</td>
+                                        <td>{{ $info->desc }}</td>
+                                        <td>{{ $info->date }}</td>
+                                        <td>{{ $info->time }}</td>
+                                        <td>{{ $info->place }}</td>
+                                        <td>
+                                            <img src="{{ Storage::url($info->image) }}" alt="Report Image" style="width: 50px;"></td>
+                                        <td>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="dropdown d-inline">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Aksi
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <form action="{{ route('archive.restoreInformation', $info->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="dropdown-item text-warning" id="archiveButton">
+                                                                <i class="fas fa-trash"></i> Keluarkan
+                                                            </button>
+                                                        </form>
+
+                                                        <form action="{{ route('archive.deleteInformation', $info->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="dropdown-item text-danger" id="archiveButton">
+                                                                <i class="fas fa-trash"></i> Hapus
+                                                            </button>
+                                                        </form>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

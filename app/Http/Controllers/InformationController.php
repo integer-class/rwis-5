@@ -14,7 +14,7 @@ class InformationController extends Controller
     public function index()
     {
         $informations = InformationModel::select('information_data.*')
-            ->where('is_archived', false)->paginate(3);
+            ->where('is_archived', false)->paginate(6);
 
         return view('pages.information.index', compact('informations'));
     }

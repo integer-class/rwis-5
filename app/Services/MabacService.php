@@ -196,7 +196,7 @@ class MabacService
             }, 0);
     
             return [
-                'citizen_data_id' => $alternatives[$key]->citizen_data_id,
+                'nik' => $alternatives[$key]->nik,
                 'value' => $total
             ];
         });    

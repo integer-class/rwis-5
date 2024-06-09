@@ -10,10 +10,10 @@ class CitizenDataModel extends Model
     use HasFactory;
 
     protected $table = 'citizen_data';
-    protected $primaryKey = 'citizen_data_id';
+    protected $primaryKey = 'nik';
 
     protected $fillable = [
-        'citizen_data_id',
+        'nik',
         'family_id',
         'health_id',
         'wealth_id',
@@ -43,5 +43,10 @@ class CitizenDataModel extends Model
     public function wealth()
     {
         return $this->belongsTo(WealthModel::class, 'wealth_id', 'wealth_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(CitizenUserModel::class, 'nik', 'nik');
     }
 }

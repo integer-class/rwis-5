@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Warga')
+@section('title', 'Edit Warga')
 
 @push('style')
 <!-- CSS Libraries -->
@@ -11,7 +11,7 @@
 @section('main')
 <div class="main-content">
     <section class="section">
-        <form action="{{ route('citizen.update', $citizen->citizen_data_id) }}" method="POST">
+        <form action="{{ route('citizen.update', $citizen->nik) }}" method="POST">
             @csrf
             <div class="section-header">
 
@@ -22,7 +22,7 @@
 
                 <div class="section-header-button">
                     <button type="submit" class="btn btn-primary" id="saveButton">Simpan</button>
-                    <a href="{{ route('citizen.detail', $citizen->citizen_data_id) }}" class="btn btn-danger" id="cancelButton">Batal</a>
+                    <a href="{{ route('citizen.detail', $citizen->nik) }}" class="btn btn-danger" id="cancelButton">Batal</a>
                 </div>
 
                 <div class="section-header-breadcrumb">
@@ -61,7 +61,7 @@
                             </div>
                             <div class="card-body">
                                 <label for="nik" class="form-label">Nomor Induk Kependudukan</label>
-                                <input type="text" class="form-control" value="{{ $citizen->citizen_data_id }}" name="nik" required>
+                                <input type="text" class="form-control" value="{{ $citizen->nik }}" name="nik" required>
                                 <label for="nkk" class="form-label">Nomor Kartu Keluarga</label>
                                 @if ($citizen->family_id)
                                 <select class="form-control" name="family_id" required>
@@ -111,107 +111,32 @@
                     <div class="col-md-5">
                         <div class="card" id="alamat">
                             <div class="card-header">
-                                <h4>Alamat</h4>
+                                <h4>Alamat & Kontak</h4>
                             </div>
                             <div class="card-body">
                                 <p class="text-muted">Alamat Domisili</p>
                                 <input type="text" class="form-control" value="{{ $citizen->address_domisili }}" name="address_domisili" required>
                                 <p class="text-muted">Alamat KTP</p>
                                 <input type="text" class="form-control" value="{{ $citizen->address_ktp }}" name="address_ktp" required>
-                            </div>
-                        </div>
-                        <div class="card" id="kontak">
-                            <div class="card-header">
-                                <h4>Kontak</h4>
-                            </div>
-                            <div class="card-body">
                                 <p class="text-muted">Nomor Telepon</p>
                                 <input type="text" class="form-control" value="{{ $citizen->phone_number }}" name="phone_number" required>
                             </div>
                         </div>
-                    </div>
-                    <!-- <div class="col-md-5">
-                        <div class="card" id="keluarga-1" style="display: none;">
+                        <div class="card" id="kontak">
                             <div class="card-header">
-                                <h4>Keluarga</h4>
+                                <h4>Akun</h4>
                             </div>
                             <div class="card-body">
-                                <p class="text-muted">Nomor Kartu Keluarga</p>
-                                @if ($citizen->family_id)
-                                <select class="form-control" name="family_id" required>
-                                    <option value="{{ $family->family_id }}">{{ $citizen->family_id }}</option>
-                                    @foreach ($all_family as $fam)
-                                    <option value="{{ $fam->family_id }}">{{ $fam->family_id }} - {{ $fam->family_head_name }}</option>
-                                    @endforeach
+                                <p class="text-muted">Level</p>
+                                <select class="form-control" name="level" value="{{ $user->level }}" required>
+                                    <option value="warga">Warga</option>
+                                    <option value="rt">RT</option>
                                 </select>
-                                @else
-                                <select class="form-control" name="family_id" required>
-                                    @foreach ($all_family as $fam)
-                                    <option value="{{ $fam->family_id }}">{{ $fam->family_id }}</option>
-                                    @endforeach
-                                </select>
-                                @endif
-                                <p class="text-muted">Nama Kepala Keluarga</p>
-                                @if ($citizen->family_id)
-                                <input type="text" class="form-control" value="{{ $family->family_head_name }}" name="family_head_name" required>
-                                @else
-                                <input type="text" class="form-control" value="Belum terdaftar" name="family_head_name" required>
-                                @endif
-                                <p class="text-muted">Alamat KK</p>
-                                @if ($citizen->family_id)
-                                <input type="text" class="form-control" value="{{ $family->address }}" name="address" required>
-                                @else
-                                <input type="text" class="form-control" value="Belum terdaftar" name="address" required>
-                                @endif
                                 <p class="text-muted">RT</p>
-                                @if ($citizen->family_id)
-                                <input type="text" class="form-control" value="{{ $family->rt }}" name="rt" required>
-                                @else
-                                <input type="text" class="form-control" value="Belum terdaftar" name="rt" required>
-                                @endif
-                                <p class="text-muted">RW</p>
-                                @if ($citizen->family_id)
-                                <input type="text" class="form-control" value="{{ $family->rw }}" name="rw" required>
-                                @else
-                                <input type="text" class="form-control" value="Belum terdaftar" name="rw" required>
-                                @endif
+                                <input type="text" class="form-control" value="{{ $user->no_rt }}" name="rt" required>
                             </div>
                         </div>
-                        <div class="card" id="keluarga-2" style="display: none;">
-                            <div class="card-body">
-                                <p class="text-muted">Desa/Kelurahan</p>
-                                @if ($citizen->family_id)
-                                <input type="text" class="form-control" value="{{ $family->village }}" name="village" required>
-                                @else
-                                <input type="text" class="form-control" value="Belum terdaftar" name="village" required>
-                                @endif
-                                <p class="text-muted">Kecamatan</p>
-                                @if ($citizen->family_id)
-                                <input type="text" class="form-control" value="{{ $family->sub_district }}" name="district" required>
-                                @else
-                                <input type="text" class="form-control" value="Belum terdaftar" name="district" required>
-                                @endif
-                                <p class="text-muted">Kabupaten/Kota</p>
-                                @if ($citizen->family_id)
-                                <input type="text" class="form-control" value="{{ $family->city }}" name="city" required>
-                                @else
-                                <input type="text" class="form-control" value="Belum terdaftar" name="city" required>
-                                @endif
-                                <p class="text-muted">Provinsi</p>
-                                @if ($citizen->family_id)
-                                <input type="text" class="form-control" value="{{ $family->province }}" name="province" required>
-                                @else
-                                <input type="text" class="form-control" value="Belum terdaftar" name="province" required>
-                                @endif
-                                <p class="text-muted">Kode Pos</p>
-                                @if ($citizen->family_id)
-                                <input type="text" class="form-control" value="{{ $family->postal_code }}" name="postal_code" required>
-                                @else
-                                <input type="text" class="form-control" value="Belum terdaftar" name="postal_code" required>
-                                @endif
-                            </div>
-                        </div>
-                    </div> -->
+                    </div>
                     <div class="col-md-5">
                         <div class="card" id="kesehatan" style="display: none;">
                             <div class="card-header">

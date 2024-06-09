@@ -18,7 +18,7 @@ class FamilyController extends Controller
             ->get()
             ->groupBy('family_id')
             ->map(function ($item) {
-            return $item->count();
+                return $item->count();
             });
         if ($Keyword) {
             $families = FamilyModel::select('family_data.*')
@@ -88,6 +88,7 @@ class FamilyController extends Controller
         $family->province = $request->province;
         $family->postal_code = $request->postal_code;
         $family->save();
+
         $familyId = $family->family_id;
         foreach ($request->citizens as $citizenId) {
             $citizen = CitizenDataModel::find($citizenId);
@@ -122,19 +123,23 @@ class FamilyController extends Controller
         $family->save();
 
         $familyId = $family->family_id;
-        // jika pengguna menambahkan anggota keluarga baru, tambahkan anggota keluarga tersebut ke dalam keluarga
-        // jika pengguna menghapus anggota keluarga, hapus anggota keluarga tersebut dari keluarga
-        $citizen= CitizenDataModel::select('citizen_data.*')
+
+        // cari citizen yang sebelumnya anggota keluarga
+        $citizen = CitizenDataModel::select('citizen_data.*')
             ->where('family_id', $familyId)
             ->get();
+        // hapus family_id dari citizen yang sebelumnya anggota keluarga
         foreach ($citizen as $c) {
             $c->family_id = null;
             $c->save();
         }
-        foreach ($request->citizens as $citizenId) {
-            $citizen = CitizenDataModel::find($citizenId);
-            $citizen->family_id = $familyId;
-            $citizen->save();
+        // tambahkan family_id baru ke citizen yang dipilih
+        if ($request->citizens) {
+            foreach ($request->citizens as $citizenId) {
+                $citizen = CitizenDataModel::find($citizenId);
+                $citizen->family_id = $familyId;
+                $citizen->save();
+            }
         }
 
         return redirect()->route('family.detail', $id);

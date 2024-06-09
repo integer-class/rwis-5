@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Blank Page')
+@section('title', 'Persuratan')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,9 +11,12 @@
         <section class="section letter">
             <div class="section-header">
                 <h1>Templat Surat</h1>
-                <div class="section-header-button">
-                    <a href="{{ route('template.create') }}" class="btn btn-primary" id="tambahButton">Tambah</a>
-                </div>
+                @can('rtrw')
+                    <div class="section-header-button">
+                        <a href="{{ route('template.create') }}" class="btn btn-primary" id="tambahButton">Tambah</a>
+                    </div>
+                @endcan
+
             </div>
 
             <div class="section-body">
@@ -27,20 +30,23 @@
                                             <h1 class="title mb-4">{{ $temp->name }}</h1>
                                             <embed src="{{ '/storage/template_letters/' . $temp->path }}"
                                                 type="application/pdf" width="100%" height="600px">
-                                            <div class="d-flex justify-content-between">
-                                                <a href="{{ route('template.edit', $temp->id) }}">
-                                                    <button class="btn btn-primary" type="button" id="editButton">
-                                                        <i class="fas fa-edit"></i> Edit
-                                                    </button>
-                                                </a>
-                                                <form action="{{ route('template.archive', $temp->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger" id="archiveButton">
-                                                        <i class="fas fa-trash"></i> Arsipkan
-                                                    </button>
-                                                </form>
-                                            </div>
+
+                                            @can('rtrw')
+                                                <div class="d-flex justify-content-between">
+                                                    <a href="{{ route('template.edit', $temp->id) }}">
+                                                        <button class="btn btn-primary" type="button" id="editButton">
+                                                            <i class="fas fa-edit"></i> Edit
+                                                        </button>
+                                                    </a>
+                                                    <form action="{{ route('template.archive', $temp->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger" id="archiveButton">
+                                                            <i class="fas fa-trash"></i> Arsipkan
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            @endcan
                                         </div>
                                     </div>
                                 </div>
@@ -55,9 +61,12 @@
 
             <div class="section-header">
                 <h1>Verifikasi Tanda Tangan Digital</h1>
-                <div class="section-header-button">
-                    <a href="{{ route('letter.create') }}" class="btn btn-primary" id="tambahButton">Tambah</a>
-                </div>
+                @can('rtrw')
+                    <div class="section-header-button">
+                        <a href="{{ route('letter.create') }}" class="btn btn-primary" id="tambahButton">Tambah</a>
+                    </div>
+                @endcan
+
             </div>
 
             <div class="section-body">
@@ -71,7 +80,9 @@
                                     <th>Alamat</th>
                                     <th>No. Whatsapp</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    @can('rtrw')
+                                        <th>Action</th>
+                                    @endcan
                                 </tr>
                                 @foreach ($letters as $letter)
                                     <tr>
@@ -84,6 +95,7 @@
                                         <td>
                                             {{ $letter->whatsapp_number }}
                                         </td>
+
                                         <td>
                                             @if ($letter->status == 'Belum Verifikasi')
                                                 <span class="badge badge-danger">{{ $letter->status }}</span>
@@ -93,41 +105,42 @@
                                                 <span class="badge badge-secondary">{{ $letter->status }}</span>
                                             @endif
                                         </td>
-                                        <td>
-                                            <div class="d-flex justify-content-left">
-                                                <div class="dropdown d-inline">
-                                                    <button class="btn btn-primary dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                                        aria-expanded="false">
-                                                        Aksi
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item"
-                                                            href="{{ '/storage/letters/' . $letter->file_path }}"
-                                                            id="detailButton" target="_blank">
-                                                            <i class="fas fa-eye"></i> Cek Berkas
-                                                        </a>
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('letter.edit', $letter->id) }}" id="editButton">
-                                                            <i class="fas fa-edit"></i> Update
-                                                        </a>
+                                        @can('rtrw')
+                                            <td>
+                                                <div class="d-flex justify-content-left">
+                                                    <div class="dropdown d-inline">
+                                                        <button class="btn btn-primary dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            Aksi
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item"
+                                                                href="{{ '/storage/letters/' . $letter->file_path }}"
+                                                                id="detailButton" target="_blank">
+                                                                <i class="fas fa-eye"></i> Cek Berkas
+                                                            </a>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('letter.edit', $letter->id) }}" id="editButton">
+                                                                <i class="fas fa-edit"></i> Update
+                                                            </a>
 
-                                                        <div class="dropdown-divider"></div>
+                                                            <div class="dropdown-divider"></div>
 
-                                                        <form action="{{ route('letter.archive', $letter->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="dropdown-item text-warning"
-                                                                id="archiveButton">
-                                                                <i class="fas fa-trash"></i> Arsipkan
-                                                            </button>
-                                                        </form>
+                                                            <form action="{{ route('letter.archive', $letter->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="dropdown-item text-warning"
+                                                                    id="archiveButton">
+                                                                    <i class="fas fa-trash"></i> Arsipkan
+                                                                </button>
+                                                            </form>
 
+                                                        </div>
                                                     </div>
-                                                </div>
-                                        </td>
-
+                                            </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                             </table>

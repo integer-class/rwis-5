@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Warga')
+@section('title', 'Tambah Surat')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -35,7 +35,7 @@
                                     <div class="form-group">
                                         <label>Nama</label>
                                         <input type="text" class="form-control" name="name" required>
-                                        <small class="text-muted">Nama kamu lah</small>
+                                        <small class="text-muted">Masukkan nama lengkap anda</small>
                                         @error('name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -43,7 +43,7 @@
                                     <div class="form-group">
                                         <label>Alamat</label>
                                         <input type="text" class="form-control" name="address" required></input>
-                                        <small class="text-muted">Omahmu nk ndi</small>
+                                        <small class="text-muted">Alamat rumah anda</small>
                                         @error('address')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -51,7 +51,7 @@
                                     <div class="form-group">
                                         <label>Nomor WA</label>
                                         <input type="text" class="form-control" name="whatsapp_number" required>
-                                        <small class="text-muted">Ningali nomor WA panjenengan</small>
+                                        <small class="text-muted">Nomor telepon atau WhatsApp (WA) yang dapat dihubungi</small>
                                         @error('whatsapp_number')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -69,18 +69,17 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label>Status</label>
                                         <select class="form-control" name="status" required>
                                             <option>Sudah Verifikasi</option>
                                             <option selected>Belum Verifikasi</option>
-                                            <option>Mbuh Ilang</option>
                                         </select>
-                                        <small class="text-muted">guduk status hubunganmu ndol</small>
+                                        <small class="text-muted">Apakah format surat sudah benar</small>
                                         @error('status')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 

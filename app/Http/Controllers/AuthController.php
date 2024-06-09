@@ -18,32 +18,19 @@ class AuthController extends Controller
         return view('pages.auth.login');
     }
 
-    public function login_process(Request $request)
-    {
-        // $validator = Validator::make($request->all(), [
-        //     'nik' => 'required',
-        //     'password' => 'required'
+    public function authenticate(Request $request){
+        // $credentials = $request->validate([
+        //    'nik' => 'required',
+        //    'password' => 'required'
         // ]);
-        
-        // if ($validator->fails()) {
-        //     return redirect()->route('login')->withErrors($validator)->withInput();
+
+        // if (Auth::attempt($credentials)) {
+        //     $request->session()->regenerate();
+
+        //     return redirect()->intended('dashboard');
         // }
 
-        // $nik = $request->nik;
-        // $password = $request->password;
-
-        // $user = CitizenUserModel::where('nik', $nik)->first();
-
-        // if (!$user) {
-        //     return redirect()->route('login')->with('error', 'NIK tidak ditemukan');
-        // }
-
-        // if (!Hash::check($password, $user->password)) {
-        //     return redirect()->route('login')->with('error', 'Password salah');
-        // }
-
-        // Auth::login($user);
-        // return redirect()->route('citizen.index')->with('success', 'Login berhasil');
+        // return back()->with('loginError', 'Login Gagal!');
 
         $request->validate([
             'nik' => 'required|string',
@@ -54,54 +41,26 @@ class AuthController extends Controller
 
         if ($user && $request->password === $user->password) {
             Auth::login($user);
-            return redirect()->route('citizen.index');
+            $request->session()->regenerate();
+
+            return redirect()->intended('dashboard');
         } else {
-            return back()->withErrors(['nik' => 'NIK atau password salah.']);
+            return back()->withError(['nik' => 'NIK atau password salah.']);
         }
     }
 
-    public function register()
-    {
-        return view('pages.auth.register');
-    }
+    
 
-    public function register_process(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'nik' => 'required',
-            'password' => 'required',
-            'name' => 'required'
-
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->route('register')->withErrors($validator)->withInput();
-        }
-
-        $nik = $request->nik;
-        $password = Hash::make($request->password);
-
-        $user = new CitizenUserModel();
-        $user->nik = $nik;
-        $user->citizen_data_id = $nik;
-        $user->password = $password;
-        $user->level = 'warga';
-        $user->save();
-
-        $citizenData = new CitizenDataModel();
-        $citizenData->citizen_data_id = $nik;
-        $citizenData->name = $request->name;
-        $citizenData->save();
-
-        return redirect()->route('login')->with('success', 'Registrasi berhasil');
-    }
-
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
 
-        session()->flush();
+        $request->session()->invalidate();
 
-        return redirect()->route('login');
+        $request->session()->regenerateToken();
+
+
+        return redirect('/');
     }
+    
 }
