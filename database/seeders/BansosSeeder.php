@@ -12,6 +12,6 @@ class BansosSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\BansosModel::factory(1)->create();
+        \App\Models\BansosModel::factory(10)->create();
     }
 }

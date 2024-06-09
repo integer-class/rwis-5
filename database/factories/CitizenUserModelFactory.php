@@ -16,13 +16,16 @@ class CitizenUserModelFactory extends Factory
      */
     public function definition(): array
     {
-        $nik = \App\Models\CitizenDataModel::pluck('nik')->toArray();
+        // map dahulu nik nya
+        $nik = \App\Models\CitizenDataModel::pluck('nik')->unique()->toArray();
         $no_rt = \App\Models\FamilyModel::pluck('rt')->toArray();
         $name = \App\Models\CitizenDataModel::pluck('name')->toArray();
+
+        // buatkan data untuk setiap nik nya
         return [
             'nik' => $this->faker->unique()->randomElement($nik),
             'name' => $this->faker->randomElement($name),
-            'level' => $this->faker->randomElement(['rt', 'warga', 'rw']),
+            'level' => $this->faker->randomElement(['rt', 'warga']),
 
             'password' => $this->faker->randomElement(['12345678', 'password']),
             'no_rt' => $this->faker->randomElement($no_rt)

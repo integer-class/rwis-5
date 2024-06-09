@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Report>
  */
-class FamilyModelFactory extends Factory
+class ReportFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,29 +16,17 @@ class FamilyModelFactory extends Factory
      */
     public function definition(): array
     {
-        $names = \App\Models\CitizenDataModel::pluck('name')->toArray();
+        $nik = \App\Models\CitizenDataModel::pluck('nik')->toArray();
+        $nama = \App\Models\CitizenDataModel::pluck('name')->toArray();
         return [
-            'family_id'=> $this->generate_nkk($this->faker),
-            'family_head_name' => $this->faker->randomElement($names),
-            'address' => $this->faker->randomElement(self::$address),
-            'rt' => $this->faker->numberBetween(1, 10),
-            'rw' => '03',
-            'village' => $this->faker->city(),
-            'sub_district' => $this->faker->city(),
-            'city' => $this->generate_city($this->faker),
-            'province' => 'Jawa Timur',
-            'postal_code' => $this->faker->randomNumber(5)
+            'nik' => $this->faker->randomElement($nik),
+            'nama' => $this->faker->randomElement($nama),
+            'alamat' => $this->faker->randomElement(self::$address),
+            'judul_laporan' => $this->generate_judul_laporan($this->faker),
+            'tanggal' => $this->faker->date(),
+            'image' => $this->faker->imageUrl(),
+            'status' => $this->faker->randomElement(['Menunggu Verifikasi', 'Diterima', 'Ditolak'])
         ];
-    }
-
-    private function generate_nkk($faker)
-    {
-        $kode_provinsi = str_pad(rand(11, 96), 2, '0', STR_PAD_LEFT);
-        $tanggal_lahir = $faker->date('ymd');
-        $kode_kabupaten = str_pad(rand(1, 99), 2, '0', STR_PAD_LEFT);
-        $nomor_urut = str_pad(rand(1, 9999), 4, '0', STR_PAD_LEFT);
-
-        return $kode_provinsi . $tanggal_lahir . $kode_kabupaten . $nomor_urut;
     }
 
     protected static $address = [
@@ -48,15 +36,60 @@ omas No. 35', 'Jl. Raya Tlogomas No. 36', 'Jl. Raya Tlogomas No. 37', 'Jl. Raya 
     106', 'Jl. Raya Tlogomas No. 107', 'Jl. Raya Tlogomas No. 108', 'Jl. Raya Tlogomas No. 109', 'Jl. Raya Tlogomas No. 110', 'Jl. Raya Tlogomas No. 111', 'Jl. Raya Tlogomas No. 112', 'Jl. Raya Tlogomas No. 113', 'Jl. Raya Tlogomas No. 114', 'Jl. Raya Tlogomas No. 115', 'Jl. Raya Tlogomas No. 116', 'Jl. Raya Tlogomas No. 117', 'Jl. Raya Tlogomas No. 118', 'Jl. Raya Tlogomas No. 119', 'Jl. Raya Tlogomas No. 120', 'Jl. Raya Tlogomas No. 121', 'Jl. Raya Tlogomas No. 122', 'Jl. Raya Tlogomas No. 123', 'Jl. Raya Tlogomas No. 124', 'Jl. Raya Tlogomas No. 125', 'Jl. Raya Tlogomas No. 126', 'Jl. Raya Tlogomas No. 127', 'Jl. Raya Tlogomas No. 128', 'Jl. Raya Tlogomas No. 129', 'Jl. Raya Tlogomas No. 130', 'Jl. Raya Tlogomas No. 131', 'Jl. Raya Tlogomas No. 132', 'Jl. Raya Tlogomas No. 133', 'Jl. Raya Tlogomas No. 134', 'Jl. Raya Tlogomas No. 135', 'Jl. Raya Tlogomas No. 136', 'Jl. Raya Tlogomas No. 137', 'Jl. Raya Tlogomas No. 138', 'Jl. Raya Tlogomas No. 139', 'Jl. Raya Tlogomas No. 140', 'Jl. Raya Tlogomas No. 141'
     ];
 
-    private function generate_city($faker)
+    private function generate_judul_laporan($faker)
     {
-        $cityJatim = [
-            'Kabupaten Bangkalan', 'Kabupaten Banyuwangi', 'Kabupaten Blitar', 'Kabupaten Bojonegoro', 'Kabupaten Bondowoso', 'Kabupaten Gresik', 'Kabupaten Jember', 'Kabupaten Jombang', 'Kabupaten Kediri', 'Kota Malang',
-            'Kabupaten Lamongan', 'Kota Madiun', 'Kabupaten Magetan', 'Kabupaten Mojokerto', 'Kabupaten Nganjuk', 'Kabupaten Ngawi', 'Kabupaten Pacitan', 'Kabupaten Pamekasan', 'Kabupaten Pasuruan', 'Kabupaten Ponorogo',
+        $judul = [
+            'Pos ronda kotor', 
+            'Ada orang bawa cewek ke kamar', 
+            'Keasikan dalam berumah tangga (KDRT)', 
+            'Tetangga berisik', 
+            'Pendatang baru tidak sopan',
+            'Pencurian sepeda motor', 
+            'Kebakaran rumah', 
+            'Pohon tumbang menutup jalan', 
+            'Kecelakaan lalu lintas', 
+            'Sampah menumpuk di depan rumah', 
+            'Anak-anak bermain petasan', 
+            'Keributan antar warga', 
+            'Kebocoran pipa air', 
+            'Hewan peliharaan hilang', 
+            'Penipuan via telepon', 
+            'Penyalahgunaan narkoba', 
+            'Pencemaran udara', 
+            'Perjudian ilegal', 
+            'Pelaku usaha tidak berizin', 
+            'Lampu jalan mati', 
+            'Bangunan liar', 
+            'Perusakan fasilitas umum', 
+            'Pelecehan seksual', 
+            'Pengamen liar', 
+            'Parkir liar', 
+            'Jalan berlubang', 
+            'Kualitas air buruk', 
+            'Pengemis anak-anak', 
+            'Penyerangan warga', 
+            'Kebocoran gas', 
+            'Penjualan alkohol ilegal', 
+            'Penyakit menular', 
+            'Pemalakan di pasar', 
+            'Pengeroyokan di jalan', 
+            'Pembakaran sampah sembarangan', 
+            'Kekerasan antar geng', 
+            'Gangguan aliran listrik', 
+            'Pelacuran ilegal', 
+            'Korupsi perangkat desa', 
+            'Penggunaan lahan ilegal', 
+            'Kegiatan kampanye ilegal', 
+            'Pemadaman listrik bergilir', 
+            'Penipuan investasi', 
+            'Perusakan hutan', 
+            'Gangguan kebisingan industri', 
+            'Penggunaan narkoba di sekolah', 
+            'Vandalisme fasilitas umum', 
+            'Gangguan sinyal telepon', 
+            'Pencurian kabel listrik'
         ];
 
-        return $faker->randomElement($cityJatim);
+        return $faker->randomElement($judul);
     }
-
-
 }

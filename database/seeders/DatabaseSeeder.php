@@ -22,14 +22,14 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            AssetSeeder::class,
             WealthSeeder::class,
             HealthSeeder::class,
             FamilySeeder::class,
             CitizenSeeder::class,
+            ReportSeeder::class,
+            // BansosSeeder::class,
+            FacilitySeeder::class,
             CitizenUserSeeder::class,
-            BansosSeeder::class,
-            FacilitySeeder::class
         ]);
     }
 }

@@ -18,14 +18,18 @@ class BansosModelFactory extends Factory
     public function definition(): array
     {
         return DB::transaction(function () {
-            // Get all citizen_data_id from CitizenDataModel
-            $allCitizenDataIds = \App\Models\CitizenDataModel::pluck('nik')->toArray();
+            static $unusedCitizenDataIds = null;
     
-            // Get all citizen_data_id that have been used in BansosModel
-            $usedCitizenDataIds = \App\Models\BansosModel::pluck('nik')->toArray();
+            if ($unusedCitizenDataIds === null) {
+                // Get all citizen_data_id from CitizenDataModel
+                $allCitizenDataIds = \App\Models\CitizenDataModel::pluck('nik')->toArray();
     
-            // Get the citizen_data_ids that have not been used yet
-            $unusedCitizenDataIds = array_diff($allCitizenDataIds, $usedCitizenDataIds);
+                // Get all citizen_data_id that have been used in BansosModel
+                $usedCitizenDataIds = \App\Models\BansosModel::pluck('nik')->toArray();
+    
+                // Get the citizen_data_ids that have not been used yet
+                $unusedCitizenDataIds = array_diff($allCitizenDataIds, $usedCitizenDataIds);
+            }
     
             // If there are no unused citizen_data_ids, throw an exception
             if (empty($unusedCitizenDataIds)) {
