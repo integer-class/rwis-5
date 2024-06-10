@@ -35,7 +35,6 @@ class CitizenController extends Controller
                 ->join('citizen_user_data', 'citizen_user_data.nik', '=', 'citizen_data.nik')
                 ->where('citizen_data.is_archived', false)
                 ->paginate(8);
-            dd($citizens);
             $citizensRT = CitizenDataModel::select('citizen_data.nik', 'citizen_data.name', 'citizen_data.gender','citizen_data.phone_number' ,'citizen_data.address_domisili', 'citizen_data.address_ktp')
                 ->join('citizen_user_data', 'citizen_user_data.nik', '=', 'citizen_data.nik')
                 ->where('citizen_user_data.no_rt', $rt)
