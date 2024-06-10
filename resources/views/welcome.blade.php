@@ -233,9 +233,6 @@
                         keep your eyes on
                     </p>
                 </div>
-                <div class="col-md-1 ms-auto">
-                    <button type="button" class="btn btn-outline-primary">All</button>
-                </div>
             </div>
             <div class="row mt-5">
                 @foreach ($top3information as $information)
@@ -472,7 +469,7 @@
                         <img src="{{ asset('img/ferin.png') }}" alt="">
                     </div>
                     <p class="name">Athriya G.</p>
-                    <p class="position">Front-end Developer</p>
+                    <p class="position">Front-end Developer & Data Analyst</p>
                 </div>
                 <div class="col-sm-8 col-md-2 mt-5">
                     <div class="card">
@@ -486,21 +483,21 @@
                         <img src="{{ asset('img/me.jpeg') }}" alt="">
                     </div>
                     <p class="name">Davis</p>
-                    <p class="position">Anu</p>
+                    <p class="position">Pullstack Developer</p>
                 </div>
                 <div class="col-sm-8 col-md-2 mt-5">
                     <div class="card">
                         <img src="{{ asset('img/lenka.png') }}" alt="">
                     </div>
                     <p class="name">Lenka</p>
-                    <p class="position">Front-end Developer</p>
+                    <p class="position">Front-end Developer & UI Designer</p>
                 </div>
                 <div class="col-sm-8 col-md-2 mt-5">
                     <div class="card">
                         <img src="{{ asset('img/sus.jpg') }}" alt="">
                     </div>
                     <p class="name">Sus</p>
-                    <p class="position">Front-end Developer</p>
+                    <p class="position">AFK Developer & Public Relation</p>
                 </div>
 
             </div>
@@ -516,36 +513,18 @@
             <p class="title1">WHAT’S NOW</p>
             <p class="title2">Latest Reports & News</p>
             <div class="row justify-content-around">
+                @foreach($top3report as $report)
                 <div class="col-sm-8 col-md-3">
-                    <div class="card-bapak">
+                    <div class="card" style="background-image: url('{{ asset('storage/' . $report->image) }}'); background-size: cover; background-position: center; height: 400px; weight: 700px; border-radius: 10px;">
                         <div class="card card-date">
-                            <p class="date">25</p>
-                            <p class="day">Tue</p>
+                            <p class="date">{{ date('d', strtotime($report->tanggal)) }}</p>
+                            <p class="day">{{ date('D', strtotime($report->tanggal)) }}</p>
                         </div>
                     </div>
-                    <p class="title-news">BLT Rp 900.000 Fix Cair Hari Ini</p>
-                    <p class="desc">25 Maret 2024 di 4 Wilayah di Jawa Timur</p>
+                    <p class="title-news">{{ $report->judul_laporan}}</p>
+                    <p class="desc">{{ $report->tanggal}} dilaporkan oleh {{ $report->nama}}</p>
                 </div>
-                <div class="col-sm-8 col-md-3">
-                    <div class="card-jalan">
-                        <div class="card card-date">
-                            <p class="date">25</p>
-                            <p class="day">Tue</p>
-                        </div>
-                    </div>
-                    <p class="title-news">BLT Rp 900.000 Fix Cair Hari Ini</p>
-                    <p class="desc">25 Maret 2024 di 4 Wilayah di Jawa Timur</p>
-                </div>
-                <div class="col-sm-8 col-md-3">
-                    <div class="card-sampah">
-                        <div class="card card-date">
-                            <p class="date">25</p>
-                            <p class="day">Tue</p>
-                        </div>
-                    </div>
-                    <p class="title-news">BLT Rp 900.000 Fix Cair Hari Ini</p>
-                    <p class="desc">25 Maret 2024 di 4 Wilayah di Jawa Timur</p>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

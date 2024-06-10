@@ -6,6 +6,7 @@ use App\Models\FamilyModel;
 use App\Models\HealthModel;
 use App\Models\CitizenDataModel;
 use App\Models\InformationModel;
+use App\Models\Report;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -20,7 +21,8 @@ class LandingController extends Controller
         $adultCount = HealthModel::where('age', '>', 15)->count();
         $childCount = HealthModel::where('age', '<', 15)->count();
 
+        $top3report = Report::orderBy('created_at', 'desc')->limit(3)->get();
 
-        return view('welcome', compact('top3information', 'citizenCount', 'rtCount', 'familyCount', 'adultCount', 'childCount'));
+        return view('welcome', compact('top3information', 'citizenCount', 'rtCount', 'familyCount', 'adultCount', 'childCount', 'top3report'));
     }
 }
