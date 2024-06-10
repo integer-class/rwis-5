@@ -53,15 +53,25 @@ class ReportController extends Controller
             $imagePath = null;
         }
 
-        Report::create([
-            'nik' => $nik,
-            'nama' => $name,
-            'alamat' => $alamat,
-            'judul_laporan' => $request->judul_laporan,
-            'tanggal' => $request->tanggal,
-            'image' => $imagePath,
-            'status' => null,
-        ]);
+        $report = new Report();
+        $report->nik = $nik;
+        $report->nama = $name;
+        $report->alamat = $alamat;
+        $report->judul_laporan = $request->judul_laporan;
+        $report->tanggal = $request->tanggal;
+        $report->image = $imagePath;
+        $report->status = null;
+        $report->save();
+
+        // Report::create([
+        //     'nik' => $nik,
+        //     'nama' => $name,
+        //     'alamat' => $alamat,
+        //     'judul_laporan' => $request->judul_laporan,
+        //     'tanggal' => $request->tanggal,
+        //     'image' => $imagePath,
+        //     'status' => null,
+        // ]);
 
         return redirect()->route('report.index')->with('success', 'Report created successfully.');
     }
