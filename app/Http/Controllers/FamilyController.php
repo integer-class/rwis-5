@@ -37,6 +37,7 @@ class FamilyController extends Controller
                 ->where('family_data.is_archived', false)
                 ->paginate(8);
         }
+
         return view('pages.family.index', compact('families', 'famMemberCount'));
     }
 

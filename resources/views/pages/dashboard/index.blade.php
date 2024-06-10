@@ -207,6 +207,7 @@
                                                 <div class="text-primary">{{ $item->name }}</div>
                                             </div>
                                             <div class="media-title">{{ $item->phone_number }}</div>
+                                            <div class="text-muted">RT {{ $item->no_rt }}</div>
                                             <div class="text-muted">{{ $item->address_domisili }}</div>
                                         </div>
                                     </li>

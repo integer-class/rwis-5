@@ -21,7 +21,6 @@ class CitizenDataModelFactory extends Factory
         $family_id = \App\Models\FamilyModel::pluck('family_id')->toArray();
         $health_id = \App\Models\HealthModel::pluck('health_id')->toArray();
         $wealth_id = \App\Models\WealthModel::pluck('wealth_id')->toArray();
-
         return [
             'nik' => $this->generate_nik($faker),
             'family_id' => $this->faker->randomElement($family_id),

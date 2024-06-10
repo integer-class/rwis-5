@@ -23,8 +23,8 @@ class FamilyModelFactory extends Factory
             'address' => $this->faker->randomElement(self::$address),
             'rt' => $this->faker->numberBetween(1, 10),
             'rw' => '03',
-            'village' => $this->faker->city(),
-            'sub_district' => $this->faker->city(),
+            'village' => $this->generate_city($this->faker),
+            'sub_district' => $this->generate_city($this->faker),
             'city' => $this->generate_city($this->faker),
             'province' => 'Jawa Timur',
             'postal_code' => $this->faker->randomNumber(5)
