@@ -41,8 +41,10 @@ class ReportController extends Controller
         $nik = Auth::user()->nik;
         $name = Auth::user()->name;
         $alamat = CitizenDataModel::select('citizen_data.address_domisili')
-                    ->join('citizen_user_data', 'citizen_user_data.nik', '=', 'citizen_data.nik')
-                    ->where('citizen_data.nik', $nik);
+        ->join('citizen_user_data', 'citizen_user_data.nik', '=', 'citizen_data.nik')
+        ->where('citizen_data.nik', $nik)
+        ->first()
+        ->address_domisili;
 
         if ($request->hasFile('image')) {
             $extfile = $request->image->getClientOriginalExtension();
@@ -60,7 +62,7 @@ class ReportController extends Controller
         $report->judul_laporan = $request->judul_laporan;
         $report->tanggal = $request->tanggal;
         $report->image = $imagePath;
-        $report->status = null;
+        $report->status = 'Menunggu Verifikasi';
         $report->save();
 
         // Report::create([
