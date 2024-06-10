@@ -9,12 +9,18 @@
 @section('main')<div class="main-content">
     <section class="section bansos">
         <div class="section-header">
+            @can('rtrw')
             <h1>Seleksi Bantuan Sosial</h1>
+            @endcan
+            @can('warga')
+            <h1>Status Bantuan Sosial</h1>
+            @endcan
             <div class="section-header-breadcrumb">
                 <!-- <div class="breadcrumb-item active"><a href="{{ route('information.create') }}" class="btn btn-primary">Tambahkan Informasi</a></div> -->
             </div>
         </div>
 
+        @can('rtrw')
         <div class="section-body">
             <div class="row">
                 <div class="col">
@@ -77,6 +83,42 @@
                 </div>
             </div>
         </div>
+        @endcan
+
+        @can('warga')
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table-striped table">
+                        <tr>
+
+                            <th>NIK</th>
+                            <th>Nama</th>
+                            <th>No. Telepon</th>
+                            <th>Alamat</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                        @foreach ($bansosable as $bansos)
+                        <tr>
+                            <td>{{ $bansos->nik }}</td>
+                            <td>{{ $bansos->name }}</td>
+                            <td>{{ $bansos->phone_number }}</td>
+                            <td>{{ $bansos->address_ktp }}</td>
+                            @if ($bansos->status==1)
+                            <td><span class="badge badge-success">Penerima</span></td>
+                            @else
+                            <td><span class="badge badge-warning">Dalam Pengajuan</span></td>
+                            @endif
+                            <td>
+                                <a href="{{ route('bansos.detail', $bansos->nik) }}" class="btn btn-primary">Detail</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+        @endcan
     </section>
 </div>
 @endsection

@@ -5,6 +5,7 @@ use App\Models\BansosModel;
 use App\Models\CitizenDataModel;
 use App\Services\MabacService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BansosController extends Controller
 {   
@@ -17,12 +18,25 @@ class BansosController extends Controller
 
     public function index()
     {
-        $bansosable = BansosModel::select('citizen_data.nik', 'citizen_data.name', 'citizen_data.phone_number', 'citizen_data.address_ktp', 'bansos_data.status')
-            ->join('citizen_data', 'citizen_data.nik', '=', 'bansos_data.nik')
-            ->where('bansos_data.is_bansosable', true)->paginate(8);
+        if (Auth::user()->level == 'rt' || Auth::user()->level == 'rw'){
+            $bansosable = BansosModel::select('citizen_data.nik', 'citizen_data.name', 'citizen_data.phone_number', 'citizen_data.address_ktp', 'bansos_data.status')
+                ->join('citizen_data', 'citizen_data.nik', '=', 'bansos_data.nik')
+                ->where('bansos_data.is_bansosable', true)
+                ->paginate(8);
+            return view('pages.bansos.index', compact('bansosable'));
+        } elseif (Auth::user()->level == 'warga') {
+            $bansosable = BansosModel::select('citizen_data.nik', 'citizen_data.name', 'citizen_data.phone_number', 'citizen_data.address_ktp', 'bansos_data.status')
+                ->join('citizen_data', 'citizen_data.nik', '=', 'bansos_data.nik')
+                ->where('citizen_data.nik', Auth::user()->nik)
+                ->paginate(8);
+            return view('pages.bansos.index', compact('bansosable'));
+        }
+        // $bansosable = BansosModel::select('citizen_data.nik', 'citizen_data.name', 'citizen_data.phone_number', 'citizen_data.address_ktp', 'bansos_data.status')
+        //     ->join('citizen_data', 'citizen_data.nik', '=', 'bansos_data.nik')
+        //     ->where('bansos_data.is_bansosable', true)->paginate(8);
 
-        // dd($bansosable);
-        return view('pages.bansos.index', compact ('bansosable'));
+        // // dd($bansosable);
+        // return view('pages.bansos.index', compact ('bansosable'));
     }
 
     // calculate warga yang layak menerima bansos menggunakan mabac

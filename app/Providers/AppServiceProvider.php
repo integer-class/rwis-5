@@ -37,5 +37,9 @@ class AppServiceProvider extends ServiceProvider
             return $user->level === 'rw';
         });
 
+        Gate::define('warga', function (User $user) {
+            return $user->level === 'warga';
+        });
+
     }
 }

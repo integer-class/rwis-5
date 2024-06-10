@@ -11,9 +11,11 @@
     <section class="section facility">
         <div class="section-header">
             <h1>Fasilitas RW 07</h1>
+            @can('rtrw')
             <div class="section-header-button">
                 <a href="{{ route('facilities.create') }}" class="btn btn-primary">+ Tambah Fasilitas</a>
             </div>
+            @endcan
         </div>
 
         <div class="section-body">
@@ -28,12 +30,14 @@
                             <div class="article-details text-center">
                                 <h1 class="title">{{ $facility->name }}</h1>
                                 <a href="{{ route('facilities.show', $facility->id) }}" class="btn btn-info mt-2">Detail</a>
+                                @can('rtrw')
                                 <a href="{{ route('facilities.edit', $facility->id) }}" class="btn btn-outline-secondary mt-2">Edit</a>
                                 <form action="{{ route('facilities.destroy', $facility->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger mt-2">Delete</button>
                                 </form>
+                                @endcan
                             </div>
                         </article>
                     </div>

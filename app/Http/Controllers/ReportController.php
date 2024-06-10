@@ -15,8 +15,13 @@ class ReportController extends Controller
 
     public function index()
     {
-        $reports = Report::all();
-        return view('pages.report.index', compact('reports'));
+        if (Auth::user()->level == 'rt' || Auth::user()->level == 'rw'){
+            $reports = Report::paginate(10);
+            return view('pages.report.index', compact('reports'));
+        } elseif (Auth::user()->level == 'warga') {
+            $reports = Report::where('nik', Auth::user()->nik)->paginate(10);
+            return view('pages.report.index', compact('reports'));
+        }
     }
 
     public function create()

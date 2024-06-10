@@ -24,27 +24,26 @@
             </li>
 
             @can('rtrw')
-                <li
-                    class="{{ Request::is('citizen*') || Request::is('family*') || Request::is('archive*') ? 'active' : '' }}">
-                    <a class="nav-link has-dropdown"><i class="fa-solid fa-users"></i> <span>Warga</span></a>
-                    <ul class="dropdown-menu">
-                        <li class="{{ Request::is('citizen*') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('citizen.index') }}">Data Warga</a>
-                        </li>
-                        <li class="{{ Request::is('family*') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('family.index') }}">Data Keluarga</a>
-                        </li>
-                        <li class="{{ Request::is('archive*') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('archive.index') }}">Data Arsip</a>
-                        </li>
-                    </ul>
-                </li>
+            <li class="{{ Request::is('citizen*') || Request::is('family*') || Request::is('archive*') ? 'active' : '' }}">
+                <a class="nav-link has-dropdown"><i class="fa-solid fa-users"></i> <span>Warga</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('citizen*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('citizen.index') }}">Data Warga</a>
+                    </li>
+                    <li class="{{ Request::is('family*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('family.index') }}">Data Keluarga</a>
+                    </li>
+                    <li class="{{ Request::is('archive*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('archive.index') }}">Data Arsip</a>
+                    </li>
+                </ul>
+            </li>
             @endcan
-
             <li class="{{ Request::is('bansos') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('bansos.index') }}"><i class="fa-solid fa-money-bill"></i>
                     <span>Bantuan Sosial</span></a>
             </li>
+
 
             <li class="{{ Request::is('letter') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('letter.index') }}"><i class="fa-solid fa-envelope"></i>
