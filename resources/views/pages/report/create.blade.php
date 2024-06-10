@@ -16,7 +16,7 @@
                         @csrf
                         {{-- <div class="form-group">
                             <label for="nama">Nama</label>
-                            <input type="text" name="nama" class="form-control" required>
+                            <input type="text" name="nama" class="form-control" value="{{ Auth::user()->name }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group">
                             <label for="tanggal">Tanggal</label>
-                            <input type="date" name="tanggal" class="form-control" required>
+                            <input type="date" name="tanggal" class="form-control" value="{{ date('Y-m-d') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="image">Upload Gambar</label>

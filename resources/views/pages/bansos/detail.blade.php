@@ -55,10 +55,17 @@
                                     <p><span class="badge badge-success">Penerima</span></p>
                                     @else
                                     <p><span class="badge badge-warning">Dalam Pengajuan</span></p>
+                                    @can('rtrw')
                                     <p class="text-muted">
                                         Sedang dalam proses pengajuan bantuan sosial. Mohon konfirmasi jika pengajuan sudah selesai.
                                     </p>
                                     <button class="btn btn-primary mt-2" data-toggle="modal" data-target="#confirmationModal">Konfirmasi Sudah Menerima</button>
+                                    @endcan
+                                    @can('warga')
+                                    <p class="text-muted">
+                                        Sedang dalam proses pengajuan bantuan sosial. Mohon tunggu konfirmasi dari RT / RW setempat.
+                                    </p>
+                                    @endcan
                                     @endif
 
                                     <!-- <p class="text-muted">Kota / Kabupaten</p>
