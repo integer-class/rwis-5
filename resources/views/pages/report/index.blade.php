@@ -168,7 +168,7 @@
                                     @if ($report->status == 'accepted' || $report->status == 'rejected' || $report->status == 'Menunggu Verifikasi')
                                         <tr>
                                             <td>
-                                                <img src="{{ Storage::url($report->image) }}" alt="Report Image" style="width: 50px;">
+                                                <img src="{{ Storage::url('images/' . $report->image) }}" alt="Report Image" style="width: 50px;">
                                             </td>
                                             <td>{{ $report->judul_laporan }}</td>
                                             <td>{{ $report->nama }}</td>

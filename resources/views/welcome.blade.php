@@ -37,16 +37,31 @@
                             aria-label="Slide 2"></button>
                         <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2"
                             aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="3"
+                            aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="4"
+                            aria-label="Slide 5"></button>
+                        <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="5"
+                            aria-label="Slide 6"></button>
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="{{ asset('img/village.png') }}" class="d-block corusel-img" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ asset('img/bapakmu.jpg') }}" class="d-block corusel-img" alt="...">
+                            <img src="{{ asset('img/balairw.jpg') }}" class="d-block corusel-img" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ asset('img/me.jpeg') }}" class="d-block corusel-img" alt="...">
+                            <img src="{{ asset('img/bansos.jpg') }}" class="d-block corusel-img" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('img/houses.jpg') }}" class="d-block corusel-img" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('img/kerja-bakti1.jpg') }}" class="d-block corusel-img" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('img/posyandu2.jpg') }}" class="d-block corusel-img" alt="...">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
@@ -300,7 +315,7 @@
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="card ms-5 mt-5">
-                            <a href="">
+                            <a href="{{ route('dashboard') }}">
                                 <div class="card-body p-5">
                                     <div class="logo rounded-circle p-4 mt-4 mb-4">
                                         <img src="{{ asset('img/home.png') }}" alt="">
@@ -309,8 +324,8 @@
                                     <p class="desc-card">If there’s an urgent <br>
                                         neccessities with RT/RW <br>
                                         you can view their contacts <br>
+                                        here</p>
                             </a>
-                            here</p>
                         </div>
                     </div>
                 </div>

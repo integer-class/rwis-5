@@ -13,11 +13,11 @@
         <section class="section">
             <div class="section-header">
                 @if (Auth::user()->level == 'warga')
-                    <h1>Dashboard warga</h1>
+                    <h1>Dashboard Warga</h1>
                 @elseif(Auth::user()->level == 'rt')
-                    <h1>Dashboard rt</h1>
+                    <h1>Dashboard RT</h1>
                 @elseif(Auth::user()->level == 'rw')
-                    <h1>Dashboard rw</h1>
+                    <h1>Dashboard RW</h1>
                 @endif
             </div>
             @can('rtrw')

@@ -24,7 +24,7 @@ class ReportFactory extends Factory
             'alamat' => $this->faker->randomElement(self::$address),
             'judul_laporan' => $this->generate_judul_laporan($this->faker),
             'tanggal' => $this->faker->date(),
-            'image' => $this->faker->imageUrl(),
+            'image' => $this->faker->randomElement(['Kerja Bakti.jpeg','Lampu Jalan Mati.jpeg', 'pohon tumbang.jpeg']),
             'status' => $this->faker->randomElement(['Menunggu Verifikasi', 'Diterima', 'Ditolak'])
         ];
     }

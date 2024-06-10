@@ -61,11 +61,9 @@
 
             <div class="section-header">
                 <h1>Verifikasi Tanda Tangan Digital</h1>
-                @can('rtrw')
-                    <div class="section-header-button">
-                        <a href="{{ route('letter.create') }}" class="btn btn-primary" id="tambahButton">Tambah</a>
-                    </div>
-                @endcan
+                <div class="section-header-button">
+                    <a href="{{ route('letter.create') }}" class="btn btn-primary" id="tambahButton">Tambah</a>
+                </div>
 
             </div>
 

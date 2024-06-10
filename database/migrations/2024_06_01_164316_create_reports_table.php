@@ -9,7 +9,7 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->string('nik');
+            $table->bigInteger('nik');
             $table->string('nama');
             $table->string('alamat');
             $table->string('judul_laporan');

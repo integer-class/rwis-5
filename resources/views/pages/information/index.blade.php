@@ -79,7 +79,7 @@
                         <div class="col-md-4">
                             <article class="article">
                                 <div class="article-header">
-                                    <div class="article-image" data-background="{{ asset('storage/' . $info->image) }}">
+                                    <div class="article-image" data-background="{{ Storage::url($info->image) }}">
                                     </div>
                                 </div>
                                 <div class="article-details">

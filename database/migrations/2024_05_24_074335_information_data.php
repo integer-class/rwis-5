@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('date')->nullable();
             $table->string('time')->nullable();
             $table->string('place')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image')->nullable()->default('village.png');
             $table->boolean('is_archived')->default(false);
             $table->timestamps();
         });

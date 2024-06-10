@@ -14,14 +14,14 @@
                 <div class="card-body">
                     <form action="{{ route('report.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="nama">Nama</label>
                             <input type="text" name="nama" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
                             <input type="text" name="alamat" class="form-control" required>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="judul_laporan">Judul Laporan</label>
                             <input type="text" name="judul_laporan" class="form-control" required>
@@ -34,7 +34,9 @@
                             <label for="image">Upload Gambar</label>
                             <input type="file" class="form-control" id="image" name="image">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Kirim</button>
+                        <a href="{{ route('report.index') }}" class="btn btn-danger">Batal</a>
                     </form>
                     
             </div>

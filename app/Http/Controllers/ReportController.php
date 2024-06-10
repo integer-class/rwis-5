@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\CitizenDataModel;
 use Illuminate\Http\Request;
 use App\Models\Report;
 use Illuminate\Support\Facades\Storage;
@@ -27,29 +28,34 @@ class ReportController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required',
-            'alamat' => 'required',
             'judul_laporan' => 'required',
             'tanggal' => 'required|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $nik = Auth::user()->nik;
+        $name = Auth::user()->name;
+        $alamat = CitizenDataModel::select('citizen_data.address_domisili')
+                    ->join('citizen_user_data', 'citizen_user_data.nik', '=', 'citizen_data.nik')
+                    ->where('citizen_data.nik', $nik);
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
+            $extfile = $request->image->getClientOriginalExtension();
+            $fileName = 'report-' . time() . '.' . $extfile;
+            $request->image->storeAs('public', $fileName);
+            $imagePath = $fileName;
         } else {
             $imagePath = null;
         }
 
         Report::create([
             'nik' => $nik,
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
+            'nama' => $name,
+            'alamat' => $alamat,
             'judul_laporan' => $request->judul_laporan,
             'tanggal' => $request->tanggal,
             'image' => $imagePath,
-            'status' => 'Menunggu Verifikasi',
+            'status' => null,
         ]);
 
         return redirect()->route('report.index')->with('success', 'Report created successfully.');
