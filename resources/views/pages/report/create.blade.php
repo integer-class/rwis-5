@@ -26,10 +26,10 @@
                             <label for="judul_laporan">Judul Laporan</label>
                             <input type="text" name="judul_laporan" class="form-control" required>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="tanggal">Tanggal</label>
                             <input type="date" name="tanggal" class="form-control" value="{{ date('Y-m-d') }}" required>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="image">Upload Gambar</label>
                             <input type="file" class="form-control" id="image" name="image">

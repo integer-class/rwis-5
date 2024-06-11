@@ -60,7 +60,7 @@ class ReportController extends Controller
         $report->nama = $name;
         $report->alamat = $alamat;
         $report->judul_laporan = $request->judul_laporan;
-        $report->tanggal = $request->tanggal;
+        $report->tanggal = now()->format('Y-m-d');
         $report->image = $imagePath;
         $report->status = 'Menunggu Verifikasi';
         $report->save();
@@ -126,7 +126,7 @@ class ReportController extends Controller
     public function accept($id)
     {
         $report = Report::findOrFail($id);
-        $report->status = 'accepted';
+        $report->status = 'Diterima';
         $report->save();
         return redirect()->route('report.index')->with('success', 'Report accepted successfully.');
     }
@@ -134,7 +134,7 @@ class ReportController extends Controller
     public function reject($id)
     {
         $report = Report::findOrFail($id);
-        $report->status = 'rejected';
+        $report->status = 'Ditolak';
         $report->save();
         return redirect()->route('report.index')->with('success', 'Report rejected successfully.');
     }
