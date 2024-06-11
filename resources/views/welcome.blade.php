@@ -107,38 +107,86 @@
 
     </div>
     <div class="container-fluid mt-5">
-        <div class="row justify-content-evenly row-sec2">
-            <div class="col-md-2 text-center mt-5">
-                <a href="">
-                    <img src="{{ asset('img/charity.png') }}" alt="">
-                </a>
-                <p class="logo-title">Social Charity</p>
+        @auth
+            <div class="row justify-content-evenly row-sec2">
+                <div class="col-md-2 text-center mt-5">
+                    <a href="{{ route('bansos.index') }}">
+                        <img src="{{ asset('img/charity.png') }}" alt="">
+                    </a>
+                    <p class="logo-title">Social Charity</p>
+                </div>
+                @if (auth()->user()->level == 'warga')
+                    <div class="col-md-2 text-center mt-5">
+                        <a href="">
+                            <img src="{{ asset('img/people.png') }}" alt="">
+                        </a>
+                        <p class="logo-title">Data Digitalization</p>
+                    </div>
+                @else
+                    <div class="col-md-2 text-center mt-5">
+                        <a href="{{ route('citizen.index') }}">
+                            <img src="{{ asset('img/people.png') }}" alt="">
+                        </a>
+                        <p class="logo-title">Data Digitalization</p>
+                    </div>
+                @endif
+
+                <div class="col-md-2 text-center mt-5">
+                    <a href="{{ route('letter.index') }}">
+                        <img src="{{ asset('img/doc.png') }}" alt="">
+                    </a>
+                    <p class="logo-title">Letter and Digital Siganture</p>
+                </div>
+                <div class="col-md-2 text-center mt-5">
+                    <a href="{{ route('information.index') }}">
+                        <img src="{{ asset('img/info.png') }}" alt="">
+                    </a>
+                    <p class="logo-title">Information Hub</p>
+                </div>
+                <div class="col-md-2 text-center mt-5">
+                    <a href="{{ route('report.index') }}">
+                        <img src="{{ asset('img/brain.png') }}" alt="">
+                    </a>
+                    <p class="logo-title">Problem Report</p>
+                </div>
             </div>
-            <div class="col-md-2 text-center mt-5">
-                <a href="">
-                    <img src="{{ asset('img/people.png') }}" alt="">
-                </a>
-                <p class="logo-title">Data Digitalization</p>
+        @else
+            <div class="row justify-content-evenly row-sec2">
+                <div class="col-md-2 text-center mt-5">
+                    <a href="{{ route('bansos.index') }}">
+                        <img src="{{ asset('img/charity.png') }}" alt="">
+                    </a>
+                    <p class="logo-title">Social Charity</p>
+                </div>
+
+                <div class="col-md-2 text-center mt-5">
+                    <a href="">
+                        <img src="{{ asset('img/people.png') }}" alt="">
+                    </a>
+                    <p class="logo-title">Data Digitalization</p>
+                </div>
+
+                <div class="col-md-2 text-center mt-5">
+                    <a href="{{ route('letter.index') }}">
+                        <img src="{{ asset('img/doc.png') }}" alt="">
+                    </a>
+                    <p class="logo-title">Letter and Digital Siganture</p>
+                </div>
+                <div class="col-md-2 text-center mt-5">
+                    <a href="{{ route('information.index') }}">
+                        <img src="{{ asset('img/info.png') }}" alt="">
+                    </a>
+                    <p class="logo-title">Information Hub</p>
+                </div>
+                <div class="col-md-2 text-center mt-5">
+                    <a href="{{ route('report.index') }}">
+                        <img src="{{ asset('img/brain.png') }}" alt="">
+                    </a>
+                    <p class="logo-title">Problem Report</p>
+                </div>
             </div>
-            <div class="col-md-2 text-center mt-5">
-                <a href="">
-                    <img src="{{ asset('img/doc.png') }}" alt="">
-                </a>
-                <p class="logo-title">Letter and Digital Siganture</p>
-            </div>
-            <div class="col-md-2 text-center mt-5">
-                <a href="">
-                    <img src="{{ asset('img/info.png') }}" alt="">
-                </a>
-                <p class="logo-title">Information Hub</p>
-            </div>
-            <div class="col-md-2 text-center mt-5">
-                <a href="">
-                    <img src="{{ asset('img/brain.png') }}" alt="">
-                </a>
-                <p class="logo-title">Problem Report</p>
-            </div>
-        </div>
+        @endauth
+
     </div>
 
     <div class="container information section" id="about">
@@ -311,8 +359,8 @@
 
                     </div>
                     <div class="col-sm-12 col-md-4">
-                        <div class="card ms-5 mt-5">
-                            <a href="{{ route('dashboard') }}">
+                        <a href="{{ route('dashboard') }}">
+                            <div class="card ms-5 mt-5">
                                 <div class="card-body p-5">
                                     <div class="logo rounded-circle p-4 mt-4 mb-4">
                                         <img src="{{ asset('img/home.png') }}" alt="">
@@ -322,8 +370,9 @@
                                         neccessities with RT/RW <br>
                                         you can view their contacts <br>
                                         here</p>
-                            </a>
-                        </div>
+
+                                </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
@@ -345,7 +394,7 @@
         @else
             <div class="row card-group">
                 <div class="col-sm-12 col-md-4">
-                    <a href="{{ route('citizen.index') }}">
+                    <a href="">
                         <div class="card ms-5 mt-5">
                             <div class="card-body p-5">
                                 <div class="logo rounded-circle p-4 mt-4 mb-4">
@@ -359,8 +408,8 @@
                     </a>
                 </div>
                 <div class="col-sm-12 col-md-4">
-                    <div class="card ms-5 mt-5">
-                        <a href="">
+                    <a href="{{ route('dashboard') }}">
+                        <div class="card ms-5 mt-5">
                             <div class="card-body p-5">
                                 <div class="logo rounded-circle p-4 mt-4 mb-4">
                                     <img src="{{ asset('img/home.png') }}" alt="">
@@ -369,9 +418,10 @@
                                 <p class="desc-card">If there’s an urgent <br>
                                     neccessities with RT/RW <br>
                                     you can view their contacts <br>
-                                here</p>
-                        </a>
-                    </div>
+                                    here</p>
+
+                            </div>
+                    </a>
                 </div>
             </div>
             <div class="col-sm-12 col-md-4">
@@ -513,17 +563,18 @@
             <p class="title1">WHAT’S NOW</p>
             <p class="title2">Latest Reports & News</p>
             <div class="row justify-content-around">
-                @foreach($top3report as $report)
-                <div class="col-sm-8 col-md-3">
-                    <div class="card" style="background-image: url('{{ asset('storage/' . $report->image) }}'); background-size: cover; background-position: center; height: 400px; weight: 700px; border-radius: 10px;">
-                        <div class="card card-date">
-                            <p class="date">{{ date('d', strtotime($report->tanggal)) }}</p>
-                            <p class="day">{{ date('D', strtotime($report->tanggal)) }}</p>
+                @foreach ($top3report as $report)
+                    <div class="col-sm-8 col-md-3">
+                        <div class="card"
+                            style="background-image: url('{{ asset('storage/' . $report->image) }}'); background-size: cover; background-position: center; height: 400px; weight: 700px; border-radius: 10px;">
+                            <div class="card card-date">
+                                <p class="date">{{ date('d', strtotime($report->tanggal)) }}</p>
+                                <p class="day">{{ date('D', strtotime($report->tanggal)) }}</p>
+                            </div>
                         </div>
+                        <p class="title-news">{{ $report->judul_laporan }}</p>
+                        <p class="desc">{{ $report->tanggal }} dilaporkan oleh {{ $report->nama }}</p>
                     </div>
-                    <p class="title-news">{{ $report->judul_laporan}}</p>
-                    <p class="desc">{{ $report->tanggal}} dilaporkan oleh {{ $report->nama}}</p>
-                </div>
                 @endforeach
             </div>
         </div>
