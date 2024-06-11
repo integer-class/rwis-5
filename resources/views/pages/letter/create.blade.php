@@ -11,36 +11,36 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Tambah Letter</h1>
+                <h1>Tambah Surat</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Data Letter</a></div>
-                    <div class="breadcrumb-item">Tambah Letter</div>
+                    <div class="breadcrumb-item"><a href="#">Data Surat</a></div>
+                    <div class="breadcrumb-item">Tambah Surat</div>
                 </div>
             </div>
             <form action="{{ route('letter.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="section-body">
 
-                    <h2 class="section-title">Tambah Letter</h2>
-                    <p class="section-lead">Kamu bisa menambahkan data Letter yang berisi surat</p>
+                    <h2 class="section-title">Tambah Surat</h2>
+                    <p class="section-lead">Kamu bisa menambahkan data surat yang berisi surat</p>
 
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Tambah Letter</h4>
+                                    <h4>Tambah Surat</h4>
                                 </div>
                                 <div class="card-body">
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label>Nama</label>
                                         <input type="text" class="form-control" name="name" required>
                                         <small class="text-muted">Masukkan nama lengkap anda</small>
                                         @error('name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>
-                                    <div class="form-group">
+                                    </div> --}}
+                                    {{-- <div class="form-group">
                                         <label>Alamat</label>
                                         <input type="text" class="form-control" name="address" required></input>
                                         <small class="text-muted">Alamat rumah anda</small>
@@ -55,7 +55,7 @@
                                         @error('whatsapp_number')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
                                     <div class="form-group">
                                         <label>File Surat</label>

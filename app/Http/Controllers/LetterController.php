@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Citizen;
+use App\Models\CitizenDataModel;
 use App\Models\LetterModel;
 use App\Models\TemplateModel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class LetterController extends Controller
@@ -28,17 +30,28 @@ class LetterController extends Controller
 
     public function store(Request $request)
     {
+        $nik = Auth::user()->nik;
+        $name = Auth::user()->name;
+        $alamat = CitizenDataModel::select('citizen_data.address_domisili')
+        ->join('citizen_user_data', 'citizen_user_data.nik', '=', 'citizen_data.nik')
+        ->where('citizen_data.nik', $nik)
+        ->first()
+        ->address_domisili;
+
+        $wa = CitizenDataModel::select('citizen_data.phone_number')
+        ->join('citizen_user_data', 'citizen_user_data.nik', '=', 'citizen_data.nik')
+        ->where('citizen_data.nik', $nik)
+        ->first()
+        ->phone_number;
+
         $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'whatsapp_number' => 'required',
             'file' => 'nullable|mimes:pdf,doc,docx|max:2048',
         ]);
 
         $letter = new LetterModel();
-        $letter->name = $request->name;
-        $letter->address = $request->address;
-        $letter->whatsapp_number = $request->whatsapp_number;
+        $letter->name = $name;
+        $letter->address = $alamat;
+        $letter->whatsapp_number = $wa;
         $letter->status = 'Belum Verifikasi';
 
         if ($request->hasFile('file')) {

@@ -530,7 +530,7 @@
                 </div>
                 <div class="col-sm-8 col-md-2 mt-5">
                     <div class="card">
-                        <img src="{{ asset('img/me.jpeg') }}" alt="">
+                        <img src="{{ asset('img/davis.jpg') }}" alt="">
                     </div>
                     <p class="name">Davis</p>
                     <p class="position">Pullstack Developer</p>
