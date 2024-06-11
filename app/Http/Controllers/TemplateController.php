@@ -23,7 +23,7 @@ class TemplateController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'file' => 'nullable|mimes:pdf,doc,docx|max:2048',
+            'file' => 'nullable|mimes:pdf|max:2048',
         ]);
 
         $temp = new TemplateModel();

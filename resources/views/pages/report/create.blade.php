@@ -28,7 +28,7 @@
                         </div>
                         {{-- <div class="form-group">
                             <label for="tanggal">Tanggal</label>
-                            <input type="date" name="tanggal" class="form-control" value="{{ date('Y-m-d') }}" required>
+                            <input type="date" name="tanggal" class="form-control" value="{{ date('Y-m-d') }}" >
                         </div> --}}
                         <div class="form-group">
                             <label for="image">Upload Gambar</label>

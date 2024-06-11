@@ -4,16 +4,12 @@ namespace App\Http\Controllers;
 use App\Models\CitizenDataModel;
 use Illuminate\Http\Request;
 use App\Models\Report;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         if (Auth::user()->level == 'rt' || Auth::user()->level == 'rw'){
@@ -34,7 +30,6 @@ class ReportController extends Controller
     {
         $request->validate([
             'judul_laporan' => 'required',
-            'tanggal' => 'required|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 

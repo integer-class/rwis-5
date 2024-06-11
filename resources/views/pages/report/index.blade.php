@@ -95,6 +95,7 @@
                                                                         </button>
                                                                     </form>
                                                                 @elseif ($report->status == 'Diterima')
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                                     <form
                                                                         action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'Menunggu Verifikasi']) }}"
                                                                         method="POST" style="display: inline;">
@@ -115,7 +116,9 @@
                                                                             <i class="fas fa-archive"></i> Archive
                                                                         </button>
                                                                     </form>
+                                                                </div>
                                                                 @elseif ($report->status == 'Ditolak')
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                                     <form
                                                                         action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'Menunggu Verifikasi']) }}"
                                                                         method="POST" style="display: inline;">
@@ -136,7 +139,9 @@
                                                                             <i class="fas fa-archive"></i> Archive
                                                                         </button>
                                                                     </form>
+                                                                </div>
                                                                 @elseif ($report->status == 'archived')
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                                     <form
                                                                         action="{{ route('report.changeStatus', ['id' => $report->id, 'status' => 'Menunggu Verifikasi']) }}"
                                                                         method="POST" style="display: inline;">
@@ -147,6 +152,7 @@
                                                                             <i class="fas fa-undo"></i> Unarchive
                                                                         </button>
                                                                     </form>
+                                                                </div>
                                                             @endif
 
                                                         </div>
