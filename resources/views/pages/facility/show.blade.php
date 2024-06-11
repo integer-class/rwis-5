@@ -11,11 +11,10 @@
 
         <div class="section-body">
             <div class="article">
-                <div class="article-header">
-                    <div class="article-image" data-background="{{ asset('storage/' . $facility->image) }}">
-                    </div>
+                <div class="article-header" style="width: 100%;">
+                    <div class="article-image" style="background-image: url('{{ asset('storage/' . $facility->image) }}'); background-size: contain; background-repeat: no-repeat; background-position: center; width: 100%; height: 400px;"></div>
                 </div>
-                <div class="article-details">
+                <div class="article-details" style="width: 100%;">
                     <p>{{ $facility->description }}</p>
                 </div>
             </div>
