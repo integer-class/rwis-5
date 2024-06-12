@@ -13,7 +13,8 @@ class LandingController extends Controller
 {
     public function index()
     {
-        $top3information = InformationModel::orderBy('created_at', 'desc')->limit(3)->get();
+        $top3information = InformationModel::where('is_archived', 0)
+        ->orderBy('created_at', 'desc')->limit(3)->get();
 
         $citizenCount = CitizenDataModel::count();
         $rtCount = FamilyModel::select('rt')->distinct()->count();
